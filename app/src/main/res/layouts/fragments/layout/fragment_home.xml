@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.example.fleet.common.BindingUtils" />
+
+        <variable
+            name="homeViewModel"
+            type="com.example.fleet.viewmodels.home.HomeViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/upper_container"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/splash"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:weightSum="10">
+
+            <TextView
+                android:id="@+id/tv_welcome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_150"
+                android:paddingStart="@dimen/dp_30"
+                android:paddingLeft="@dimen/dp_30"
+                android:text="@string/welcome"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/sp_22"
+                app:font="@{`bold`}"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/dp_30"
+                android:paddingLeft="@dimen/dp_30"
+                android:text="@{BindingUtils.getUserName()+`!`}"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/sp_22"
+                app:font="@{`bold`}"
+                tools:ignore="RtlSymmetry"
+                tools:text="Karan!" />
+
+            <RelativeLayout
+                android:id="@+id/childLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="8.7"
+                android:gravity="center">
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:drawableLeft="@drawable/ic_location"
+            android:drawablePadding="@dimen/dp_5"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_30"
+            android:text="2345 Hickory Av Nashville, Tennesses 30767"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold"
+            app:font="@{`bold`}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_10"
+            android:drawablePadding="@dimen/dp_5"
+            android:text="Questionnaire"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/sp_16"
+            app:font="@{`regular`}" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvQuesions"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp_10" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/dp_10"
+                    android:background="@drawable/ic_next_back"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_10"
+                        android:gravity="center"
+                        android:text="Next"
+                        android:textSize="@dimen/sp_16"
+                        app:font="@{`regular`}" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_right_next" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/tv_no_record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/no_record_found"
+            android:visibility="gone"
+            app:font="@{`regular`}" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            style="@style/TabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBlack"
+            android:visibility="gone"
+            app:tabIndicatorHeight="@dimen/dp_4"
+            app:tabMode="fixed" />
+    </LinearLayout>
+
+</layout>
