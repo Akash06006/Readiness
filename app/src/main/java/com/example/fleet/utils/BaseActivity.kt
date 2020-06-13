@@ -244,7 +244,7 @@ abstract class BaseActivity : AppCompatActivity() {
                 }
             }
             mFragmentTransaction.addToBackStack(null)
-           mFragmentTransaction.replace(R.id.frame_layout, fragment)
+           //mFragmentTransaction.replace(R.id.frame_layout, fragment)
             // mFragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             mFragmentTransaction.commit()
         }

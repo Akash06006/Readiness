@@ -25,7 +25,6 @@ import android.widget.Toast.LENGTH_SHORT
 import com.example.fleet.R
 import com.example.fleet.application.MyApplication
 import com.example.fleet.databinding.CustomToastBinding
-import com.example.fleet.firebaseMobile.OtpFirebaseActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
