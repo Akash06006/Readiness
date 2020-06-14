@@ -2,6 +2,15 @@
 <resources>
     <string name="usename">Username</string>
     <string name="login_proceed">Login to Proceed</string>
+    <string name="proposed_info">Proposed Facility Information</string>
+    <string name="facility_name">Facility Name</string>
+    <string name="facility_address">Facility Address (reference buildings/shopping center , if applicable )</string>
+    <string name="poc_name">Point of Contact* (POC) Name</string>
+    <string name="poc_address">POC Address</string>
+    <string name="poc_phone">POC Phone Number</string>
+    <string name="poc_email">POC Email</string>
+    <string name="start">Start</string>
+    <string name="want_to_logout">Are you sure you would like to Log Out?</string>
 
     <!-- <string name="api_key">AIzaSyD2-RDPo0jssFqwwTXr6NDpOFzQTcIc3dI</string>-->
 

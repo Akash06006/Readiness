@@ -60,41 +60,6 @@ class LoginRepository {
 
     }
 
-    fun checkPhoneExistence(jsonObject : JsonObject?) : MutableLiveData<CommonModel> {
-        if (jsonObject != null) {
-            val mApiService = ApiService<JsonObject>()
-            mApiService.get(
-                object : ApiResponse<JsonObject> {
-                    override fun onResponse(mResponse : Response<JsonObject>) {
-                        val loginResponse = if (mResponse.body() != null)
-                            gson.fromJson<CommonModel>("" + mResponse.body(), CommonModel::class.java)
-                        else {
-                            gson.fromJson<CommonModel>(
-                                mResponse.errorBody()!!.charStream(),
-                                LoginResponse::class.java
-                            )
-                        }
-
-
-                        data1!!.postValue(loginResponse)
-
-                    }
-
-                    override fun onError(mKey : String) {
-                        UtilsFunctions.showToastError(MyApplication.instance.getString(R.string.internal_server_error))
-                        data1!!.postValue(null)
-
-                    }
-
-                }, ApiClient.getApiInterface().checkPhoneExistence(jsonObject)
-
-            )
-
-        }
-        return data1!!
-
-    }
-
 
     fun getLogoutResonse(jsonObject : JsonObject?) : MutableLiveData<CommonModel> {
         if (jsonObject != null) {

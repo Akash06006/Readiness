@@ -29,5 +29,7 @@
     <string name="upload_with_camera">Upload with camera</string>
     <string name="select_option">Select option</string>
     <string name="place_image_here">Upload from gallery</string>
+    <string name="empty">Please Enter</string>
 
+    <string name="na">NA</string>
 </resources>

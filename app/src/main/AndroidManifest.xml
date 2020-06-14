@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        package="com.example.fleet">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.fleet">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -19,42 +19,41 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-permission
-            android:name="android.permission.BROADCAST_SMS"
-            tools:ignore="ProtectedPermissions" />
+        android:name="android.permission.BROADCAST_SMS"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature
-            android:name="android.hardware.camera.flash"
-            android:required="true" />
+        android:name="android.hardware.camera.flash"
+        android:required="true" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
-            android:name=".application.MyApplication"
-            android:fullBackupContent="@xml/backup_descriptor"
-            android:icon="@drawable/ic_app"
-            android:label="@string/app_name"
-            android:networkSecurityConfig="@xml/network_security_config"
-            android:roundIcon="@drawable/ic_app"
-            android:supportsRtl="true"
-            android:usesCleartextTraffic="true"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="GoogleAppIndexingWarning"
-            tools:targetApi="n">
-        <activity android:name=".views.profile.ProfileActivity" />
+        android:name=".application.MyApplication"
+        android:fullBackupContent="@xml/backup_descriptor"
+        android:icon="@drawable/ic_app"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@drawable/ic_app"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar"
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:targetApi="n">
 
         <provider
-                android:name="androidx.core.content.FileProvider"
-                android:authorities="com.example.fleet.fileprovider"
-                android:exported="false"
-                android:grantUriPermissions="true">
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.fleet.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
-                    android:name="android.support.FILE_PROVIDER_PATHS"
-                    android:resource="@xml/fileprovider" />
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/fileprovider" />
         </provider>
 
 
@@ -75,6 +74,9 @@
 <!--            </intent-filter>-->
 <!--        </activity>   -->
         <activity
+            android:name=".views.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
                 android:name="com.e.dummyproject.SitePhotosActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar">
@@ -88,51 +90,18 @@
 
 
         <activity
-                android:name=".views.authentication.LoginActivity"
-                android:launchMode="singleTop"
-                android:screenOrientation="portrait" />
+            android:name=".views.authentication.LoginActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
         <activity
-                android:name=".views.authentication.LoginPasswordActivity"
-                android:launchMode="singleTop"
-                android:screenOrientation="portrait" />
-        <activity
-                android:name=".views.authentication.OTPVerificationActivity"
-                android:launchMode="singleTop"
-                android:screenOrientation="portrait" />
-        <activity
-                android:name=".views.authentication.ResetPasswrodActivity"
-                android:launchMode="singleTop"
-                android:screenOrientation="portrait" />
-        <activity
-                android:name=".views.authentication.ChangePasswrodActivity"
-                android:launchMode="singleTop"
-                android:screenOrientation="portrait" />
-        <activity
-                android:name=".views.home.DashboardActivity"
-                android:launchMode="singleTop"
-                android:screenOrientation="portrait" />
-        <activity
-                android:name=".views.settings.MyAccountsActivity"
-                android:launchMode="singleTop"
-                android:screenOrientation="portrait" />
-        <activity
-                android:name=".views.authentication.RegisterActivity"
-                android:launchMode="singleTop"
-                android:screenOrientation="portrait" />
-        <activity
-                android:name=".socket.TrackingActivity"
-                android:launchMode="singleTop"
-                android:screenOrientation="portrait" />
+            android:name=".views.SiteInfoActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
 
-        <receiver
-                android:name=".views.authentication.SMSBroadcastReciever"
-                android:exported="true"
-                android:permission="android.permission.BROADCAST_SMS"
-                android:priority="1000">
-            <intent-filter>
-                <action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVED" />
-            </intent-filter>
-        </receiver>
+        <activity
+            android:name=".views.home.DashboardActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
 
         <service
                 android:name="com.uniongoods.fcm.MyFirebaseMessagingService"

@@ -6,18 +6,20 @@ import android.view.View
 import com.example.fleet.common.UtilsFunctions
 import com.example.fleet.model.CommonModel
 import com.example.fleet.model.LoginResponse
+import com.example.fleet.model.SiteInfo
 import com.example.fleet.repositories.LoginRepository
+import com.example.fleet.repositories.SiteRepository
 import com.google.gson.JsonObject
 import org.json.JSONObject
 
-class LoginViewModel : BaseViewModel() {
-    private var loginResposne = MutableLiveData<LoginResponse>()
-    private var loginRepository = LoginRepository()
+class SiteInfoViewModel : BaseViewModel() {
+    private var siteResposne = MutableLiveData<SiteInfo>()
+    private var siteRepository = SiteRepository()
     private val mIsUpdating = MutableLiveData<Boolean>()
     private val btnClick = MutableLiveData<String>()
 
     init {
-        loginResposne = loginRepository.getLoginData(null)
+        siteResposne = siteRepository.getSiteInfo(null)
     }
 
     override fun isLoading() : LiveData<Boolean> {
@@ -25,8 +27,8 @@ class LoginViewModel : BaseViewModel() {
     }
 
 
-     fun loginResponse() : LiveData<LoginResponse> {
-        return loginResposne
+     fun siteResposne() : LiveData<SiteInfo> {
+        return siteResposne
     }
     override fun isClick() : LiveData<String> {
         return btnClick
@@ -37,10 +39,9 @@ class LoginViewModel : BaseViewModel() {
 
     }
 
-    fun login(mJsonObject : JsonObject) {
+    fun getSiteInfo(userId : String) {
         if (UtilsFunctions.isNetworkConnected()) {
-            //emialExistenceResponse = loginRepository.checkPhoneExistence(mJsonObject)
-            loginResposne = loginRepository.getLoginData(mJsonObject)
+            siteResposne = siteRepository.getSiteInfo(userId)
                 mIsUpdating.postValue(true)
             }
 
