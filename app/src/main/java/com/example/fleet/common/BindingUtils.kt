@@ -80,7 +80,7 @@ object BindingUtils {
         var data = ""
         val gson = Gson()
 
-        var dataSaved:LoginResponse.Data ?=null
+        var dataSaved:LoginResponse.ResultData ?=null
 
         if(UtilsFunctions.checkObjectNull(
                 SharedPrefClass().getPrefValue(
@@ -93,7 +93,7 @@ object BindingUtils {
             dataSaved = gson.fromJson(SharedPrefClass().getPrefValue(
                 MyApplication.instance.applicationContext,
                 GlobalConstants.USERDATA
-            ) as String, LoginResponse.Data::class.java)
+            ) as String, LoginResponse.ResultData::class.java)
 
 
 
@@ -121,7 +121,7 @@ object BindingUtils {
 
             "email" -> {
                 if (dataSaved!=null) {
-                    data = dataSaved.email.toString()
+                    data = dataSaved.userName.toString()
                 }
             }
 
