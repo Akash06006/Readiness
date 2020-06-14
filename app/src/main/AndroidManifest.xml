@@ -39,7 +39,6 @@
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="GoogleAppIndexingWarning"
             tools:targetApi="n">
-        <activity android:name=".views.home.JobsHistoryActivity" />
         <activity android:name=".views.profile.ProfileActivity" />
 
         <provider

@@ -8,10 +8,8 @@ import com.example.fleet.application.MyApplication
 import com.example.fleet.constants.GlobalConstants
 import com.example.fleet.databinding.ActivitySplashBinding
 import com.example.fleet.sharedpreference.SharedPrefClass
-import com.example.fleet.socket.TrackingActivity
 import com.example.fleet.utils.BaseActivity
 import com.example.fleet.views.authentication.LoginActivity
-import com.example.fleet.views.home.DashboardActivity
 import com.google.gson.JsonObject
 import java.util.*
 
@@ -59,7 +57,7 @@ class SplashActivity : BaseActivity() {
         )
             login = sharedPrefClass!!.getPrefValue(this, "isLogin").toString()
         val intent = if (login == "true") {
-            Intent(this, DashboardActivity::class.java)
+            Intent(this, LoginActivity::class.java)
         } else {
             Intent(this, LoginActivity::class.java)
             //Intent(this, DashboardActivity::class.java)

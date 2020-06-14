@@ -20,7 +20,6 @@ import android.widget.*
 import android.widget.RatingBar.OnRatingBarChangeListener
 import com.example.fleet.R
 import com.example.fleet.callbacks.ChoiceCallBack
-import com.example.fleet.socket.TrackingActivity
 
 class DialogClass {
     private var checkClick = 0
@@ -70,27 +69,6 @@ class DialogClass {
 
     }
 
-    fun setPermissionDialog(mContext : Context, homeActivity : TrackingActivity) : Dialog {
-        val dialogView = Dialog(mContext)
-        dialogView.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        val activity = mContext as Activity
-        val binding = DataBindingUtil.inflate<ViewDataBinding>(
-            LayoutInflater.from(mContext),
-            R.layout.location_popup,
-            null,
-            false
-        )
-
-        dialogView.setContentView(binding.root)
-        dialogView.setCancelable(false)
-        dialogView.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
-        val btn_turn_on_location = dialogView.findViewById<Button>(R.id.btn_turn_on_location)
-
-        btn_turn_on_location.setOnClickListener { homeActivity.checkPermission() }
-
-        return dialogView
-
-    }
 
     fun setConfirmationDialog(
         mContext : Context,
