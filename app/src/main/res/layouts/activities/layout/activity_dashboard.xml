@@ -73,7 +73,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.navigation.NavigationView
+        <!--<com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -86,7 +86,7 @@
             android:visibility="gone"
             app:theme="@style/NavigationViewStyle">
 
-            <!-- <android.support.design.widget.NavigationView
+            &lt;!&ndash; <android.support.design.widget.NavigationView
                      android:id="@+id/nav_view"
                      android:layout_width="wrap_content"
                      android:layout_height="match_parent"
@@ -99,7 +99,7 @@
                      app:itemTextAppearance="@style/NavigationTextViewStyle"
                      app:itemTextColor="@drawable/drawer_text_item"
                      app:menu="@menu/activity_home_drawer"
-                     app:theme="@style/NavigationViewStyle" />-->
+                     app:theme="@style/NavigationViewStyle" />&ndash;&gt;
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -107,8 +107,8 @@
                 android:layout_gravity="start"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
-                <!-- <include
-                     layout="@layout/header_view"/>-->
+                &lt;!&ndash; <include
+                     layout="@layout/header_view"/>&ndash;&gt;
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -331,7 +331,7 @@
 
             </LinearLayout>
 
-        </com.google.android.material.navigation.NavigationView>
+        </com.google.android.material.navigation.NavigationView>-->
 
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

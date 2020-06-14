@@ -49,9 +49,9 @@ class DashboardActivity : BaseActivity(),
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun initViews() {
         activityDashboardBinding = viewDataBinding as ActivityDashboardBinding
-        navigationView = activityDashboardBinding!!.navView
-        navigationView!!.alpha = 0.9f
-        drawer = activityDashboardBinding!!.drawerLayout
+        //navigationView = activityDashboardBinding!!.navView
+      //  navigationView!!.alpha = 0.9f
+       // drawer = activityDashboardBinding!!.drawerLayout
         dashboardViewModel = ViewModelProviders.of(this).get(DashboardViewModel::class.java)
         activityDashboardBinding!!.dashboardViewModel = dashboardViewModel
         // toolBarText = activityDashboardBinding!!.toolbarCommon.imgToolbarText
@@ -63,7 +63,7 @@ class DashboardActivity : BaseActivity(),
         activityDashboardBinding!!.toolbarCommon.imgRight.visibility = View.VISIBLE
         activityDashboardBinding!!.toolbarCommon.imgRight.setImageResource(R.drawable.ic_notifications)
 
-        val image = SharedPrefClass().getPrefValue(
+       /* val image = SharedPrefClass().getPrefValue(
             MyApplication.instance.applicationContext,
             GlobalConstants.USER_IAMGE
         )
@@ -76,10 +76,10 @@ class DashboardActivity : BaseActivity(),
             MyApplication.instance.applicationContext,
             getString(R.string.first_name)
         )
-        activityDashboardBinding!!.tvName.text = name.toString()
+        activityDashboardBinding!!.tvName.text = name.toString()*/
         fragment = HomeFragment()
         callFragments(fragment, supportFragmentManager, false, "send_data", "")
-        dashboardViewModel!!.isClick().observe(
+        /*dashboardViewModel!!.isClick().observe(
             this, Observer<String>(function =
             fun(it : String?) {
                 when (it) {
@@ -105,8 +105,8 @@ class DashboardActivity : BaseActivity(),
 
                     }
                     "tv_nav_contact" -> {
-                        /* val intent = Intent(this, TrackingActivity::class.java)
-                         startActivity(intent)*/
+                        *//* val intent = Intent(this, TrackingActivity::class.java)
+                         startActivity(intent)*//*
                     }
                     "ic_profile" -> {
                         val intent = Intent(this, ProfileActivity::class.java)
@@ -161,7 +161,7 @@ class DashboardActivity : BaseActivity(),
                     }
                 }
             })
-        )
+        )*/
 
         dashboardViewModel!!.getLogoutReposne.observe(this,
             Observer<CommonModel> { logoutResponse->
@@ -250,7 +250,7 @@ class DashboardActivity : BaseActivity(),
               activityDashboardBinding!!.tablayout.getTabAt(GlobalConstants.selectedFragment)!!.select()
               GlobalConstants.selectedCheckedFragment = 0
           }*/
-        val image = SharedPrefClass().getPrefValue(
+        /*val image = SharedPrefClass().getPrefValue(
             MyApplication.instance.applicationContext,
             GlobalConstants.USER_IAMGE
         )
@@ -263,7 +263,7 @@ class DashboardActivity : BaseActivity(),
             MyApplication.instance.applicationContext,
             getString(R.string.first_name)
         )
-        activityDashboardBinding!!.tvName.text = name.toString()
+        activityDashboardBinding!!.tvName.text = name.toString()*/
 
     }
 

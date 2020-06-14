@@ -1,27 +1,28 @@
 package com.uniongoods.adapters
 
-import android.content.Context
+import android.R.attr.button
+import android.graphics.drawable.Drawable
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
-import android.widget.RadioGroup
 import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fleet.R
-import com.example.fleet.views.home.HomeFragment
 import com.example.fleet.databinding.QuestionItemBinding
+import com.example.fleet.model.home.QuestionData
+import com.example.fleet.views.home.HomeFragment
+
 
 class QuestionsListAdapter(
     context : HomeFragment,
-    addressList : ArrayList<String>?
+    addressList : ArrayList<QuestionData.Data>?
 ) :
     RecyclerView.Adapter<QuestionsListAdapter.ViewHolder>() {
     private val mContext : HomeFragment
     private var viewHolder : ViewHolder? = null
-    private var addressList : ArrayList<String>?
+    private var addressList : ArrayList<QuestionData.Data>?
 
     init {
         this.mContext = context
@@ -41,17 +42,39 @@ class QuestionsListAdapter(
 
     override fun onBindViewHolder(@NonNull holder : ViewHolder, position : Int) {
         viewHolder = holder
-        /* holder.binding!!.tvAddress.text = addressList[position].addressType
-         holder.binding!!.tvAddressDetail.text = addressList[position].addressName
-         holder.binding.rdDefault.setOnClickListener {
+        holder.binding!!.tvQuestion.text = addressList!![position].question
+        holder.binding!!.imgYes.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_not_selected))
+        holder.binding!!.imgNo.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_not_selected))
+        holder.binding!!.imgNa.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_not_selected))
 
-             holder.binding.rdDefault.setChecked(false)
-
-         }*/
+        if (!TextUtils.isEmpty(addressList!![position].selected)) {
+            if (addressList!![position].selected.equals("yes")) {
+                // val img : Drawable = mContext.getResources().getDrawable(R.drawable.ic_yes)
+                //  img.setBounds(0, 0, 60, 60);
+                holder.binding!!.imgYes.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_yes))
+            } else if (addressList!![position].selected.equals("no")) {
+                // val img : Drawable = mContext.getResources().getDrawable(R.drawable.ic_no)
+                // img.setBounds(0, 0, 60, 60);
+                holder.binding!!.imgNo.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_no))
+            } else if (addressList!![position].selected.equals("na")) {
+                //val img : Drawable = mContext.getResources().getDrawable(R.drawable.ic_na)
+                //img.setBounds(0, 0, 60, 60);
+                holder.binding!!.imgNa.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_na))
+            }
+        }
+        holder.binding!!.tvYes.setOnClickListener {
+            mContext.radioClick("yes", addressList!![position].id!!)
+        }
+        holder.binding!!.tvNo.setOnClickListener {
+            mContext.radioClick("no", addressList!![position].id!!)
+        }
+        holder.binding!!.tvNa.setOnClickListener {
+            mContext.radioClick("na", addressList!![position].id!!)
+        }
     }
 
     override fun getItemCount() : Int {
-        return 10// addressList.count()
+        return addressList!!.count()
     }
 
     inner class ViewHolder//This constructor would switch what to findViewBy according to the type of viewType
@@ -59,7 +82,7 @@ class QuestionsListAdapter(
         v : View, val viewType : Int, //These are the general elements in the RecyclerView
         val binding : QuestionItemBinding?,
         mContext : HomeFragment,
-        addressList : ArrayList<String>?
+        addressList : ArrayList<QuestionData.Data>?
     ) : RecyclerView.ViewHolder(v) {
         /*init {
             binding.linAddress.setOnClickListener {
