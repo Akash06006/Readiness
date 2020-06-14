@@ -40,9 +40,7 @@ class LoginRepository {
                             )
                         }
 
-
                         data!!.postValue(loginResponse)
-
                     }
 
                     override fun onError(mKey : String) {

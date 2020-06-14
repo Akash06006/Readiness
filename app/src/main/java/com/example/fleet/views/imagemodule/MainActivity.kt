@@ -4,7 +4,6 @@ import android.Manifest
 import android.R.attr
 import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
@@ -20,8 +19,6 @@ import com.example.fleet.R
 class MainActivity : AppCompatActivity() {
     var btnUpload: Button? = null
     var image:ImageView?=null
-
-
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,17 +31,9 @@ class MainActivity : AppCompatActivity() {
                 .load(intent.getStringExtra("uri"))
                 .into(image!!);
         }
-
         btnUpload!!.setOnClickListener {
             var intent=Intent(this,SitePhotosActivity::class.java)
             startActivity(intent)
-
         }
-
-
     }
-
-
-
-
 }
