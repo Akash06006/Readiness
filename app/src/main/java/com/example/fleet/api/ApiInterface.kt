@@ -1,5 +1,6 @@
 package com.example.fleet.api
 
+import com.example.fleet.model.home.QuestionInput
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -11,6 +12,14 @@ interface ApiInterface {
     @Headers("Content-Type: application/json")
     @POST("api/loginEmployee")
     fun callLogin(@Body jsonObject : JsonObject) : Call<JsonObject>
+
+
+    @GET("api/Question/GetQuestions")
+    fun getQuestions(/*@Body mJsonObject : JsonObject*/) : Call<JsonObject>
+
+    @POST("api/Question/SaveAnswer")
+    fun saveAnswer(@Body mJsonObject : ArrayList<QuestionInput.AnswerInputModel>?) : Call<JsonObject>
+
 
     /*@POST("login/")
     fun callLogin(@Body jsonObject : JsonObject) : Call<JsonObject>*/
@@ -50,7 +59,7 @@ interface ApiInterface {
     fun getVehicleList() : Call<JsonObject>
 
     @GET("api/service/list")
-    fun getServicesList(@Query("page") page : Int, @Query("limit") limit : Int,@Query("status") status : String) : Call<JsonObject>//(@Query("status") status : String) : Call<JsonObject>
+    fun getServicesList(@Query("page") page : Int, @Query("limit") limit : Int, @Query("status") status : String) : Call<JsonObject>//(@Query("status") status : String) : Call<JsonObject>
 
     @GET("api/fuel/getList")
     fun getFuelEntryList() : Call<JsonObject>

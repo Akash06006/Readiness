@@ -7,6 +7,9 @@ class QuestionData {
     @SerializedName("statusCode")
     @Expose
     var statusCode : Int? = null
+    @SerializedName("code")
+    @Expose
+    var code : Int? = null
     @SerializedName("message")
     @Expose
     var message : String? = null

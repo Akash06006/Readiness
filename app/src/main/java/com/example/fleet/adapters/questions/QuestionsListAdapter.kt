@@ -48,28 +48,28 @@ class QuestionsListAdapter(
         holder.binding!!.imgNa.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_not_selected))
 
         if (!TextUtils.isEmpty(addressList!![position].selected)) {
-            if (addressList!![position].selected.equals("yes")) {
+            if (addressList!![position].selected.equals("Yes")) {
                 // val img : Drawable = mContext.getResources().getDrawable(R.drawable.ic_yes)
                 //  img.setBounds(0, 0, 60, 60);
                 holder.binding!!.imgYes.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_yes))
-            } else if (addressList!![position].selected.equals("no")) {
+            } else if (addressList!![position].selected.equals("No")) {
                 // val img : Drawable = mContext.getResources().getDrawable(R.drawable.ic_no)
                 // img.setBounds(0, 0, 60, 60);
                 holder.binding!!.imgNo.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_no))
-            } else if (addressList!![position].selected.equals("na")) {
+            } else if (addressList!![position].selected.equals("NA")) {
                 //val img : Drawable = mContext.getResources().getDrawable(R.drawable.ic_na)
                 //img.setBounds(0, 0, 60, 60);
                 holder.binding!!.imgNa.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_na))
             }
         }
         holder.binding!!.tvYes.setOnClickListener {
-            mContext.radioClick("yes", addressList!![position].id!!)
+            mContext.radioClick("Yes", addressList!![position].id!!)
         }
         holder.binding!!.tvNo.setOnClickListener {
-            mContext.radioClick("no", addressList!![position].id!!)
+            mContext.radioClick("No", addressList!![position].id!!)
         }
         holder.binding!!.tvNa.setOnClickListener {
-            mContext.radioClick("na", addressList!![position].id!!)
+            mContext.radioClick("NA", addressList!![position].id!!)
         }
     }
 

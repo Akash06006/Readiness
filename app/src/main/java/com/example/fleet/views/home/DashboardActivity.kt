@@ -3,13 +3,13 @@ package com.example.fleet.views.home
 import android.app.Dialog
 import android.content.Intent
 import android.os.Build
+import android.os.Bundle
 import android.os.Handler
 import android.view.Gravity
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
@@ -23,10 +23,11 @@ import com.example.fleet.utils.BaseActivity
 import com.example.fleet.utils.DialogClass
 import com.example.fleet.utils.DialogssInterface
 import com.example.fleet.views.authentication.LoginActivity
-import com.example.fleet.views.profile.ProfileActivity
-import com.example.fleet.views.settings.MyAccountsActivity
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 
 class DashboardActivity : BaseActivity(),
     DialogssInterface {
@@ -36,7 +37,8 @@ class DashboardActivity : BaseActivity(),
     private var confirmationDialog : Dialog? = null
     private var ratingDialog : Dialog? = null
     private var mDialogClass = DialogClass()
-    private var dashboardViewModel : DashboardViewModel? = null
+    var fragmentManager : FragmentManager? = null
+    // private var dashboardViewModel : DashboardViewModel? = null
     private var removedFrag : String = ""
     var fragment : Fragment? = null
     //    companion object {
@@ -49,36 +51,49 @@ class DashboardActivity : BaseActivity(),
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun initViews() {
         activityDashboardBinding = viewDataBinding as ActivityDashboardBinding
+        fragmentManager = supportFragmentManager
         //navigationView = activityDashboardBinding!!.navView
-      //  navigationView!!.alpha = 0.9f
-       // drawer = activityDashboardBinding!!.drawerLayout
-        dashboardViewModel = ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        activityDashboardBinding!!.dashboardViewModel = dashboardViewModel
+        //  navigationView!!.alpha = 0.9f
+
+        // drawer = activityDashboardBinding!!.drawerLayout
+        //activityDashboardBinding!!.tablayout.getTabAt(0)?.select()
+
+        // dashboardViewModel = ViewModelProviders.of(this).get(DashboardViewModel::class.java)
+        //   activityDashboardBinding!!.dashboardViewModel = dashboardViewModel
         // toolBarText = activityDashboardBinding!!.toolbarCommon.imgToolbarText
         // toolBarImage = activityDashboardBinding!!.toolbarCommon.imgRight
         /** Show Rating Dialog here**/
         // checkForRating(0)
         /*****************/
-        activityDashboardBinding!!.toolbarCommon.toolbar.setImageResource(R.drawable.ic_sidebar)
-        activityDashboardBinding!!.toolbarCommon.imgRight.visibility = View.VISIBLE
-        activityDashboardBinding!!.toolbarCommon.imgRight.setImageResource(R.drawable.ic_notifications)
+        // activityDashboardBinding!!.toolbarCommon.toolbar.setImageResource(R.drawable.ic_sidebar)
+        // activityDashboardBinding!!.toolbarCommon.imgRight.visibility = View.VISIBLE
+        // activityDashboardBinding!!.toolbarCommon.imgRight.setImageResource(R.drawable.ic_notifications)
 
-       /* val image = SharedPrefClass().getPrefValue(
-            MyApplication.instance.applicationContext,
-            GlobalConstants.USER_IAMGE
-        )
-        // ic_profile
-        Glide.with(this)
-            .load(image)
-            .placeholder(R.drawable.user)
-            .into(activityDashboardBinding!!.icProfile)
-        val name = SharedPrefClass().getPrefValue(
-            MyApplication.instance.applicationContext,
-            getString(R.string.first_name)
-        )
-        activityDashboardBinding!!.tvName.text = name.toString()*/
-        fragment = HomeFragment()
-        callFragments(fragment, supportFragmentManager, false, "send_data", "")
+        /* val image = SharedPrefClass().getPrefValue(
+             MyApplication.instance.applicationContext,
+             GlobalConstants.USER_IAMGE
+         )
+         // ic_profile
+         Glide.with(this)
+             .load(image)
+             .placeholder(R.drawable.user)
+             .into(activityDashboardBinding!!.icProfile)
+         val name = SharedPrefClass().getPrefValue(
+             MyApplication.instance.applicationContext,
+             getString(R.string.first_name)
+         )
+         activityDashboardBinding!!.tvName.text = name.toString()*/
+        // fragment = HomeFragment()
+        // callFragments(fragment, supportFragmentManager, false, "send_data", "")
+        //fragment = HomeFragment()
+        // callFragments(fragment, supportFragmentManager, false, "send_data", "")
+        replaceFragmetn(HomeFragment())
+        /* when (fragmentType) {
+             is HomeFragment -> {
+                 // activityDashboardBinding!!.toolbarCommon.imgRight.visibility =
+                 //     View.VISIBLE
+             }
+         }*/
         /*dashboardViewModel!!.isClick().observe(
             this, Observer<String>(function =
             fun(it : String?) {
@@ -163,40 +178,8 @@ class DashboardActivity : BaseActivity(),
             })
         )*/
 
-        dashboardViewModel!!.getLogoutReposne.observe(this,
-            Observer<CommonModel> { logoutResponse->
-                this.stopProgressDialog()
 
-                if (logoutResponse != null) {
-                    val message = logoutResponse.message
-
-                    if (logoutResponse.code == 200) {
-                        SharedPrefClass().putObject(
-                            this,
-                            "isLogin",
-                            false
-                        )
-
-                        showToastSuccess(getString(R.string.logout_msg))
-                        val intent1 = Intent(this, LoginActivity::class.java)
-                        startActivity(intent1)
-                        finish()
-
-                    } else {
-                        showToastError(message)
-                    }
-                }
-            })
-
-        dashboardViewModel!!.isLoading().observe(this, Observer<Boolean> { aBoolean->
-            if (aBoolean!!) {
-                this.startProgressDialog()
-            } else {
-                this.stopProgressDialog()
-            }
-        })
-
-        activityDashboardBinding!!.tablayout.addOnTabSelectedListener(object :
+        /*activityDashboardBinding!!.tablayout.addOnTabSelectedListener(object :
             TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab : TabLayout.Tab?) {
                 var fragment : Fragment? = null
@@ -221,7 +204,7 @@ class DashboardActivity : BaseActivity(),
                 //var fragment : Fragment? = null
                 //Not In use
             }
-        })
+        })*/
 
     }
 
@@ -234,10 +217,10 @@ class DashboardActivity : BaseActivity(),
         val fragment = supportFragmentManager.findFragmentById(R.id.frame_layout)
         when (fragment) {
             is HomeFragment -> {
-                activityDashboardBinding!!.toolbarCommon.imgToolbarText.text =
-                    getString(R.string.home)
-                getString(R.string.calendar)
-
+                /* activityDashboardBinding!!.toolbarCommon.imgToolbarText.text =
+                     getString(R.string.home)
+                 getString(R.string.calendar)
+ */
             }
         }
     }
@@ -271,7 +254,7 @@ class DashboardActivity : BaseActivity(),
         when (mKey) {
             "logout" -> {
                 confirmationDialog?.dismiss()
-                dashboardViewModel!!.callLogoutApi()
+                // dashboardViewModel!!.callLogoutApi()
                 // dashboardViewModel!!.callLogoutApi()
 
             }
@@ -288,8 +271,17 @@ class DashboardActivity : BaseActivity(),
         }
     }
 
+
+    fun replaceFragmetn(fragment : Fragment) {
+
+        val fragmentTransaction : FragmentTransaction = fragmentManager!!.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_layout, fragment, "h")
+        fragmentTransaction.addToBackStack("h")
+        fragmentTransaction.commit()
+    }
+
     override fun onBackPressed() {
-        finish()
         super.onBackPressed()
+        finish()
     }
 }

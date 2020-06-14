@@ -64,20 +64,20 @@ object ApiClient {
         if (!TextUtils.isEmpty(mAuthToken) && mAuthToken.equals("session_token")) {
             mAuthToken = ""
         }
-        if(isLogin == "false"){
+        if (isLogin == "false") {
             mAuthToken = ""
         }
         /*  mAuthToken =
               "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZV9udW1iZXIiOiI5NTMwNjA2MDA2IiwiY291bnRyeV9jb2RlIjoiKzkxIiwidHlwZSI6MiwiaWQiOjEsImlhdCI6MTU4NDAwODAyOSwiZXhwIjoxNTg0MTgwODI5fQ.hSkvHRBHlHlwf1Drg2dtPaMamRg27aI48H4ZOgWTilY"*/
         if (!TextUtils.isEmpty(mAuthToken)) {
-            val finalMAuthToken = mAuthToken
+            val finalMAuthToken = "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmYW1pbHlfbmFtZSI6IkFrYXNoIiwiZW1haWwiOiJBa2FzaCIsIm5hbWVpZCI6IjMiLCJqdGkiOiJmYjQzNTE4Zi02YzM4LTQ1N2MtODFiZS1lN2FiYTFjOGY4NGYiLCJleHAiOjE1OTIxNjE3NzMsImlzcyI6IlRlc3QuY29tIiwiYXVkIjoiVGVzdC5jb20ifQ.D2LFbQmzvD1LySKS4DIEocy7BE8T4eJFwPwpJCO356I"/*mAuthToken*/
             val interceptor : Interceptor = object : Interceptor {
                 @Throws(IOException::class)
                 override fun intercept(@NonNull chain : Interceptor.Chain) : Response {
                     val original = chain.request()
                     val builder = original.newBuilder()
-                        .header("Authorization", finalMAuthToken)
-                        .header("lang", lang)
+                        .header("Authorization", /*"bearer " + */finalMAuthToken)
+                        // .header("lang", lang)
                         .header("Content-Type", "application/json")
                     val request = builder.build()
                     val response = chain.proceed(request)
