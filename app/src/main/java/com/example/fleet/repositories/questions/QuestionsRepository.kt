@@ -96,7 +96,7 @@ class QuestionsRepository {
 
     }
 
-    fun checkPhoneExistence(jsonObject : JsonObject?) : MutableLiveData<CommonModel> {
+    /*fun checkPhoneExistence(jsonObject : JsonObject?) : MutableLiveData<CommonModel> {
         if (jsonObject != null) {
             val mApiService = ApiService<JsonObject>()
             mApiService.get(
@@ -129,7 +129,7 @@ class QuestionsRepository {
         }
         return data1!!
 
-    }
+    }*/
 
 
     fun getLogoutResonse(jsonObject : JsonObject?) : MutableLiveData<CommonModel> {
