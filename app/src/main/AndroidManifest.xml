@@ -36,10 +36,10 @@
             android:networkSecurityConfig="@xml/network_security_config"
             android:roundIcon="@drawable/ic_app"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme.NoActionBar"
+         android:usesCleartextTraffic="true"
+        android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="GoogleAppIndexingWarning"
             tools:targetApi="n">
-        <activity android:name=".views.profile.ProfileActivity" />
 
         <provider
                 android:name="androidx.core.content.FileProvider"
@@ -66,70 +66,13 @@
                 android:launchMode="singleTop"
                 android:screenOrientation="portrait" />
         <activity
-                android:name=".views.authentication.LoginPasswordActivity"
-                android:launchMode="singleTop"
-                android:screenOrientation="portrait" />
-        <activity
-                android:name=".views.authentication.OTPVerificationActivity"
-                android:launchMode="singleTop"
-                android:screenOrientation="portrait" />
-        <activity
-                android:name=".views.authentication.ResetPasswrodActivity"
-                android:launchMode="singleTop"
-                android:screenOrientation="portrait" />
-        <activity
-                android:name=".views.authentication.ChangePasswrodActivity"
-                android:launchMode="singleTop"
-                android:screenOrientation="portrait" />
-        <activity
-                android:name=".views.home.DashboardActivity"
-                android:launchMode="singleTop"
-                android:screenOrientation="portrait" />
-        <activity
-                android:name=".views.settings.MyAccountsActivity"
-                android:launchMode="singleTop"
-                android:screenOrientation="portrait" />
-        <activity
-                android:name=".views.authentication.RegisterActivity"
-                android:launchMode="singleTop"
-                android:screenOrientation="portrait" />
-        <activity
-                android:name=".socket.TrackingActivity"
-                android:launchMode="singleTop"
-                android:screenOrientation="portrait" />
+            android:name=".views.SiteInfoActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
 
-        <receiver
-                android:name=".views.authentication.SMSBroadcastReciever"
-                android:exported="true"
-                android:permission="android.permission.BROADCAST_SMS"
-                android:priority="1000">
-            <intent-filter>
-                <action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVED" />
-            </intent-filter>
-        </receiver>
 
-        <service
-                android:name="com.uniongoods.fcm.MyFirebaseMessagingService"
-                android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-            </intent-filter>
-        </service>
-        <service
-                android:name=".database.NetworkJobService"
-                android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service
-                android:name=".socket.LocationTrackingService"
-                android:enabled="true" />
-        <service
-                android:name=".database.BackgroundLocationService"
-                android:enabled="true" />
 
-        <meta-data
-                android:name="com.google.android.geo.API_KEY"
-                android:value="AIzaSyA7Zj-PTZm4sDG-eoiLPA-XohvgxBe95wU" />
+
         <!--AIzaSyD2-RDPo0jssFqwwTXr6NDpOFzQTcIc3dI-->
     </application>
 

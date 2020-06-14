@@ -76,7 +76,7 @@ object ApiClient {
                 override fun intercept(@NonNull chain : Interceptor.Chain) : Response {
                     val original = chain.request()
                     val builder = original.newBuilder()
-                        .header("Authorization", finalMAuthToken)
+                        .header("Authorization", "Bearer "+finalMAuthToken)
                         .header("lang", lang)
                         .header("Content-Type", "application/json")
                     val request = builder.build()

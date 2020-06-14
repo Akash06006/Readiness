@@ -3,7 +3,7 @@ package com.example.fleet.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class LoginResponse {
+class SiteInfo {
     @SerializedName("message")
     @Expose
     var message : String? = null
@@ -18,24 +18,40 @@ class LoginResponse {
 
     @SerializedName("resultData")
     @Expose
-    var resultData : ResultData? = null
+    var resultData : List<ResultDatum>? = null
 
     @SerializedName("resourceType")
     @Expose
     var resourceType : Any? = null
 
-    public class ResultData {
-        @SerializedName("userName")
+    inner class ResultDatum {
+        @SerializedName("userId")
         @Expose
-        var userName : String? = null
+        var userId : String? = null
 
-        @SerializedName("password")
+        @SerializedName("facilityName")
         @Expose
-        var password : Any? = null
+        var facilityName : String? = null
 
-        @SerializedName("token")
+        @SerializedName("facilityAddress")
         @Expose
-        var token : String? = null
+        var facilityAddress : String? = null
+
+        @SerializedName("pocName")
+        @Expose
+        var pocName : String? = null
+
+        @SerializedName("pocAddress")
+        @Expose
+        var pocAddress : String? = null
+
+        @SerializedName("pocPhoneNumber")
+        @Expose
+        var pocPhoneNumber : String? = null
+
+        @SerializedName("pocEmail")
+        @Expose
+        var pocEmail : String? = null
 
         @SerializedName("id")
         @Expose
@@ -43,7 +59,7 @@ class LoginResponse {
 
         @SerializedName("createdBy")
         @Expose
-        var createdBy : Any? = null
+        var createdBy : String? = null
 
         @SerializedName("createdDate")
         @Expose
@@ -51,11 +67,11 @@ class LoginResponse {
 
         @SerializedName("modifiedBy")
         @Expose
-        var modifiedBy : Any? = null
+        var modifiedBy : String? = null
 
         @SerializedName("modifiedDate")
         @Expose
-        var modifiedDate : Any? = null
+        var modifiedDate : String? = null
 
         @SerializedName("isDeleted")
         @Expose
