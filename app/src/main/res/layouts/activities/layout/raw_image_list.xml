@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_marginRight="10dp"
+        android:elevation="2dp"
+        android:id="@+id/parentLayout"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:background="@drawable/rounde_corner_edittext"
+        android:layout_height="wrap_content">
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:scaleType="fitXY"
+            app:riv_corner_radius_top_left="10dp"
+            app:riv_corner_radius_top_right="10dp"
+            android:src="@drawable/ic_launcher_background"
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+        <TextView
+            android:text="jdkfasdfasdfoafasdfasdfafadsfoadfadfasdfasdfidakofnodjoasdoasdfoasdfjas"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/image"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

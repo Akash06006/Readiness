@@ -12,6 +12,9 @@ interface ApiInterface {
     @POST("api/loginEmployee")
     fun callLogin(@Body jsonObject : JsonObject) : Call<JsonObject>
 
+    @GET("api/Question/GetImageCategory")
+    fun getImageCategories() : Call<JsonObject>
+
     /*@POST("login/")
     fun callLogin(@Body jsonObject : JsonObject) : Call<JsonObject>*/
     @Multipart
@@ -31,6 +34,8 @@ interface ApiInterface {
     @Headers("Content-Type: application/json")
     @POST("checkPhoneNumber/")
     fun checkPhoneExistence(@Body jsonObject : JsonObject) : Call<JsonObject>
+
+
 
     @GET("api/logout")
     fun callLogout(/*@Body mJsonObject : JsonObject*/) : Call<JsonObject>

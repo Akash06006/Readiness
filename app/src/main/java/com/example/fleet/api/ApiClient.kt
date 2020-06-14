@@ -35,7 +35,8 @@ object ApiClient {
     @JvmStatic
     private fun setApiInterface() : ApiInterface {
         val lang = "en"
-        var mAuthToken = GlobalConstants.SESSION_TOKEN
+//        var mAuthToken = GlobalConstants.SESSION_TOKEN
+        var mAuthToken ="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmYW1pbHlfbmFtZSI6IktzaW5naDUiLCJlbWFpbCI6IktzaW5naDUiLCJuYW1laWQiOiIyIiwianRpIjoiNWJjNDE1MDgtNTU5YS00YzMxLWJmZWEtNWNjODQ4NWUzZTY1IiwiZXhwIjoxNTkyMTYyMDYxLCJpc3MiOiJUZXN0LmNvbSIsImF1ZCI6IlRlc3QuY29tIn0.rcH2mKVCLKX2Ev8xJU58L1BSaQXhTD4AYayv3Pa43qU"
 
 
         if (mAuthToken == "session_token" && UtilsFunctions.checkObjectNull(
@@ -97,8 +98,6 @@ object ApiClient {
                     } else response
                 }
             }
-
-
 
             if (!httpClient.interceptors().contains(interceptor)) {
                 httpClient.addInterceptor(interceptor)
