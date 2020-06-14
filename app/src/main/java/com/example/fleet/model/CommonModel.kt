@@ -5,16 +5,23 @@ import com.google.gson.annotations.SerializedName
 
 class CommonModel {
 
-    @SerializedName("code")
+    @SerializedName("status")
     @Expose
-    var code: Int = 0
+    var status : Boolean? = null
+    @SerializedName("statusCode")
+    @Expose
+    var statusCode : Int? = null
     @SerializedName("message")
     @Expose
-    var message: String? = null
+    var message : String? = null
     @SerializedName("data")
     @Expose
-    var data: Any? = null
-
+    var data : Any? = null
+/*"message": "Answer Saved",
+    "status": true,
+    "statusCode": 200,
+    "resultData": "Answer Saved",
+    "resourceType": null*/
 
 }
 

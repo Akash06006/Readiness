@@ -8,12 +8,13 @@ import com.example.fleet.api.ApiService
 import com.example.fleet.application.MyApplication
 import com.example.fleet.common.UtilsFunctions
 import com.example.fleet.model.CommonModel
-import com.example.fleet.model.LoginResponse
 import com.example.fleet.model.home.QuestionData
 import com.example.fleet.model.home.QuestionInput
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import retrofit2.Response
+
 
 class QuestionsRepository {
     private var data : MutableLiveData<QuestionData>? = null
@@ -47,6 +48,7 @@ class QuestionsRepository {
                 }
 
                 override fun onError(mKey : String) {
+
                     UtilsFunctions.showToastError(MyApplication.instance.getString(R.string.internal_server_error))
                     data!!.postValue(null)
 
@@ -61,8 +63,10 @@ class QuestionsRepository {
 
     }
 
-    fun saveAnswer(jsonObject : ArrayList<QuestionInput.AnswerInputModel>?) : MutableLiveData<CommonModel> {
+    fun saveAnswer(jsonObject : QuestionInput?) : MutableLiveData<CommonModel> {
         if (jsonObject != null) {
+            val gson = Gson()
+            val json = gson.toJson(jsonObject)
             val mApiService = ApiService<JsonObject>()
             mApiService.get(
                 object : ApiResponse<JsonObject> {

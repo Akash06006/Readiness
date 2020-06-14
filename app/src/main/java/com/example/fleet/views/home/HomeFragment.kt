@@ -12,7 +12,11 @@ import com.example.fleet.R
 import com.example.fleet.application.MyApplication
 import com.example.fleet.common.UtilsFunctions
 import com.example.fleet.common.UtilsFunctions.showToastError
+import com.example.fleet.common.UtilsFunctions.showToastSuccess
+import com.example.fleet.constants.GlobalConstants
 import com.example.fleet.databinding.FragmentHomeBinding
+import com.example.fleet.model.CommonModel
+import com.example.fleet.model.home.AnswerInputModel
 import com.example.fleet.model.home.QuestionData
 import com.example.fleet.model.home.QuestionInput
 import com.example.fleet.sharedpreference.SharedPrefClass
@@ -27,23 +31,16 @@ import com.uniongoods.adapters.QuestionsListAdapter
 class HomeFragment : BaseFragment() {
     private var questionList = ArrayList<QuestionData.Data>()
     private var totalQuestionList = ArrayList<QuestionData.Data>()
-    private var questionInputModel = ArrayList<QuestionInput.AnswerInputModel>()
+    private var questionInputModel = QuestionInput()
 
     private lateinit var fragmentHomeBinding : FragmentHomeBinding
     private lateinit var homeViewModel : QuestionsViewModel
-    private val mJsonObject = JsonObject()
-    private val mJobListObject = JsonObject()
-    val PERMISSION_ID = 42
-    lateinit var mFusedLocationClient : FusedLocationProviderClient
-    var currentLat = ""
-    var currentLong = ""
+
+    private var sharedPrefClass : SharedPrefClass? = null
+
     var page = 1
-    var totalPage = 0
-    var mJsonObjectStartJob = JsonObject()
-    private var confirmationDialog : Dialog? = null
-    private var mDialogClass = DialogClass()
+
     var questionsListAdapter : QuestionsListAdapter? = null
-    var userId = 1
     var surveyId = 1
 
     override fun getLayoutResId() : Int {
@@ -60,14 +57,29 @@ class HomeFragment : BaseFragment() {
         homeViewModel = ViewModelProviders.of(this).get(QuestionsViewModel::class.java)
         fragmentHomeBinding.homeViewModel = homeViewModel
 
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(activity!!)
-
         totalQuestionList.clear()
+        sharedPrefClass = SharedPrefClass()
+        val userId = sharedPrefClass!!.getPrefValue(
+            MyApplication.instance,
+            GlobalConstants.USERID
+        ).toString()
+        val address = sharedPrefClass!!.getPrefValue(
+            MyApplication.instance,
+            GlobalConstants.POC_ADDRESS
+        ).toString()
+
+        fragmentHomeBinding.txtAddress.setText(address)
+
+        val surveyId = sharedPrefClass!!.getPrefValue(
+            MyApplication.instance,
+            GlobalConstants.SURVEY_ID
+        ).toString()
+
         if (UtilsFunctions.isNetworkConnected()) {
             baseActivity.startProgressDialog()
         }
         page = 1
-        fragmentHomeBinding.tvQuestionCount.setText("10/20")
+
 
         homeViewModel.getQuestionsRes().observe(this,
             Observer<QuestionData> { response->
@@ -77,23 +89,23 @@ class HomeFragment : BaseFragment() {
                     when {
                         response.statusCode == 200 -> {
                             if (response.data != null && response.data?.size!! > 0) {
-
+                                fragmentHomeBinding.tvQuestionCount.setText("10/20")
                                 totalQuestionList.addAll(response.data!!)
                                 if (totalQuestionList.size > 10) {
-                                    questionInputModel.clear()
-
-
+                                    //  questionInputModel.clear()
+                                    val data = ArrayList<AnswerInputModel>()
                                     for (item in 0 until 10) {
                                         questionList.add(totalQuestionList[item])
-
-                                        val answerModel = QuestionInput.AnswerInputModel()
+                                        val answerModel = AnswerInputModel()
                                         answerModel.answer = ""
                                         answerModel.questionId = totalQuestionList[item].id
-                                        answerModel.userId = userId.toString()
-                                        answerModel.siteDetailId = surveyId.toString()
-                                        questionInputModel.add(answerModel)
+                                        answerModel.userId = userId
+                                        answerModel.siteDetailId = surveyId
+                                        data.add(answerModel)
                                     }
+                                    questionInputModel.data = data
                                 }
+
                                 // fragmentHomeBinding.rvJobs.visibility = View.VISIBLE
                                 //fragmentHomeBinding.tvNoRecord.visibility = View.GONE
                                 initRecyclerView()
@@ -123,8 +135,8 @@ class HomeFragment : BaseFragment() {
                 }
             })
 
-        homeViewModel.getQuestionsRes().observe(this,
-            Observer<QuestionData> { response->
+        homeViewModel.getAnwersRes().observe(this,
+            Observer<CommonModel> { response->
                 baseActivity.stopProgressDialog()
                 if (response != null) {
                     val message = response.message
@@ -132,28 +144,33 @@ class HomeFragment : BaseFragment() {
                         response.statusCode == 200 -> {
                             if (page != 2) {
                                 //if (totalQuestionList.count() > (page * 10)) {
-                                questionInputModel.clear()
+                                questionInputModel.data?.clear()
                                 questionList.clear()
-                                for (item in 10 + 1 until totalQuestionList.count()) {
+                                val data = ArrayList<AnswerInputModel>()
+                                for (item in 10 until totalQuestionList.count()) {
                                     questionList.add(totalQuestionList[item])
 
-                                    val answerModel = QuestionInput.AnswerInputModel()
+                                    val answerModel = AnswerInputModel()
                                     answerModel.answer = ""
                                     answerModel.questionId = totalQuestionList[item].id
-                                    answerModel.userId = userId.toString()
-                                    answerModel.siteDetailId = surveyId.toString()
-                                    questionInputModel.add(answerModel)
+                                    answerModel.userId = userId
+                                    answerModel.siteDetailId = surveyId
+                                    // questionInputModel.add(answerModel)
+                                    data.add(answerModel)
                                     page = 2
                                 }
                                 // page++
-
+                                fragmentHomeBinding.tvNext.setText("Submit")
+                                // fragmentHomeBinding.rlNext.setBackgroundResource(activity.resources.getDrawable(R.drawable))
+                                questionInputModel.data = data
                                 questionsListAdapter?.notifyDataSetChanged()
                                 //
                                 fragmentHomeBinding.scrolView.pageScroll(View.FOCUS_UP)
                                 fragmentHomeBinding.rvQuesions.smoothScrollToPosition(0)
+                                //if (page == 2)
                                 fragmentHomeBinding.tvQuestionCount.setText("20/20")
                             } else {
-
+                                showToastSuccess("Call Score Activity")
                             }
                             //}
 
@@ -174,13 +191,12 @@ class HomeFragment : BaseFragment() {
                         }
                         else -> message?.let {
                             showToastError(it)
-                            /*fragmentHomeBinding.rvJobs.visibility = View.GONE*/
+                            //fragmentHomeBinding.rvJobs.visibility = View.GONE
                             //fragmentHomeBinding.tvNoRecord.visibility = View.VISIBLE
                         }
                     }
                 }
             })
-
 
         homeViewModel!!.isClick().observe(
             this, Observer<String>(function =
@@ -233,7 +249,7 @@ class HomeFragment : BaseFragment() {
         for (item in 0 until questionList.count()) {
             if (questionList[item].id.equals(id)) {
                 questionList[item].selected = clickedItem
-                questionInputModel[item].answer = clickedItem
+                questionInputModel.data?.get(item)?.answer = clickedItem
             }
         }
         questionsListAdapter?.notifyDataSetChanged()
