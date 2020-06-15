@@ -7,14 +7,13 @@ import android.view.View
 import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fleet.R
 import com.example.fleet.adapters.ImageCategories
 import com.example.fleet.model.ImageCategoriesResponse
-import com.example.fleet.repositories.ImageCategoriesRepository
 import com.example.fleet.viewmodels.ImageCategoryModel
-import com.example.fleet.viewmodels.LoginViewModel
 
 class SitePhotosActivity : AppCompatActivity(), View.OnClickListener,
     RadioGroup.OnCheckedChangeListener {
@@ -32,14 +31,25 @@ class SitePhotosActivity : AppCompatActivity(), View.OnClickListener,
     var rbStreet:RadioButton?=null
     var adapter:ImageCategories?=null
     var rvPublic:RecyclerView?=null
+    var categoriesList:ArrayList<ImageCategoriesResponse.ResultData>?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_site_photos)
-
+        categoriesList=ArrayList()
         imageCaegoryViewModel = ViewModelProviders.of(this).get(ImageCategoryModel::class.java)
         imageCaegoryViewModel.getData().observe(this,
             Observer<ImageCategoriesResponse> { response->
+                if (response != null) {
+                    val message = response.message
 
+                    if(response.statusCode.equals("200")){
+                        categoriesList=response.resultData
+                        setadapter(categoriesList)
+                    }
+
+
+                    Toast.makeText(this, "" + message, Toast.LENGTH_LONG).show()
+                }
             })
 
 
@@ -72,37 +82,42 @@ class SitePhotosActivity : AppCompatActivity(), View.OnClickListener,
     }
 
 
-    fun setadapter(){
-        adapter=ImageCategories( this)
-        val mLayoutManager = LinearLayoutManager(this)
-        rvPublic!!.layoutManager = mLayoutManager
+    fun setadapter(categoriesList : ArrayList<ImageCategoriesResponse.ResultData>?) {
+        adapter=ImageCategories( this,categoriesList)
+        //val mLayoutManager = LinearLayoutManager(this)
+       // rvPublic!!.layoutManager = mLayoutManager
+        rvPublic!!.setLayoutManager( GridLayoutManager(this, 2));
+
+//        val mLayoutManager = LinearLayoutManager(this)
+//        rvPublic!!.layoutManager = mLayoutManager
+
         rvPublic!!.adapter = adapter
     }
 
 
     override fun onClick(p0: View?) {
        when(p0!!.id){
-           R.id.rvExterior->{
-               var intent=Intent(this,ImageListActivity::class.java)
-               startActivity(intent)
-
-           }
-           R.id.rvinterior->{
-               var intent=Intent(this,ImageListActivity::class.java)
-               startActivity(intent)
-           }
-           R.id.parking->{
-               var intent=Intent(this,ImageListActivity::class.java)
-               startActivity(intent)
-           }
-           R.id.ivCenter->{
-               var intent=Intent(this,ImageListActivity::class.java)
-               startActivity(intent)
-           }
-           R.id.rbStreet->{
-               var intent=Intent(this,ImageListActivity::class.java)
-               startActivity(intent)
-           }
+//           R.id.rvExterior->{
+//               var intent=Intent(this,ImageListActivity::class.java)
+//               startActivity(intent)
+//
+//           }
+//           R.id.rvinterior->{
+//               var intent=Intent(this,ImageListActivity::class.java)
+//               startActivity(intent)
+//           }
+//           R.id.parking->{
+//               var intent=Intent(this,ImageListActivity::class.java)
+//               startActivity(intent)
+//           }
+//           R.id.ivCenter->{
+//               var intent=Intent(this,ImageListActivity::class.java)
+//               startActivity(intent)
+//           }
+//           R.id.rbStreet->{
+//               var intent=Intent(this,ImageListActivity::class.java)
+//               startActivity(intent)
+//           }
 
        }
     }

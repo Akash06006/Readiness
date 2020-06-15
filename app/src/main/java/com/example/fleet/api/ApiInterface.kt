@@ -32,5 +32,4 @@ interface ApiInterface {
     @GET("api/service/list")
     fun getServicesList(@Query("page") page : Int, @Query("limit") limit : Int, @Query("status") status : String) : Call<JsonObject>//(@Query("status") status : String) : Call<JsonObject>
 
-
 }
