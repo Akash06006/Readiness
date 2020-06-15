@@ -59,14 +59,10 @@
 
                 <EditText
                     android:background="@android:color/transparent"
-<<<<<<< HEAD
-                    android:padding="5dp"
                     android:id="@+id/imgDescription"
                     android:layout_margin="5dp"
-=======
                     android:padding="2dp"
                     android:layout_marginTop="5dp"
->>>>>>> 6c23cd1cbb0a65b701ce0f125a965144680d30dd
                     android:gravity="start"
                     android:hint="@string/enter_description"
                     android:textSize="@dimen/sp_15"

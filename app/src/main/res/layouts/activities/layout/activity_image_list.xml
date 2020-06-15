@@ -29,7 +29,6 @@
                 android:textStyle="bold"
                 app:font="@{`bold`}" />
 
-<<<<<<< HEAD
     <TextView
         android:id="@+id/noRecordFound"
         android:visibility="gone"
