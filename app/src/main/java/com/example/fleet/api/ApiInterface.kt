@@ -20,11 +20,8 @@ interface ApiInterface {
     @POST("api/Question/SaveAnswer")
     fun saveAnswer(@Body mJsonObject : QuestionInput) : Call<JsonObject>
 
-
     /*@POST("login/")
     fun callLogin(@Body jsonObject : JsonObject) : Call<JsonObject>*/
-
-
 
     @GET("api/logout")
     fun callLogout(/*@Body mJsonObject : JsonObject*/) : Call<JsonObject>
@@ -34,6 +31,5 @@ interface ApiInterface {
 
     @GET("api/service/list")
     fun getServicesList(@Query("page") page : Int, @Query("limit") limit : Int, @Query("status") status : String) : Call<JsonObject>//(@Query("status") status : String) : Call<JsonObject>
-
 
 }
