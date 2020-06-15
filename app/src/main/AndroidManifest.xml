@@ -76,14 +76,12 @@
 
 
 
-        SplashActivity
+
         <activity
             android:name=".views.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
-                android:name="com.e.dummyproject.SitePhotosActivity"
-                android:screenOrientation="portrait"
-                android:theme="@style/AppTheme.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -107,24 +105,9 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 
-        <service
-                android:name="com.uniongoods.fcm.MyFirebaseMessagingService"
-                android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-            </intent-filter>
-        </service>
-        <service
-                android:name=".database.NetworkJobService"
-                android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service
-                android:name=".socket.LocationTrackingService"
-                android:enabled="true" />
-        <service
-                android:name=".database.BackgroundLocationService"
-                android:enabled="true" />
+
+
+
 
         <meta-data
                 android:name="com.google.android.geo.API_KEY"

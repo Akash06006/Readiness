@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
 
  <RadioGroup
      android:layout_width="wrap_content"
-     android:layout_height="wrap_content">
-
+     android:layout_height="wrap_content"
+    >
     <RadioButton
         android:layout_marginTop="@dimen/dp_20"
         android:id="@+id/radioButton"
@@ -17,8 +16,10 @@
         android:background="@drawable/radio_btn_background"
         android:button="@drawable/selector_radio"
         android:padding="10dp"
-        android:text="Exterior"
-        android:textSize="18dp" />
+        app:font="@{`semibold`}"
+        android:text="@string/todo"
+        android:textSize="@dimen/sp_20" />
  </RadioGroup>
 
-</RelativeLayout>
+
+</layout>
