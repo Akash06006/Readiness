@@ -43,6 +43,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
+            android:visibility="gone"
+            android:id="@+id/parentLayout"
             android:layout_height="match_parent"
             android:padding="@dimen/dp_10">
 
@@ -262,5 +264,18 @@
 
             </LinearLayout>
         </ScrollView>
+
+
+        <TextView
+            android:id="@+id/tv_nRecord"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="@string/no_site"
+            android:textColor="@color/colorGrey"
+            android:textSize="@dimen/sp_15"
+            app:font="@{`semibold`}" />
+
     </LinearLayout>
 </layout>

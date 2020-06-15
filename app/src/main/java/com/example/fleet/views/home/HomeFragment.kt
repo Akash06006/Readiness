@@ -162,7 +162,7 @@ class HomeFragment : BaseFragment() {
                                     page = 2
                                 }
                                 // page++
-                                fragmentHomeBinding.tvNext.setText("Submit")
+                                //fragmentHomeBinding.tvNext.setText("Submit")
                                 // fragmentHomeBinding.rlNext.setBackgroundResource(activity.resources.getDrawable(R.drawable))
                                 questionInputModel.data = data
                                 questionsListAdapter?.notifyDataSetChanged()
@@ -204,13 +204,13 @@ class HomeFragment : BaseFragment() {
                 }
             })
 
-        homeViewModel!!.isClick().observe(
+        homeViewModel.isClick().observe(
             this, Observer<String>(function =
             fun(it : String?) {
                 when (it) {
 
 
-                    "rlNext" -> {
+                    "btn_submit" -> {
                         var allSelected = true
                         for (item in questionList) {
                             if (TextUtils.isEmpty(item.selected)) {
@@ -219,7 +219,7 @@ class HomeFragment : BaseFragment() {
                         }
 
                         if (!allSelected) {
-                            showToastError("Please select all questions")
+                            showToastError(getString(R.string.question_validation))
                         } else {
                             // page = 2
                             // 2.5

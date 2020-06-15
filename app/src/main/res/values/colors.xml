@@ -17,6 +17,8 @@
     <color name="colorBlack2">#464646</color>
     <color name="colorBlack">#000000</color>
     <color name="colorBlue">  #42B5EA</color>
+    <color name="colorPink">     #EA42C9
+    </color>
 
 
 </resources>

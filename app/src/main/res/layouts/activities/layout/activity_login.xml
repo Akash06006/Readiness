@@ -143,17 +143,17 @@
             android:src="@drawable/ic_arrow_forward"
             android:textColor="@color/colorWhite" tools:targetApi="lollipop"/>
 
-        <TextView
-            android:id="@+id/tv_forgot_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/dp_25"
-            android:onClick="@{(v) -> loginViewModel.clickListener(v)}"
-            android:text="@string/forgot_your_password"
-            android:textColor="@color/colorGrey"
-            android:textSize="@dimen/sp_13"
-            app:font="@{`bold`}" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_forgot_password"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="@dimen/dp_25"-->
+<!--            android:onClick="@{(v) -> loginViewModel.clickListener(v)}"-->
+<!--            android:text="@string/forgot_your_password"-->
+<!--            android:textColor="@color/colorGrey"-->
+<!--            android:textSize="@dimen/sp_13"-->
+<!--            app:font="@{`bold`}" />-->
 
 
     </LinearLayout>
