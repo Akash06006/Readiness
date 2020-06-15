@@ -1,17 +1,16 @@
 package com.e.dummyproject
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fleet.R
 import com.example.fleet.adapters.ImageCategories
+import com.example.fleet.application.MyApplication
+import com.example.fleet.model.CategoriesType
 import com.example.fleet.model.ImageCategoriesResponse
 import com.example.fleet.utils.BaseActivity
 import com.example.fleet.viewmodels.ImageCategoryModel
@@ -19,6 +18,9 @@ import com.example.fleet.viewmodels.ImageCategoryModel
 class SitePhotosActivity : BaseActivity(), View.OnClickListener{
     var btnSubmt: Button? = null
     private lateinit var imageCaegoryViewModel : ImageCategoryModel
+
+    var categoriesModel:CategoriesType?=null
+
 
 //    var radioGrop1: RadioGroup? = null
 //    var radioGrop2: RadioGroup? = null
@@ -53,7 +55,20 @@ class SitePhotosActivity : BaseActivity(), View.OnClickListener{
                     if(response.statusCode.equals("200")){
                         categoriesList=response.resultData
 
-                        adapter!!.setList(categoriesList)
+                        for (i in 0..categoriesList!!.size-1 ){
+                            categoriesModel= CategoriesType()
+                            categoriesModel!!.categoryName=categoriesList!!.get(i).categoryName
+                            categoriesModel!!.categoryId=categoriesList!!.get(i).id
+
+                            var imagies=CategoriesType.Images()
+                            var list=ArrayList<CategoriesType.Images>()
+                            imagies.imageName=""
+                            imagies.imagePath=""
+                            list.add(imagies)
+                            categoriesModel!!.images=list
+                            MyApplication.instance.categoriesList!!.add(categoriesModel!!)
+                        }
+                        adapter!!.setList(categoriesList,  MyApplication.instance.categoriesList!!)
                     }
                 }
             })
@@ -75,8 +90,8 @@ class SitePhotosActivity : BaseActivity(), View.OnClickListener{
 
 
     fun setadapter() {
-        adapter=ImageCategories( this,categoriesList)
-        rvPublic!!.setLayoutManager( GridLayoutManager(this, 2));
+        adapter=ImageCategories( this,categoriesList, MyApplication.instance.categoriesList)
+        rvPublic!!.setLayoutManager(GridLayoutManager(this, 2));
 
         rvPublic!!.adapter = adapter
     }
@@ -85,6 +100,13 @@ class SitePhotosActivity : BaseActivity(), View.OnClickListener{
     override fun onClick(p0: View?) {
 
        }
+
+    override fun onActivityResult(requestCode : Int, resultCode : Int, data : Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode==120){
+            adapter!!.updateCategories(MyApplication.instance.categoriesList)
+        }
+    }
     }
 
 

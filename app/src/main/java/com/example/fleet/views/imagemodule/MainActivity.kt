@@ -14,6 +14,8 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.fleet.R
+import com.example.fleet.application.MyApplication
+import com.example.fleet.model.CategoriesType
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,8 +34,25 @@ class MainActivity : AppCompatActivity() {
                 .into(image!!);
         }
         btnUpload!!.setOnClickListener {
-            var intent=Intent(this,SitePhotosActivity::class.java)
-            startActivity(intent)
+            var  imageModel= CategoriesType()
+
+            var imagies=CategoriesType.Images()
+            var list=ArrayList<CategoriesType.Images>()
+
+           imagies.imageName=intent.getStringExtra("name")
+           imagies.imageName=intent.getStringExtra("categoriesId")
+           imagies.imagePath=intent.getStringExtra("uri")
+            list.add(imagies)
+            imageModel.images=list!!
+
+            for (i in 0..MyApplication.instance.categoriesList!!.size-1){
+
+                if(MyApplication.instance.categoriesList!!.get(i).categoryId.equals(intent.getStringExtra("categoriesId"))){
+                    MyApplication.instance.categoriesList!!.set(i,imageModel)
+                }
+            }
+
+            finish()
         }
     }
 }

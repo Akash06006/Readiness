@@ -11,6 +11,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.MediaStore.Images
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,6 +31,14 @@ class ImageListActivity : AppCompatActivity() {
     val MY_CAMERA_PERMISSION_CODE = 1001
     val CAMERA_REQUEST = 1000
     var outPath:Uri?=null
+    var categoriesName:TextView?=null
+//    var categories=""
+//    var categoriesId=""
+
+    companion object{
+        var categories=""
+        var categoriesId=""
+    }
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +47,13 @@ class ImageListActivity : AppCompatActivity() {
         rvPublic = findViewById(R.id.rvPublic)
         openCamera = findViewById(R.id.openCamera)
         setAdapterData()
+        categoriesName=findViewById(R.id.categoriesName)
+
+        if(intent.getStringExtra("categoryName")!=null){
+            categoriesName!!.setText(intent.getStringExtra("categoryName"))
+            categories=intent.getStringExtra("categoryName")
+            categoriesId=intent.getStringExtra("categoriesId")
+        }
 
         openCamera!!.setOnClickListener {
             if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -48,7 +64,6 @@ class ImageListActivity : AppCompatActivity() {
             }
         }
     }
-
     fun setAdapterData() {
         adapter = ImageListAdapter(this)
         val mLayoutManager = LinearLayoutManager(this)
@@ -61,11 +76,11 @@ class ImageListActivity : AppCompatActivity() {
 
         if (requestCode === CAMERA_REQUEST && resultCode === Activity.RESULT_OK) {
             var bitmap = data!!.getExtras()!!.get("data") as Bitmap
-
             outPath = getImageUri(this, bitmap)!!
-
             var intent = Intent(this, MainActivity::class.java)
             intent.putExtra("uri", outPath.toString())
+            intent.putExtra("name",categories)
+            intent.putExtra("categoriesId",categoriesId)
             startActivity(intent)
 
 //            Crop.of(outPath, outPath).asSquare().start(this)
