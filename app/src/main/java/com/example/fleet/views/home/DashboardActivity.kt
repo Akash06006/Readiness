@@ -36,8 +36,8 @@ class DashboardActivity : BaseActivity() {
     override fun initViews() {
         activityDashboardBinding = viewDataBinding as ActivityDashboardBinding
         fragmentManager = supportFragmentManager
-        // replaceFragmetn(HomeFragment())
-        showSurveySuccessDialog()
+        replaceFragmetn(HomeFragment())
+        // showSurveySuccessDialog()
     }
 
     override fun getLayoutId() : Int {
@@ -45,11 +45,11 @@ class DashboardActivity : BaseActivity() {
     }
 
     private fun showSurveySuccessDialog() {
-        /*val siteName = SharedPrefClass()!!.getPrefValue(
+        val siteName = SharedPrefClass()!!.getPrefValue(
             MyApplication.instance,
-            GlobalConstants.POC_ADDRESS
-        ).toString()*/
-        val siteName = "Akash"
+            GlobalConstants.SITE_NAME
+        ).toString()
+        // val siteName = "Akash"
         confirmationDialog = Dialog(this, R.style.transparent_dialog)
         confirmationDialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
         val binding =

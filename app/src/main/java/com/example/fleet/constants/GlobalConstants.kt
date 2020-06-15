@@ -84,5 +84,4 @@ object GlobalConstants {
     var SITE_NAME = "SITE_NAME"
 
 
-
 }
