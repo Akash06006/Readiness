@@ -30,14 +30,24 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/intentogo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:padding="10dp"
+                    android:text="IndentoGo"
+                    android:textColor="#1A378E"
+                    android:textSize="35dp"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/txtAddress"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#ffffff"
                     android:drawableLeft="@drawable/ic_location"
                     android:drawablePadding="@dimen/dp_5"
                     android:paddingLeft="@dimen/dp_10"
-                    android:paddingTop="@dimen/dp_10"
                     android:paddingRight="@dimen/dp_10"
                     android:paddingBottom="@dimen/dp_30"
                     android:text="2345 Hickory Av Nashville, Tennesses 30767"

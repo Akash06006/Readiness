@@ -17,7 +17,7 @@
             android:id="@+id/intentogo"
             layout="@layout/commonheader"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_100"/>
+            android:layout_height="@dimen/dp_120"/>
 
 
 
@@ -80,13 +80,16 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
             android:background="@drawable/btn_submit"
-            android:elevation="@dimen/dp_2"
+            android:elevation="2dp"
             android:text="@string/submit"
-            app:font="@{`bold`}"
-            android:drawableTint="@color/colorWhite"
+            android:drawableTint="#ffffff"
             />
 
     </RelativeLayout>
+
+    <!--        </RelativeLayout>-->
+
+    <!--    </ScrollView>-->
 
 
 </RelativeLayout>
