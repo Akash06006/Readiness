@@ -1,5 +1,6 @@
 package com.e.dummyproject
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.fleet.R
@@ -8,6 +9,7 @@ import com.example.fleet.constants.GlobalConstants
 import com.example.fleet.utils.BaseActivity
 import com.example.fleet.databinding.ActivitySiteScoredBinding
 import com.example.fleet.sharedpreference.SharedPrefClass
+import com.example.fleet.views.authentication.LoginActivity
 
 
 class SiteScoredActivity : BaseActivity() {
@@ -17,12 +19,11 @@ class SiteScoredActivity : BaseActivity() {
     override fun initViews() {
         fragmentHomeBinding = viewDataBinding as ActivitySiteScoredBinding
         sharedPrefClass = SharedPrefClass()
-        val address = sharedPrefClass!!.getPrefValue(
-            MyApplication.instance,
-            GlobalConstants.POC_ADDRESS
-        ).toString()
 
-        fragmentHomeBinding.txtAddress.setText(address)
+        fragmentHomeBinding.btnSubmt.setOnClickListener({
+            startActivity(Intent(this, SitePhotosActivity::class.java))
+        } )
+
     }
 
     override fun getLayoutId() : Int {
