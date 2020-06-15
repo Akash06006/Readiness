@@ -60,7 +60,7 @@
         <activity android:name="com.e.dummyproject.SiteScoredActivity" />
         <activity android:name="com.e.dummyproject.MainActivity" />
         <activity android:name="com.e.dummyproject.ImageListActivity" />
-<!--        <activity android:name="com.e.dummyproject.SitePhotosActivity"/>-->
+        <activity android:name="com.e.dummyproject.SitePhotosActivity"/>
 
 
 <!--        <activity-->
@@ -73,6 +73,10 @@
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
 <!--        </activity>   -->
+
+
+
+        SplashActivity
         <activity
             android:name=".views.SplashActivity"
             android:screenOrientation="portrait"

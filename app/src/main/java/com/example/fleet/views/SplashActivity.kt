@@ -3,6 +3,7 @@ package com.example.fleet.views
 import android.content.Context
 import android.content.Intent
 import androidx.databinding.DataBindingUtil
+import com.e.dummyproject.SitePhotosActivity
 import com.example.fleet.R
 import com.example.fleet.application.MyApplication
 import com.example.fleet.constants.GlobalConstants
@@ -65,7 +66,7 @@ class SplashActivity : BaseActivity() {
 
 
         } else {
-            Intent(this, LoginActivity::class.java)
+            Intent(this, SitePhotosActivity::class.java)
             //Intent(this, DashboardActivity::class.java)
         }
 
