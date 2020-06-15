@@ -46,7 +46,7 @@ class SplashActivity : BaseActivity() {
                     checkScreenType()
                 }
             }
-        }, 3000)
+        }, 1500)
     }
 
     private fun checkScreenType() {

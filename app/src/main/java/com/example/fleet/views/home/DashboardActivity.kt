@@ -1,9 +1,18 @@
 package com.example.fleet.views.home
 
 import android.app.Dialog
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
+import android.view.LayoutInflater
 import android.view.View
+import android.view.Window
+import android.widget.Button
+import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -13,6 +22,7 @@ import com.example.fleet.databinding.ActivityDashboardBinding
 import com.example.fleet.utils.BaseActivity
 import com.example.fleet.utils.DialogClass
 import com.example.fleet.utils.DialogssInterface
+import com.example.fleet.views.SiteInfoActivity
 import com.google.android.material.navigation.NavigationView
 
 class DashboardActivity : BaseActivity(),
@@ -75,7 +85,9 @@ class DashboardActivity : BaseActivity(),
         // callFragments(fragment, supportFragmentManager, false, "send_data", "")
         //fragment = HomeFragment()
         // callFragments(fragment, supportFragmentManager, false, "send_data", "")
+        //showSurveySuccessDialog()
         replaceFragmetn(HomeFragment())
+
         /* when (fragmentType) {
              is HomeFragment -> {
                  // activityDashboardBinding!!.toolbarCommon.imgRight.visibility =
@@ -198,6 +210,36 @@ class DashboardActivity : BaseActivity(),
 
     override fun getLayoutId() : Int {
         return R.layout.activity_dashboard
+    }
+
+    private fun showSurveySuccessDialog() {
+        confirmationDialog = Dialog(this, R.style.transparent_dialog)
+        confirmationDialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        val binding =
+            DataBindingUtil.inflate<ViewDataBinding>(
+                LayoutInflater.from(this),
+                R.layout.survey_submitted_success_dialog,
+                null,
+                false
+            )
+
+        confirmationDialog?.setContentView(binding.root)
+        confirmationDialog?.setCancelable(false)
+
+        confirmationDialog?.window!!.setLayout(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.MATCH_PARENT
+        )
+        confirmationDialog?.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val cancel = confirmationDialog?.findViewById<Button>(R.id.btnDone)
+        cancel?.setOnClickListener {
+
+            val intent = Intent(this, SiteInfoActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
+        confirmationDialog?.show()
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
