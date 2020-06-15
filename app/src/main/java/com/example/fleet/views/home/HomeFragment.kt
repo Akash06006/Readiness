@@ -167,7 +167,7 @@ class HomeFragment : BaseFragment() {
                                 questionInputModel.data = data
                                 questionsListAdapter?.notifyDataSetChanged()
                                 //
-                                fragmentHomeBinding.scrolView.pageScroll(View.FOCUS_UP)
+                                //  fragmentHomeBinding.scrolView.pageScroll(View.FOCUS_UP)
                                 fragmentHomeBinding.rvQuesions.smoothScrollToPosition(0)
                                 //if (page == 2)
                                 fragmentHomeBinding.tvQuestionCount.setText("20/20")
