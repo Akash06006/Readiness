@@ -1,6 +1,7 @@
 package com.e.dummyproject
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -11,15 +12,18 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.MediaStore.Images
+import android.view.View
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.util.FileUtil
 import com.example.fleet.R
 import com.example.fleet.application.MyApplication
 import com.example.fleet.model.CategoriesType
 import com.example.fleet.model.ImageListModel
+import com.example.fleet.utils.FileUtils
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.soundcloud.android.crop.Crop
 import java.io.ByteArrayOutputStream
@@ -35,6 +39,7 @@ class ImageListActivity : AppCompatActivity() {
     var categoriesName:TextView?=null
     var imageList:ArrayList<ImageListModel>?=null
    var images : ArrayList<CategoriesType.Images>?=null
+    var noRecord:TextView?=null
 //    var categories=""
 //    var categoriesId=""
 
@@ -49,6 +54,7 @@ class ImageListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_image_list)
         rvPublic = findViewById(R.id.rvPublic)
         openCamera = findViewById(R.id.openCamera)
+        noRecord = findViewById(R.id.noRecordFound)
         images= ArrayList()
         setAdapterData(images)
         categoriesName=findViewById(R.id.categoriesName)
@@ -68,11 +74,19 @@ class ImageListActivity : AppCompatActivity() {
             }
         }
     }
+    @SuppressLint("SetTextI18n")
     fun setAdapterData(images : ArrayList<CategoriesType.Images>?) {
-        adapter = ImageListAdapter(this,images)
-        val mLayoutManager = LinearLayoutManager(this)
-        rvPublic!!.layoutManager = mLayoutManager
-        rvPublic!!.adapter = adapter
+        if(images!!.size>0){
+            noRecord!!.visibility= View.GONE
+            adapter = ImageListAdapter(this,images)
+            val mLayoutManager = LinearLayoutManager(this)
+            rvPublic!!.layoutManager = mLayoutManager
+            rvPublic!!.adapter = adapter
+        } else{
+            noRecord!!.setText("Please upload survey photos for $categories")
+
+            noRecord!!.visibility= View.VISIBLE
+        }
     }
 
     override fun onResume() {
@@ -99,8 +113,11 @@ class ImageListActivity : AppCompatActivity() {
         if (requestCode === CAMERA_REQUEST && resultCode === Activity.RESULT_OK) {
             var bitmap = data!!.getExtras()!!.get("data") as Bitmap
             outPath = getImageUri(this, bitmap)!!
+
+       var filePath=   FileUtils.getPath(this,outPath)
+
             var intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("uri", outPath.toString())
+            intent.putExtra("uri", filePath.toString())
             intent.putExtra("name",categories)
             intent.putExtra("categoriesId",categoriesId)
             startActivity(intent)

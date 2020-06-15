@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <com.makeramen.roundedimageview.RoundedImageView
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 app:riv_corner_radius_top_left="10dp"
                 app:riv_corner_radius_top_right="10dp"
                 android:id="@+id/ivImage"
@@ -60,6 +60,7 @@
                 <EditText
                     android:background="@android:color/transparent"
                     android:padding="5dp"
+                    android:id="@+id/imgDescription"
                     android:layout_margin="5dp"
                     android:gravity="start"
                     android:textSize="@dimen/sp_20"

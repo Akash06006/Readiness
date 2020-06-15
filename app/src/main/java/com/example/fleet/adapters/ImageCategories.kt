@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.e.dummyproject.ImageListActivity
 import com.e.dummyproject.SitePhotosActivity
 import com.example.fleet.R
+import com.example.fleet.application.MyApplication
 import com.example.fleet.model.CategoriesType
 import com.example.fleet.model.ImageCategoriesResponse
 
@@ -26,12 +27,23 @@ class ImageCategories(var imageListActivity : SitePhotosActivity, var categories
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
         try {
-            holder.tvCategoryName!!.setText(categoriesList!!.get(position).categoryName)
+
+            val images = MyApplication.instance.categoriesList!![position].images
+            if(images!=null && images!!.size>0){
+                holder.tvCategoryName!!.setText(categoriesList!!.get(position).categoryName+"("+images!!.size+")")
+                holder.ivIcon!!.setBackgroundResource(R.drawable.ic_active_radio)
+
+            } else{
+                holder.tvCategoryName!!.setText(categoriesList!!.get(position).categoryName)
+                holder.ivIcon!!.setBackgroundResource(R.drawable.ic_inactive_radio)
+            }
+
+
             holder.parentLayout!!.setOnClickListener {
                 var intent= Intent(imageListActivity, ImageListActivity::class.java)
                 intent.putExtra("categoryName",categoriesList!!.get(position).categoryName.toString())
                 intent.putExtra("categoriesId",categoriesList!!.get(position).id.toString())
-                holder.ivIcon!!.setBackgroundResource(R.drawable.ic_active_radio)
+
                 imageListActivity.startActivityForResult(intent,120)
             }
 //

@@ -14,7 +14,7 @@
         android:background="@drawable/rounde_corner_edittext"
         android:layout_height="wrap_content">
         <com.makeramen.roundedimageview.RoundedImageView
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             app:riv_corner_radius_top_left="10dp"
             app:riv_corner_radius_top_right="10dp"
             android:src="@drawable/dummy_img"
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"/>
         <TextView
-            android:text="jdkfasdfasdfoafasdfasdfafadsfoadfadfasdfasdfidakofnodjoasdoasdfoasdfjas"
+            android:id="@+id/tvDescription"
             android:layout_margin="10dp"
             android:layout_marginTop="10dp"
             android:layout_below="@+id/image"

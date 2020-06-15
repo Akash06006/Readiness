@@ -9,6 +9,8 @@ class CategoriesType {
     class Images{
         var imageName:String?=null
         var imagePath:String?=null
+        var serverImagePath:String?=null
+        var description:String?=null
     }
 
 }
