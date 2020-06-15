@@ -114,7 +114,9 @@ class SiteInfoActivity : BaseActivity(), DialogssInterface {
                         confirmationDialog!!.show()
                     }
                     "btn_submit" -> {
-                        Intent(this, DashboardActivity::class.java)
+                        val intent=Intent(this, DashboardActivity::class.java)
+                        startActivity(intent)
+
                     }
                 }
 
