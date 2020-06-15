@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.databinding.DataBindingUtil
 import com.e.dummyproject.SitePhotosActivity
+import com.e.dummyproject.SiteScoredActivity
 import com.example.fleet.R
 import com.example.fleet.application.MyApplication
 import com.example.fleet.constants.GlobalConstants
@@ -60,9 +61,9 @@ class SplashActivity : BaseActivity() {
             login = sharedPrefClass!!.getPrefValue(this, "isLogin").toString()
         val intent = if (login == "true") {
 
-            // Intent(this, SiteInfoActivity::class.java)
+            //Intent(this, SiteScoredActivity::class.java)
             // Intent(this, LoginActivity::class.java)
-              Intent(this, SiteInfoActivity::class.java)
+            Intent(this, SiteInfoActivity::class.java)
 
 
         } else {
