@@ -55,6 +55,7 @@ class SiteInfoActivity : BaseActivity(), DialogssInterface {
                     when {
                         response.code == 200 -> {
 
+                            //comment
                             if (response.resultData!!.size > 0) {
                                 binding.parentLayout.visibility = View.VISIBLE
                                 binding.tvNRecord.visibility = View.GONE
@@ -62,9 +63,16 @@ class SiteInfoActivity : BaseActivity(), DialogssInterface {
                                 binding.siteModel = response.resultData!!.get(0)
                                 SharedPrefClass().putObject(
                                     this,
-                                    GlobalConstants.POC_ADDRESS,
-                                    response.resultData!![0].pocAddress
+                                    GlobalConstants.FAC_ADDRESS,
+                                    response.resultData!![0].facilityAddress
                                 )
+
+                                SharedPrefClass().putObject(
+                                    this,
+                                    GlobalConstants.SITE_NAME,
+                                    response.resultData!![0].siteName
+                                )
+
                                 SharedPrefClass().putObject(
                                     this,
                                     GlobalConstants.SURVEY_ID,

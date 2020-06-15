@@ -67,7 +67,7 @@ class HomeFragment : BaseFragment() {
         ).toString()
         val address = sharedPrefClass!!.getPrefValue(
             MyApplication.instance,
-            GlobalConstants.POC_ADDRESS
+            GlobalConstants.FAC_ADDRESS
         ).toString()
 
         //fragmentHomeBinding.txtAddress.setText(address)
