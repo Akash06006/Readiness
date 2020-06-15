@@ -54,19 +54,29 @@ class SiteInfoActivity : BaseActivity(), DialogssInterface {
                     val message = response.message
                     when {
                         response.code == 200 -> {
-                            binding.siteModel = response.resultData!!.get(0)
-                            SharedPrefClass().putObject(
-                                this,
-                                GlobalConstants.POC_ADDRESS,
-                                response.resultData!![0].pocAddress
-                            )
-                            SharedPrefClass().putObject(
-                                this,
-                                GlobalConstants.SURVEY_ID,
-                                response.resultData!![0].id
-                            )
 
+                            if (response.resultData!!.size > 0) {
+                                binding.parentLayout.visibility = View.VISIBLE
+                                binding.tvNRecord.visibility = View.GONE
+                                binding.siteModel = response.resultData!!.get(0)
+                                SharedPrefClass().putObject(
+                                    this,
+                                    GlobalConstants.POC_ADDRESS,
+                                    response.resultData!![0].pocAddress
+                                )
+                                SharedPrefClass().putObject(
+                                    this,
+                                    GlobalConstants.SURVEY_ID,
+                                    response.resultData!![0].id
+                                )
+
+                            } else {
+                                binding.parentLayout.visibility = View.GONE
+                                binding.tvNRecord.visibility = View.VISIBLE
+                            }
                         }
+
+
                         response.code == 401 -> {
                             UtilsFunctions.showToastError("Session Expired, Please login again")
                             SharedPrefClass().putObject(
@@ -133,7 +143,7 @@ class SiteInfoActivity : BaseActivity(), DialogssInterface {
                 SharedPrefClass().putObject(
                     MyApplication.instance.applicationContext,
                     "isLogin",
-                    true
+                    false
                 )
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)

@@ -13,7 +13,7 @@
         android:layout_marginRight="@dimen/dp_10"
         android:layout_marginBottom="@dimen/dp_5"
         android:background="@drawable/shape_round_corner"
-        android:elevation="1dp"
+        android:elevation="5dp"
         android:padding="@dimen/dp_5">
         <!---->
         <androidx.cardview.widget.CardView

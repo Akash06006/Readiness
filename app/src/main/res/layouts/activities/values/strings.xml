@@ -1,19 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="usename">Username</string>
-    <string name="login_proceed">Login to Proceed</string>
-    <string name="proposed_info">Proposed Facility Information</string>
-    <string name="facility_name">Facility Name</string>
-    <string name="facility_address">Facility Address (reference buildings/shopping center , if applicable )</string>
-    <string name="poc_name">Point of Contact* (POC) Name</string>
-    <string name="poc_address">POC Address</string>
-    <string name="poc_phone">POC Phone Number</string>
-    <string name="poc_email">POC Email</string>
-    <string name="start">Start</string>
-    <string name="want_to_logout">Are you sure you would like to Log Out?</string>
-    <string name="this_site_scored_a">This site scored a</string>
-    <string name="submit">Submit</string>
-
-    <!-- <string name="api_key">AIzaSyD2-RDPo0jssFqwwTXr6NDpOFzQTcIc3dI</string>-->
-
+<!DOCTYPE resources [<!ENTITY app_name "IdentoGo">]>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+<string name="usename">Username</string>
+<string name="login_proceed">Login to Proceed</string>
+<string name="proposed_info">Proposed Facility Information</string>
+<string name="facility_name">Facility Name</string>
+<string name="facility_address">Facility Address (reference buildings/shopping center , if applicable )</string>
+<string name="poc_name">Point of Contact* (POC) Name</string>
+<string name="poc_address">POC Address</string>
+<string name="poc_phone">POC Phone Number</string>
+<string name="poc_email">POC Email</string>
+<string name="start">Start</string>
+<string name="want_to_logout">Are you sure you would like to Log Out?</string>
+<string name="this_site_scored_a">This site scored a</string>
+<string name="submit">Submit</string>
+<string name="next">Next</string>
+<string name="question_validation">Please answer all the questions to proceed with this IdentoGo.</string>
+<string name="no_site">There is no site assigned to you for IdentoGo . Please come back later.</string>
+    <string name="look_n_feel"><![CDATA[Look & Feel]]></string>
+    <string name="ada_compliance">ADA Compliance</string>
+    <string name="operational">Operational</string>
 </resources>

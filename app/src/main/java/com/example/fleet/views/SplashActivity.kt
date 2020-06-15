@@ -63,7 +63,7 @@ class SplashActivity : BaseActivity() {
 
             //Intent(this, SiteScoredActivity::class.java)
             // Intent(this, LoginActivity::class.java)
-            Intent(this, SitePhotosActivity::class.java)
+            Intent(this, SiteInfoActivity::class.java)
 
         } else {
             Intent(this, LoginActivity::class.java)
