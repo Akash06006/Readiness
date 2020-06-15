@@ -2,8 +2,17 @@ package com.e.dummyproject
 
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.view.LayoutInflater
 import android.view.View
+import android.view.Window
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
@@ -22,6 +31,7 @@ import com.example.fleet.viewmodels.ImageCategoryModel
 import com.example.fleet.viewmodels.SitePhotoViewModel
 import com.example.fleet.views.SiteInfoActivity
 import com.example.fleet.views.authentication.LoginActivity
+import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import org.json.JSONArray
 import org.json.JSONObject
@@ -91,6 +101,39 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
             }
         })
 
+        imageCaegoryViewModel.serveyDetil().observe(this,
+                            Observer<ServeyDetailResponse> { response->
+                                stopProgressDialog()
+                                if (response != null) {
+                                    Toast.makeText(this, "status update", Toast.LENGTH_LONG)
+                                }
+                            })
+
+
+        imageCaegoryViewModel.siteResponse().observe(this,
+            Observer<SitePhotoResoponse> { response->
+                stopProgressDialog()
+
+                if (response != null) {
+
+                    showToastError(response.message)
+
+                    if (response.statusCode==200) {
+                        showSurveySuccessDialog()
+                       // loginViewModel.updateServeyId(siteId)
+
+                    }
+                    else { showToastError(response.message)}
+
+
+
+
+
+                }
+            })
+
+
+
         imageCaegoryViewModel.isClick().observe(
             this, Observer<String>(function =
             fun(it : String?) {
@@ -99,17 +142,24 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
 
                     "btn_submit" -> {
 
+                        confirmationDialog = mDialogClass.setDefaultDialog(
+                            this,
+                            this,
+                            "confirm",
+                            getString(R.string.want_to_submit)
+                        )
+                        confirmationDialog!!.show()
+
 //                        val intent = Intent(this, ImageListActivity::class.java)
 //                        startActivity(intent)
 
-                        hitApi()
 
-                        confirmationDialog = mDialogClass.setTahnkyouDialog(
-                            this,
-                            this,
-                            "thankyou"
-                        )
-                        confirmationDialog!!.show()
+//                        confirmationDialog = mDialogClass.setTahnkyouDialog(
+//                            this,
+//                            this,
+//                            "thankyou"
+//                        )
+//                        confirmationDialog!!.show()
 
                     }
 
@@ -137,15 +187,52 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
     }
 
 
-    fun hitApi() {
+    private fun showSurveySuccessDialog() {
+        val siteName = SharedPrefClass()!!.getPrefValue(
+            MyApplication.instance,
+            GlobalConstants.SITE_NAME
+        ).toString()
+        // val siteName = "Akash"
+        confirmationDialog = Dialog(this, R.style.transparent_dialog)
+        confirmationDialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        val binding =
+            DataBindingUtil.inflate<ViewDataBinding>(
+                LayoutInflater.from(this),
+                R.layout.survey_submitted_success_dialog,
+                null,
+                false
+            )
 
+        confirmationDialog?.setContentView(binding.root)
+        confirmationDialog?.setCancelable(false)
+
+        confirmationDialog?.window!!.setLayout(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.MATCH_PARENT
+        )
+
+        confirmationDialog?.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val cancel = confirmationDialog?.findViewById<Button>(R.id.btnDone)
+        val tvMessage = confirmationDialog?.findViewById<TextView>(R.id.tvMessage)
+        tvMessage?.setText(tvMessage?.text.toString() + " " + siteName)
+        cancel?.setOnClickListener {
+
+            val intent = Intent(this, SiteInfoActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
+        confirmationDialog?.show()
+    }
+
+    fun hitApi() {
         try {
             val jsonArray = JSONArray()
             val studentsObj = JSONObject()
             var finalList = ArrayList<SitePhotoInput.ImagesDetailInputModelList>()
             sharedPrefClass = SharedPrefClass()
             var userId = sharedPrefClass!!.getPrefValue(this, GlobalConstants.USERID).toString()
-            var Location = sharedPrefClass!!.getPrefValue(this, GlobalConstants.POC_ADDRESS).toString()
+            var Location = sharedPrefClass!!.getPrefValue(this, GlobalConstants.FAC_ADDRESS).toString()
             var siteId = sharedPrefClass!!.getPrefValue(this, GlobalConstants.SURVEY_ID).toString()
 
 
@@ -170,19 +257,20 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
             try {
 
                 for (i in 0 until finalList.size) {
-                    var student2 = JSONObject()
-                    student2.put("CategoryId", finalList.get(i).CategoryId)
-                    student2.put("Description", finalList.get(i).Description)
-                    student2.put("IsDeleted", finalList.get(i).IsDeleted)
-                    student2.put("Name", finalList.get(i).Name)
-                    student2.put("Path", finalList.get(i).Path)
-                    student2.put("UserId", finalList.get(i).UserId)
-                    student2.put("Location", finalList.get(i).Location)
-                    student2.put("SiteDetailId", finalList.get(i).SiteDetailId)
+                    var student2 = JsonObject()
+                    student2.addProperty("categoryId", finalList.get(i).CategoryId.toString())
+                    student2.addProperty("description", finalList.get(i).Description)
+                    student2.addProperty("isDeleted", finalList.get(i).IsDeleted)
+                    student2.addProperty("name", finalList.get(i).Name)
+                    //student2.put("path", finalList.get(i).Path)
+                    student2.addProperty("path",finalList.get(i).Name)
+                    student2.addProperty("userId", finalList.get(i).UserId.toString())
+                    student2.addProperty("location", finalList.get(i).Location)
+                    student2.addProperty("siteDetailId", finalList.get(i).SiteDetailId.toString())
                     jsonArray.put(student2);
                 }
 
-                studentsObj.put("ImagesDetailInputModel", jsonArray)
+                studentsObj.put("imagesDetailInputModel",   jsonArray)
 
             } catch (e : Exception) {
                 // TODO Auto-generated catch block
@@ -190,42 +278,10 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
             }
 
 
-//            mJsonObject.addProperty("ImagesDetailInputModel", finalList)
-//        mJsonObject.addProperty("password", password)
-            // mJsonObject.addProperty("app-version", versionName)
+
+            imageCaegoryViewModel.siteParms(studentsObj)
 
 
-            loginViewModel = ViewModelProviders.of(this).get(SitePhotoViewModel::class.java)
-            loginViewModel.siteParms(studentsObj)
-
-            loginViewModel.siteResponse().observe(this,
-                Observer<SitePhotoResoponse> { response->
-                    stopProgressDialog()
-                    if (response != null) {
-
-                        loginViewModel.updateServeyId(siteId)
-
-                        loginViewModel.serveyDetil().observe(this,
-                            Observer<ServeyDetailResponse> { response->
-                                stopProgressDialog()
-                                if (response != null) {
-                                    Toast.makeText(this, "status update", Toast.LENGTH_LONG)
-                                }
-                            })
-
-
-//                    val message = response.message
-//                    when {
-//                        response.code == 200 -> {
-//
-//
-//                        }
-//
-//                        else -> showToastError(message)
-//                    }
-
-                    }
-                })
 
 //
 
@@ -268,7 +324,12 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
                 startActivity(intent)
                 finish()
             }
+            "confirm" -> {
+                confirmationDialog!!.dismiss()
 
+                hitApi()
+
+            }
 
             "thankyou" -> {
                 confirmationDialog!!.dismiss()
@@ -285,6 +346,7 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
         when (mKey) {
             "logout" -> confirmationDialog?.dismiss()
             "thankyou" -> confirmationDialog?.dismiss()
+            "confirm" -> confirmationDialog?.dismiss()
 
         }
     }
