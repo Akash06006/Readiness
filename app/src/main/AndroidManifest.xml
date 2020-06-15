@@ -61,10 +61,26 @@
         <activity android:name="com.e.dummyproject.ImageListActivity" />
         <activity android:name="com.e.dummyproject.SitePhotosActivity" />
 
+
+<!--        <activity-->
+<!--                android:name=".views.SplashActivity"-->
+<!--                android:screenOrientation="portrait"-->
+<!--                android:theme="@style/AppTheme.NoActionBar">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>   -->
+
+
+
+
         <activity
             android:name=".views.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -85,6 +101,9 @@
             android:name=".views.home.DashboardActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
+
+
+
 
 
         <meta-data

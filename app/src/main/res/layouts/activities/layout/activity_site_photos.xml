@@ -1,393 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
 
+        <variable
+            name="imageCaegoryViewModel"
+            type="com.example.fleet.viewmodels.ImageCategoryModel" />
+
+    </data>
     <RelativeLayout
-        android:id="@+id/parentIntentGo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:paddingBottom="10dp">
+        android:layout_height="match_parent">
 
-        <TextView
+        <include
             android:id="@+id/intentogo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="IndentoGo"
-            android:textColor="#5E10A3"
-            android:textSize="35dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/intentogo"
-            android:layout_margin="10dp"
-            android:text="Location"
-            android:textSize="18dp" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/parentIntentGo"
-        android:layout_margin="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Site Photo"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/review"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="Please review the submit"
-            android:textSize="15dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvPublic"
+            layout="@layout/commonheader"
+            app:onClick="@{(v) -> imageCaegoryViewModel.clickListener(v)}"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/review"
-            android:layout_marginLeft="@dimen/dp_10"
-            android:layout_marginTop="@dimen/dp_20"
-            android:paddingBottom="10dp" />
+            android:layout_height="@dimen/dp_100"/>
 
-        <Button
-            android:id="@+id/btnSubmit"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rvPublic"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="80dp"
-            android:background="@drawable/btn_full_round"
-            android:elevation="2dp"
-            android:text="Submit"
-            android:textColor="#FFFFFF" />
+
 
         <RelativeLayout
-            android:id="@+id/relativeParent"
-            android:layout_width="wrap_content"
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/review"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:visibility="gone">
+            android:layout_below="@+id/intentogo"
+            android:layout_margin="10dp">
 
-            <!--    <RadioGroup-->
-            <!--        android:id="@+id/radioGrp1"-->
-            <!--        android:layout_width="wrap_content"-->
-            <!--        android:layout_height="wrap_content"-->
-            <!--        android:layout_below="@+id/review"-->
-            <!--        android:layout_centerHorizontal="true"-->
-            <!--        android:layout_marginTop="30dp"-->
-            <!--        android:orientation="horizontal">-->
-
-            <RadioButton
-                android:id="@+id/rvExterior"
-                android:layout_width="160dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/radio_btn_background"
-                android:button="@drawable/selector_radio"
-                android:padding="10dp"
-                android:text="Exterior"
-                android:textSize="18dp" />
+                android:text="@string/site_photos"
+                app:font="@{`bold`}"
+                android:textColor="@color/colorBlack"
+                android:layout_marginTop="@dimen/dp_10"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold" />
 
-            <RadioButton
-                android:id="@+id/rvinterior"
-                android:layout_width="160dp"
+            <TextView
+                android:id="@+id/review"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_toRightOf="@+id/rvExterior"
-                android:background="@drawable/radio_btn_background"
-                android:button="@drawable/selector_radio"
-                android:padding="10dp"
-                android:text="Interior"
-                android:textSize="18dp" />
+                android:layout_marginTop="50dp"
+                android:textColor="@color/colorGrey"
+                app:font="@{`regular`}"
+                android:text="@string/review_submit"
+                android:textSize="@dimen/sp_15" />
 
-            <!--    </RadioGroup>-->
-
-            <!--    <RadioGroup-->
-            <!--        android:id="@+id/radioGrp2"-->
-            <!--        android:layout_below="@+id/radioGrp1"-->
-            <!--        android:layout_width="wrap_content"-->
-            <!--        android:layout_height="wrap_content"-->
-            <!--        android:layout_centerHorizontal="true"-->
-            <!--        android:layout_marginTop="10dp"-->
-            <!--        android:orientation="horizontal">-->
-
-            <RadioButton
-                android:id="@+id/parking"
-                android:layout_width="160dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPublic"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rvExterior"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/radio_btn_background"
-                android:button="@drawable/selector_radio"
-                android:padding="10dp"
-                android:text="Parking"
-                android:textSize="18dp" />
+                android:layout_below="@+id/review"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_20"
+                android:paddingBottom="10dp" />
 
-            <RadioButton
-                android:id="@+id/ivCenter"
-                android:layout_width="160dp"
+
+
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rvinterior"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_toRightOf="@+id/rvExterior"
-                android:background="@drawable/radio_btn_background"
+                android:layout_gravity="center"
+                android:background="@drawable/round_shape"
+                android:backgroundTint="@color/colorPrimary"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:onClick="@{(v) -> imageCaegoryViewModel.clickListener(v)}"
+                android:paddingLeft="@dimen/dp_30"
+                android:paddingRight="@dimen/dp_30"
+                android:text="@string/submit"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/sp_20" />
 
-                android:button="@drawable/selector_radio"
-                android:padding="10dp"
-                android:text="Center"
-                android:textSize="18dp" />
 
-            <RadioButton
-                android:id="@+id/rbStreet"
-                android:layout_width="160dp"
+            <RelativeLayout
+                android:id="@+id/relativeParent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/parking"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/radio_btn_background"
-                android:button="@drawable/selector_radio"
-                android:padding="10dp"
-                android:text="Street"
-                android:textSize="18dp" />
+                android:layout_below="@+id/review"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:visibility="gone">
 
-            <!--    </RadioGroup>-->
+                <!--    <RadioGroup-->
+                <!--        android:id="@+id/radioGrp1"-->
+                <!--        android:layout_width="wrap_content"-->
+                <!--        android:layout_height="wrap_content"-->
+                <!--        android:layout_below="@+id/review"-->
+                <!--        android:layout_centerHorizontal="true"-->
+                <!--        android:layout_marginTop="30dp"-->
+                <!--        android:orientation="horizontal">-->
 
-            <!--    <RadioGroup-->
-            <!--        android:id="@+id/radioGrp3"-->
-            <!--        android:layout_below="@+id/radioGrp2"-->
-            <!--        android:layout_width="wrap_content"-->
-            <!--        android:layout_height="wrap_content"-->
-            <!--        android:layout_marginTop="30dp"-->
-            <!--        android:layout_marginLeft="22dp"-->
-            <!--        android:orientation="horizontal">-->
+                <RadioButton
+                    android:id="@+id/rvExterior"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/radio_btn_background"
+                    android:button="@drawable/selector_radio"
+                    android:padding="10dp"
+                    android:text="Exterior"
+                    android:textSize="18dp" />
 
-            <!--    </RadioGroup>-->
+                <RadioButton
+                    android:id="@+id/rvinterior"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/rvExterior"
+                    android:background="@drawable/radio_btn_background"
+                    android:button="@drawable/selector_radio"
+                    android:padding="10dp"
+                    android:text="Interior"
+                    android:textSize="18dp" />
+
+                <!--    </RadioGroup>-->
+
+                <!--    <RadioGroup-->
+                <!--        android:id="@+id/radioGrp2"-->
+                <!--        android:layout_below="@+id/radioGrp1"-->
+                <!--        android:layout_width="wrap_content"-->
+                <!--        android:layout_height="wrap_content"-->
+                <!--        android:layout_centerHorizontal="true"-->
+                <!--        android:layout_marginTop="10dp"-->
+                <!--        android:orientation="horizontal">-->
+
+                <RadioButton
+                    android:id="@+id/parking"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rvExterior"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/radio_btn_background"
+                    android:button="@drawable/selector_radio"
+                    android:padding="10dp"
+                    android:text="Parking"
+                    android:textSize="18dp" />
+
+                <RadioButton
+                    android:id="@+id/ivCenter"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rvinterior"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_toRightOf="@+id/rvExterior"
+                    android:background="@drawable/radio_btn_background"
+
+                    android:button="@drawable/selector_radio"
+                    android:padding="10dp"
+                    android:text="Center"
+                    android:textSize="18dp" />
+
+                <RadioButton
+                    android:id="@+id/rbStreet"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/parking"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/radio_btn_background"
+                    android:button="@drawable/selector_radio"
+                    android:padding="10dp"
+                    android:text="Street"
+                    android:textSize="18dp" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
-        <!--        <RadioGroup-->
-        <!--            android:id="@+id/radioGrp1"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_below="@+id/review"-->
-        <!--            android:layout_centerHorizontal="true"-->
-        <!--            android:layout_marginTop="30dp"-->
-        <!--            android:orientation="horizontal">-->
-
-        <!--            <RadioButton-->
-        <!--                android:id="@+id/rvExterior"-->
-        <!--                android:layout_width="160dp"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:background="@drawable/radio_btn_background"-->
-        <!--                android:button="@drawable/selector_radio"-->
-        <!--                android:padding="10dp"-->
-        <!--                android:text="Exterior"-->
-        <!--                android:textSize="18dp" />-->
-
-        <!--            <RadioButton-->
-        <!--                android:id="@+id/rvinterior"-->
-        <!--                android:layout_width="160dp"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_marginLeft="20dp"-->
-        <!--                android:layout_toRightOf="@+id/rvExterior"-->
-        <!--                android:background="@drawable/radio_btn_background"-->
-        <!--                android:button="@drawable/selector_radio"-->
-        <!--                android:padding="10dp"-->
-        <!--                android:text="Interior"-->
-        <!--                android:textSize="18dp" />-->
-
-        <!--        </RadioGroup>-->
-
-        <!--        <RadioGroup-->
-        <!--            android:id="@+id/radioGrp2"-->
-        <!--            android:layout_below="@+id/radioGrp1"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_centerHorizontal="true"-->
-        <!--            android:layout_marginTop="10dp"-->
-        <!--            android:orientation="horizontal">-->
-
-        <!--            <RadioButton-->
-        <!--                android:id="@+id/parking"-->
-        <!--                android:layout_width="160dp"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_below="@+id/rvExterior"-->
-        <!--                android:layout_marginTop="20dp"-->
-        <!--                android:background="@drawable/radio_btn_background"-->
-        <!--                android:button="@drawable/selector_radio"-->
-        <!--                android:padding="10dp"-->
-        <!--                android:text="Parking"-->
-        <!--                android:textSize="18dp" />-->
-
-        <!--            <RadioButton-->
-        <!--                android:id="@+id/ivCenter"-->
-        <!--                android:layout_width="160dp"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_below="@+id/rvinterior"-->
-        <!--                android:layout_marginLeft="20dp"-->
-        <!--                android:layout_marginTop="20dp"-->
-        <!--                android:layout_toRightOf="@+id/rvExterior"-->
-        <!--                android:background="@drawable/radio_btn_background"-->
-
-        <!--                android:button="@drawable/selector_radio"-->
-        <!--                android:padding="10dp"-->
-        <!--                android:text="Center"-->
-        <!--                android:textSize="18dp" />-->
-        <!--        </RadioGroup>-->
-
-        <!--        <RadioGroup-->
-        <!--            android:id="@+id/radioGrp3"-->
-        <!--            android:layout_below="@+id/radioGrp2"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="30dp"-->
-        <!--            android:layout_marginLeft="22dp"-->
-        <!--            android:orientation="horizontal">-->
-        <!--            <RadioButton-->
-        <!--                android:layout_width="160dp"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_below="@+id/parking"-->
-        <!--                android:layout_marginTop="10dp"-->
-        <!--                android:background="@drawable/radio_btn_background"-->
-        <!--                android:button="@drawable/selector_radio"-->
-        <!--                android:padding="10dp"-->
-        <!--                android:text="Street"-->
-        <!--                android:textSize="18dp" />-->
-        <!--        </RadioGroup>-->
-
-        <!--        <RadioGroup-->
-        <!--            android:id="@+id/radioGrp1"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_below="@+id/review"-->
-        <!--            android:layout_centerHorizontal="true"-->
-        <!--            android:layout_marginTop="30dp"-->
-        <!--            android:orientation="horizontal">-->
-
-        <!--            <RadioButton-->
-        <!--                android:id="@+id/rvExterior"-->
-        <!--                android:layout_width="160dp"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:background="@drawable/radio_btn_background"-->
-        <!--                android:button="@drawable/selector_radio"-->
-        <!--                android:padding="10dp"-->
-        <!--                android:text="Exterior"-->
-        <!--                android:textSize="18dp" />-->
-
-        <!--            <RadioButton-->
-        <!--                android:id="@+id/rvinterior"-->
-        <!--                android:layout_width="160dp"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_marginLeft="20dp"-->
-        <!--                android:layout_toRightOf="@+id/rvExterior"-->
-        <!--                android:background="@drawable/radio_btn_background"-->
-        <!--                android:button="@drawable/selector_radio"-->
-        <!--                android:padding="10dp"-->
-        <!--                android:text="Interior"-->
-        <!--                android:textSize="18dp" />-->
-
-        <!--        </RadioGroup>-->
-
-        <!--        <RadioGroup-->
-        <!--            android:id="@+id/radioGrp2"-->
-        <!--            android:layout_below="@+id/radioGrp1"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_centerHorizontal="true"-->
-        <!--            android:layout_marginTop="10dp"-->
-        <!--            android:orientation="horizontal">-->
-
-        <!--        <RadioButton-->
-        <!--            android:id="@+id/parking"-->
-        <!--            android:layout_width="160dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_below="@+id/rvExterior"-->
-        <!--            android:layout_marginTop="20dp"-->
-        <!--            android:background="@drawable/radio_btn_background"-->
-        <!--            android:button="@drawable/selector_radio"-->
-        <!--            android:padding="10dp"-->
-        <!--            android:text="Parking"-->
-        <!--            android:textSize="18dp" />-->
-
-        <!--        <RadioButton-->
-        <!--            android:id="@+id/ivCenter"-->
-        <!--            android:layout_width="160dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_below="@+id/rvinterior"-->
-        <!--            android:layout_marginLeft="20dp"-->
-        <!--            android:layout_marginTop="20dp"-->
-        <!--            android:layout_toRightOf="@+id/rvExterior"-->
-        <!--            android:background="@drawable/radio_btn_background"-->
-
-        <!--            android:button="@drawable/selector_radio"-->
-        <!--            android:padding="10dp"-->
-        <!--            android:text="Center"-->
-        <!--            android:textSize="18dp" />-->
-        <!--        </RadioGroup>-->
-
-        <!--        <RadioGroup-->
-        <!--            android:id="@+id/radioGrp3"-->
-        <!--            android:layout_below="@+id/radioGrp2"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="30dp"-->
-        <!--            android:layout_marginLeft="22dp"-->
-        <!--            android:orientation="horizontal">-->
-        <!--        <RadioButton-->
-        <!--            android:layout_width="160dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_below="@+id/parking"-->
-        <!--            android:layout_marginTop="10dp"-->
-        <!--            android:background="@drawable/radio_btn_background"-->
-        <!--            android:button="@drawable/selector_radio"-->
-        <!--            android:padding="10dp"-->
-        <!--            android:text="Street"-->
-        <!--            android:textSize="18dp" />-->
-        <!--        </RadioGroup>-->
-
     </RelativeLayout>
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/ivStreet"-->
-    <!--        android:layout_width="150dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_alignParentBottom="true"-->
-    <!--        android:layout_margin="20dp"-->
-    <!--        android:background="@drawable/rounde_corner_edittext"-->
-    <!--        android:drawableStart="@drawable/ic_left_arrow"-->
-    <!--        android:elevation="3dp"-->
-    <!--        android:gravity="center"-->
-    <!--        android:padding="10dp"-->
-    <!--        android:text="Privious"-->
-    <!--        android:textSize="18dp" />-->
-
-    <!--    <TextView-->
-    <!--        android:layout_width="150dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_alignParentRight="true"-->
-    <!--        android:layout_alignParentBottom="true"-->
-    <!--        android:layout_margin="20dp"-->
-    <!--        android:background="@drawable/rounde_corner_edittext"-->
-    <!--        android:drawableEnd="@drawable/ic_right_arrow"-->
-    <!--        android:elevation="3dp"-->
-    <!--        android:gravity="center"-->
-    <!--        android:padding="10dp"-->
-    <!--        android:text="Next"-->
-    <!--        android:textSize="18dp" />-->
-
-</RelativeLayout>
+</layout>

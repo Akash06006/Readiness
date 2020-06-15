@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <RadioButton
         android:id="@+id/radioButton"
@@ -14,32 +17,33 @@
         android:text="Exterior"
         android:textSize="18dp"
         android:visibility="gone" />
-
+    ​
     <RelativeLayout
         android:layout_margin="@dimen/dp_10"
         android:id="@+id/parentLayout"
-        android:layout_width="@dimen/dp_130"
+        android:layout_width="@dimen/dp_160"
         android:layout_height="50dp"
         android:background="@drawable/radio_btn_background"
         android:padding="@dimen/dp_10">
-
+        ​
         <ImageView
             android:id="@+id/ivIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:background="@drawable/ic_inactive_radio" />
-
+        ​
         <TextView
             android:id="@+id/tvCategoryName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/dp_20"
+            android:textSize="@dimen/sp_20"
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_centerVertical="true"
+            app:font="@{`bold`}"
             android:layout_toRightOf="@+id/ivIcon"
             android:text="External" />
-
+        ​
     </RelativeLayout>
-
-</RelativeLayout>
+    </RelativeLayout>
+</layout>
