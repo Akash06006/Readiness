@@ -173,9 +173,10 @@ class HomeFragment : BaseFragment() {
                                 fragmentHomeBinding.tvQuestionCount.setText("20/20")
                             } else {
 
-                                val intent1=Intent(baseActivity, SiteScoredActivity::class.java)
+                                val intent1 = Intent(baseActivity, SiteScoredActivity::class.java)
                                 startActivity(intent1)
-                               // showToastSuccess("Call Score Activity")
+                                activity?.finish()
+                                // showToastSuccess("Call Score Activity")
                             }
                             //}
 
@@ -222,8 +223,10 @@ class HomeFragment : BaseFragment() {
                         } else {
                             // page = 2
                             // 2.5
-
-                            homeViewModel.saveAnswer(questionInputModel)
+                            if (UtilsFunctions.isNetworkConnected()) {
+                                baseActivity.startProgressDialog()
+                                homeViewModel.saveAnswer(questionInputModel)
+                            }
 
 
                         }
