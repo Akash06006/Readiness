@@ -33,13 +33,19 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
     var adapter : ImageCategories? = null
     var rvPublic : RecyclerView? = null
     var categoriesList : ArrayList<ImageCategoriesResponse.ResultData>? = null
-    var categoriesModel: CategoriesType?=null
+    var categoriesModel : CategoriesType? = null
+
+
+    override fun onBackPressed() {
+
+
+    }
 
     override fun initViews() {
 
         binding = viewDataBinding as ActivitySitePhotosBinding
         categoriesList = ArrayList()
-        rvPublic =binding.rvPublic
+        rvPublic = binding.rvPublic
         setadapter()
         imageCaegoryViewModel = ViewModelProviders.of(this).get(ImageCategoryModel::class.java)
         binding.imageCaegoryViewModel = imageCaegoryViewModel
@@ -50,23 +56,23 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
                 if (response != null) {
                     val message = response.message
 
-                    if(response.statusCode.equals("200")){
-                        categoriesList=response.resultData
+                    if (response.statusCode.equals("200")) {
+                        categoriesList = response.resultData
 
-                        for (i in 0..categoriesList!!.size-1 ){
-                            categoriesModel= CategoriesType()
-                            categoriesModel!!.categoryName=categoriesList!!.get(i).categoryName
-                            categoriesModel!!.categoryId=categoriesList!!.get(i).id
+                        for (i in 0..categoriesList!!.size - 1) {
+                            categoriesModel = CategoriesType()
+                            categoriesModel!!.categoryName = categoriesList!!.get(i).categoryName
+                            categoriesModel!!.categoryId = categoriesList!!.get(i).id
 
-                            val imagies=CategoriesType.Images()
-                            val list=ArrayList<CategoriesType.Images>()
+                            val imagies = CategoriesType.Images()
+                            val list = ArrayList<CategoriesType.Images>()
                             //imagies.imageName=""
                             //imagies.imagePath=""
                             //list.add(imagies)
-                            categoriesModel!!.images=list
+                            categoriesModel!!.images = list
                             MyApplication.instance.categoriesList!!.add(categoriesModel!!)
                         }
-                        adapter!!.setList(categoriesList,  MyApplication.instance.categoriesList!!)
+                        adapter!!.setList(categoriesList, MyApplication.instance.categoriesList!!)
                     }
                 }
             })
@@ -97,19 +103,18 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
 
                     "img_logout" -> {
 
-                            confirmationDialog = mDialogClass.setDefaultDialog(
-                                this,
-                                this,
-                                "logout",
-                                getString(R.string.want_to_logout)
-                            )
-                            confirmationDialog!!.show()
+                        confirmationDialog = mDialogClass.setDefaultDialog(
+                            this,
+                            this,
+                            "logout",
+                            getString(R.string.want_to_logout)
+                        )
+                        confirmationDialog!!.show()
                     }
                 }
 
             })
         )
-
 
 
     }
@@ -120,14 +125,14 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
 
 
     fun setadapter() {
-        adapter=ImageCategories( this,categoriesList, MyApplication.instance.categoriesList)
+        adapter = ImageCategories(this, categoriesList, MyApplication.instance.categoriesList)
         rvPublic!!.setLayoutManager(GridLayoutManager(this, 2));
         rvPublic!!.adapter = adapter
     }
 
     override fun onActivityResult(requestCode : Int, resultCode : Int, data : Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode==120){
+        if (requestCode == 120) {
             adapter!!.updateCategories(MyApplication.instance.categoriesList)
         }
     }
@@ -155,10 +160,6 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
 
         }
     }
-
-
-
-
 
 
     override fun onDialogCancelAction(mView : View?, mKey : String) {

@@ -128,6 +128,7 @@ class SiteInfoActivity : BaseActivity(), DialogssInterface {
                     "btn_submit" -> {
                         val intent = Intent(this, DashboardActivity::class.java)
                         startActivity(intent)
+                        finish()
 
                     }
                 }

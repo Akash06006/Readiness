@@ -9,6 +9,7 @@ import com.example.fleet.R
 import com.example.fleet.application.MyApplication
 import com.example.fleet.constants.GlobalConstants
 import com.example.fleet.databinding.ActivitySplashBinding
+import com.example.fleet.model.SiteInfo
 import com.example.fleet.sharedpreference.SharedPrefClass
 import com.example.fleet.utils.BaseActivity
 import com.example.fleet.views.authentication.LoginActivity
@@ -28,7 +29,7 @@ class SplashActivity : BaseActivity() {
     override fun initViews() {
         mContext = this
         mActivitySplashBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash)
-        checkAndRequestPermissions()
+
         sharedPrefClass = SharedPrefClass()
         val token : String? = "sd"
 
@@ -61,9 +62,9 @@ class SplashActivity : BaseActivity() {
             login = sharedPrefClass!!.getPrefValue(this, "isLogin").toString()
         val intent = if (login == "true") {
 
-            //Intent(this, SiteScoredActivity::class.java)
+            Intent(this, SiteInfoActivity::class.java)
             // Intent(this, LoginActivity::class.java)
-            Intent(this, SitePhotosActivity::class.java)
+            //Intent(this, SitePhotosActivity::class.java)
 
         } else {
             Intent(this, LoginActivity::class.java)

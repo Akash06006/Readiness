@@ -28,6 +28,10 @@ class SiteScoredActivity : BaseActivity(), DialogssInterface {
     private var mDialogClass = DialogClass()
     private lateinit var scoreVMModel : ScoreViewModel
 
+    override fun onBackPressed() {
+
+    }
+
     override fun initViews() {
         fragmentHomeBinding = viewDataBinding as ActivitySiteScoredBinding
         sharedPrefClass = SharedPrefClass()
@@ -49,17 +53,15 @@ class SiteScoredActivity : BaseActivity(), DialogssInterface {
                         confirmationDialog!!.show()
                     }
                     "btnSubmt" -> {
-                                 startActivity(Intent(this, SitePhotosActivity::class.java))
-
+                        val intent = Intent(this, SitePhotosActivity::class.java)
+                        startActivity(intent)
+                        finish()
 
                     }
                 }
 
             })
         )
-
-
-
 
 
         //fragmentHomeBinding.txtAddress.setText(address)
@@ -85,10 +87,6 @@ class SiteScoredActivity : BaseActivity(), DialogssInterface {
 
         }
     }
-
-
-
-
 
 
     override fun onDialogCancelAction(mView : View?, mKey : String) {

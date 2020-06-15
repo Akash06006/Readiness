@@ -56,25 +56,33 @@
                 android:resource="@xml/fileprovider" />
         </provider>
 
-        <activity android:name="com.e.dummyproject.SiteScoredActivity" />
-        <activity android:name="com.e.dummyproject.MainActivity" />
-        <activity android:name="com.e.dummyproject.ImageListActivity" />
-        <activity android:name="com.e.dummyproject.SitePhotosActivity" />
+        <activity
+            android:name="com.e.dummyproject.SiteScoredActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.e.dummyproject.MainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.e.dummyproject.ImageListActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.e.dummyproject.SitePhotosActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
 
+        <!--        <activity-->
+        <!--                android:name=".views.SplashActivity"-->
+        <!--                android:screenOrientation="portrait"-->
+        <!--                android:theme="@style/AppTheme.NoActionBar">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--        <activity-->
-<!--                android:name=".views.SplashActivity"-->
-<!--                android:screenOrientation="portrait"-->
-<!--                android:theme="@style/AppTheme.NoActionBar">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>   -->
-
-
-
+        <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+        <!--            </intent-filter>-->
+        <!--        </activity>   -->
 
         <activity
             android:name=".views.SplashActivity"
@@ -101,10 +109,6 @@
             android:name=".views.home.DashboardActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
-
-
-
-
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

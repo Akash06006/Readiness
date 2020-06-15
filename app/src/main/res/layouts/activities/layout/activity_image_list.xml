@@ -25,7 +25,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="Site Photos"
                 android:textColor="#000000"
-                android:textSize="@dimen/sp_22"
+                android:textSize="@dimen/sp_18"
                 android:textStyle="bold"
                 app:font="@{`bold`}" />
 
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
-                android:textSize="@dimen/sp_22"
+                android:textSize="@dimen/sp_18"
                 app:font="@{`semibold`}" />
 
         </RelativeLayout>

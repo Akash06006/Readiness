@@ -48,7 +48,7 @@ abstract class BaseActivity : AppCompatActivity() {
     private var mFragmentManager : androidx.fragment.app.FragmentManager? = null
     private val gson = GsonBuilder().serializeNulls().create()
     private var permCallback : PermissionCallback? = null
-     val REQUEST_ID_MULTIPLE_PERMISSIONS = 1
+    val REQUEST_ID_MULTIPLE_PERMISSIONS = 1
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -108,9 +108,8 @@ abstract class BaseActivity : AppCompatActivity() {
                     }
 
                     "cancel" -> dialog.dismiss()
-                    "update" ->  dialog.dismiss()
-                    "update_profile" ->  dialog.dismiss()
-
+                    "update" -> dialog.dismiss()
+                    "update_profile" -> dialog.dismiss()
 
 
                 }
@@ -154,8 +153,6 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
 
-
-
     /*}
      *Method called  progress dialog */
     private fun initializeProgressDialog() {
@@ -180,7 +177,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     }
 
-     fun showToastError(message : String?) {
+    fun showToastError(message : String?) {
         UtilsFunctions.showToastError(message!!)
 
     }
@@ -189,6 +186,7 @@ abstract class BaseActivity : AppCompatActivity() {
         UtilsFunctions.showToastWarning(message)
 
     }
+
     /*
      * Method to show snack bar*/
     /*
@@ -244,7 +242,7 @@ abstract class BaseActivity : AppCompatActivity() {
                 }
             }
             mFragmentTransaction.addToBackStack(null)
-           //mFragmentTransaction.replace(R.id.frame_layout, fragment)
+            //mFragmentTransaction.replace(R.id.frame_layout, fragment)
             // mFragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             mFragmentTransaction.commit()
         }
@@ -283,8 +281,8 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
 
-    override fun onRequestPermissionsResult(requestCode: Int,
-                                            permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(requestCode : Int,
+                                            permissions : Array<String>, grantResults : IntArray) {
 
         when (requestCode) {
             REQUEST_ID_MULTIPLE_PERMISSIONS -> {
@@ -303,7 +301,8 @@ abstract class BaseActivity : AppCompatActivity() {
                     if (perms[Manifest.permission.CAMERA] == PackageManager.PERMISSION_GRANTED
                         && perms[Manifest.permission.WRITE_EXTERNAL_STORAGE] == PackageManager.PERMISSION_GRANTED
                         && perms[Manifest.permission.ACCESS_FINE_LOCATION] == PackageManager.PERMISSION_GRANTED
-                        && perms[Manifest.permission.RECORD_AUDIO] == PackageManager.PERMISSION_GRANTED) {
+                        && perms[Manifest.permission.RECORD_AUDIO] == PackageManager.PERMISSION_GRANTED
+                    ) {
                         // process the normal flow
                         //else any one or both the permissions are not granted
                     } else {
@@ -313,9 +312,10 @@ abstract class BaseActivity : AppCompatActivity() {
                         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)
                             || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                             || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                            || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.RECORD_AUDIO)) {
+                            || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.RECORD_AUDIO)
+                        ) {
                             showDialogOK("Service Permissions are required for this app",
-                                DialogInterface.OnClickListener { dialog, which ->
+                                DialogInterface.OnClickListener { dialog, which->
                                     when (which) {
                                         DialogInterface.BUTTON_POSITIVE -> checkAndRequestPermissions()
                                         DialogInterface.BUTTON_NEGATIVE ->
@@ -334,7 +334,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    private fun showDialogOK(message: String, okListener: DialogInterface.OnClickListener) {
+    private fun showDialogOK(message : String, okListener : DialogInterface.OnClickListener) {
         AlertDialog.Builder(this)
             .setMessage(message)
             .setPositiveButton("OK", okListener)
@@ -343,18 +343,18 @@ abstract class BaseActivity : AppCompatActivity() {
             .show()
     }
 
-    private fun explain(msg: String) {
+    private fun explain(msg : String) {
         val dialog = AlertDialog.Builder(this)
         dialog.setMessage(msg)
-            .setPositiveButton("Yes") { paramDialogInterface, paramInt ->
+            .setPositiveButton("Yes") { paramDialogInterface, paramInt->
                 //  permissionsclass.requestPermission(type,code);
                 startActivity(Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:com.uniongoods")))
             }
-            .setNegativeButton("Cancel") { paramDialogInterface, paramInt -> finish() }
+            .setNegativeButton("Cancel") { paramDialogInterface, paramInt-> finish() }
         dialog.show()
     }
 
-    public fun checkAndRequestPermissions(): Boolean {
+    public fun checkAndRequestPermissions() : Boolean {
         val camerapermission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
         val writepermission = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
         val permissionLocation = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -369,19 +369,18 @@ abstract class BaseActivity : AppCompatActivity() {
         if (writepermission != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         }
-        if (permissionLocation != PackageManager.PERMISSION_GRANTED) {
+        /*if (permissionLocation != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(Manifest.permission.ACCESS_FINE_LOCATION)
         }
         if (permissionRecordAudio != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(Manifest.permission.RECORD_AUDIO)
-        }
+        }*/
         if (!listPermissionsNeeded.isEmpty()) {
             ActivityCompat.requestPermissions(this, listPermissionsNeeded.toTypedArray(), REQUEST_ID_MULTIPLE_PERMISSIONS)
             return false
         }
         return true
     }
-
 
 
 }
