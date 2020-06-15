@@ -59,12 +59,11 @@ class SitePhotosActivity : BaseActivity(), View.OnClickListener{
                             categoriesModel= CategoriesType()
                             categoriesModel!!.categoryName=categoriesList!!.get(i).categoryName
                             categoriesModel!!.categoryId=categoriesList!!.get(i).id
-
                             var imagies=CategoriesType.Images()
                             var list=ArrayList<CategoriesType.Images>()
-                            imagies.imageName=""
-                            imagies.imagePath=""
-                            list.add(imagies)
+//                            imagies.imageName=""
+//                            imagies.imagePath=""
+//                            list.add(imagies)
                             categoriesModel!!.images=list
                             MyApplication.instance.categoriesList!!.add(categoriesModel!!)
                         }

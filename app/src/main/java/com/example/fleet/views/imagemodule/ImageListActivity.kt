@@ -17,9 +17,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fleet.R
+import com.example.fleet.application.MyApplication
+import com.example.fleet.model.CategoriesType
+import com.example.fleet.model.ImageListModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.oginotihiro.cropview.CropUtil
-import com.oginotihiro.cropview.CropView
 import com.soundcloud.android.crop.Crop
 import java.io.ByteArrayOutputStream
 
@@ -32,6 +33,8 @@ class ImageListActivity : AppCompatActivity() {
     val CAMERA_REQUEST = 1000
     var outPath:Uri?=null
     var categoriesName:TextView?=null
+    var imageList:ArrayList<ImageListModel>?=null
+   var images : ArrayList<CategoriesType.Images>?=null
 //    var categories=""
 //    var categoriesId=""
 
@@ -46,9 +49,10 @@ class ImageListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_image_list)
         rvPublic = findViewById(R.id.rvPublic)
         openCamera = findViewById(R.id.openCamera)
-        setAdapterData()
+        images= ArrayList()
+        setAdapterData(images)
         categoriesName=findViewById(R.id.categoriesName)
-
+        imageList= ArrayList()
         if(intent.getStringExtra("categoryName")!=null){
             categoriesName!!.setText(intent.getStringExtra("categoryName"))
             categories=intent.getStringExtra("categoryName")
@@ -64,12 +68,30 @@ class ImageListActivity : AppCompatActivity() {
             }
         }
     }
-    fun setAdapterData() {
-        adapter = ImageListAdapter(this)
+    fun setAdapterData(images : ArrayList<CategoriesType.Images>?) {
+        adapter = ImageListAdapter(this,images)
         val mLayoutManager = LinearLayoutManager(this)
         rvPublic!!.layoutManager = mLayoutManager
         rvPublic!!.adapter = adapter
     }
+
+    override fun onResume() {
+        super.onResume()
+        getDataFromList()
+    }
+
+
+    fun getDataFromList(){
+
+        for (i in 0..MyApplication.instance.categoriesList!!.size-1){
+            if(MyApplication.instance.categoriesList!!.get(i).categoryId.equals(categoriesId)){
+                val images = MyApplication.instance.categoriesList!![i].images
+                setAdapterData(images)
+            }
+        }
+    }
+
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

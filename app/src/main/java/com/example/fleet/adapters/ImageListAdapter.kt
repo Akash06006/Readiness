@@ -1,14 +1,16 @@
 package com.e.dummyproject
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.fleet.R
+import com.example.fleet.model.CategoriesType
 
-class ImageListAdapter(var imageListActivity: ImageListActivity) : RecyclerView.Adapter<ImageListAdapter.MyViewHolder>() {
+class ImageListAdapter(var imageListActivity : ImageListActivity,var images : ArrayList<CategoriesType.Images>?) : RecyclerView.Adapter<ImageListAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -25,6 +27,10 @@ class ImageListAdapter(var imageListActivity: ImageListActivity) : RecyclerView.
 //                imageListActivity.startActivity(intent)
 //            }
 
+            Glide.with(imageListActivity)
+                .load(images!!.get(position).imagePath)
+                .into(holder.image!!);
+
 
         } catch (e: Exception) {
 
@@ -38,7 +44,7 @@ class ImageListAdapter(var imageListActivity: ImageListActivity) : RecyclerView.
     }
 
     override fun getItemCount(): Int {
-        return 20
+        return images!!.size
     }
 
 
@@ -47,10 +53,12 @@ class ImageListAdapter(var imageListActivity: ImageListActivity) : RecyclerView.
     ) : RecyclerView.ViewHolder(itemView) {
 
         var parentLayout:RelativeLayout?=null
+        var image:com.makeramen.roundedimageview.RoundedImageView?=null
 
 
         init {
             parentLayout=itemView.findViewById(R.id.parentLayout)
+            image=itemView.findViewById(R.id.image)
         }
     }
 }
