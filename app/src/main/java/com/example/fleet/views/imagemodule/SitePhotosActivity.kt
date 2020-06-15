@@ -22,6 +22,7 @@ import com.example.fleet.utils.DialogClass
 import com.example.fleet.utils.DialogssInterface
 import com.example.fleet.viewmodels.ImageCategoryModel
 import com.example.fleet.viewmodels.SiteInfoViewModel
+import com.example.fleet.views.SiteInfoActivity
 import com.example.fleet.views.authentication.LoginActivity
 
 class SitePhotosActivity : BaseActivity(), DialogssInterface {
@@ -84,9 +85,13 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
 
                 when (it) {
 
-                    "btnSubmt" -> {
-                        val intent = Intent(this, ImageListActivity::class.java)
-                        startActivity(intent)
+                    "btn_submit" -> {
+                        confirmationDialog = mDialogClass.setTahnkyouDialog(
+                            this,
+                            this,
+                            "thankyou"
+                        )
+                        confirmationDialog!!.show()
                     }
 
 
@@ -141,6 +146,13 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
                 finish()
             }
 
+            "thankyou" -> {
+                confirmationDialog!!.dismiss()
+                startActivity(Intent(this, SiteInfoActivity::class.java))
+                finish()
+            }
+
+
         }
     }
 
@@ -152,6 +164,8 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
     override fun onDialogCancelAction(mView : View?, mKey : String) {
         when (mKey) {
             "logout" -> confirmationDialog?.dismiss()
+            "thankyou" -> confirmationDialog?.dismiss()
+
         }
     }
 

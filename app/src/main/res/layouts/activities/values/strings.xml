@@ -24,4 +24,5 @@
     <string name="description">Description</string>
     <string name="upload">Upload</string>
     <string name="enter_description">Enter description here</string>
+    <string name="thankyou_message">Thank you for submitting Review survey for IdentoGo</string>
 </resources>
