@@ -58,7 +58,7 @@ class HomeFragment : BaseFragment() {
         fragmentHomeBinding = viewDataBinding as FragmentHomeBinding
         homeViewModel = ViewModelProviders.of(this).get(QuestionsViewModel::class.java)
         fragmentHomeBinding.homeViewModel = homeViewModel
-
+        fragmentHomeBinding.intentogo.imgLogout.visibility=View.GONE
         totalQuestionList.clear()
         sharedPrefClass = SharedPrefClass()
         val userId = sharedPrefClass!!.getPrefValue(

@@ -16,5 +16,7 @@
     <color name="colorButton">#474747</color>
     <color name="colorBlack2">#464646</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorBlue">  #42B5EA</color>
+
 
 </resources>

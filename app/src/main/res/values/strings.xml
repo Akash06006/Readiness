@@ -1,4 +1,4 @@
-<!DOCTYPE resources [<!ENTITY app_name "FleetManagement">]>
+<!DOCTYPE resources [<!ENTITY app_name "Rediness Review">]>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">&app_name;</string>
     <string name="internal_server_error">Internal server error, so please try after some time!</string>
