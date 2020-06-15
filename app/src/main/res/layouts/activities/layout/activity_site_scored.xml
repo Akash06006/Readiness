@@ -36,13 +36,13 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/parentIntentGo"
-            >
+
+            android:layout_below="@+id/parentIntentGo">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/dp_60"
+                android:layout_marginTop="50dp"
                 android:background="@drawable/layout_bg"
                 android:elevation="2dp"
                 android:paddingBottom="50dp">
@@ -62,11 +62,11 @@
 
                 <com.vaibhavlakhera.circularprogressview.CircularProgressView
                     android:id="@+id/progressView"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:layout_below="@+id/tvReview"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/dp_40"
+                    android:layout_marginTop="20dp"
                     app:animate="true"
                     app:animateDuration="600"
                     app:fillColor="@color/colorPrimary"
@@ -89,14 +89,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/progressView"
-                    android:layout_marginTop="@dimen/dp_10"
+
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tvlookNfeel"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_40"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="@string/look_n_feel"
@@ -109,7 +111,6 @@
                         android:id="@+id/progressView1"
                         android:layout_width="0dp"
                         android:layout_height="30dp"
-                        android:layout_marginTop="@dimen/dp_25"
                         android:layout_marginRight="@dimen/dp_80"
                         android:layout_weight="0.15"
                         app:animate="true"
@@ -136,13 +137,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ll_progresses"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tvADA"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_40"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="@string/ada_compliance"
@@ -155,7 +158,6 @@
                         android:id="@+id/progressViewAda"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
-                        android:layout_marginTop="@dimen/dp_25"
                         android:layout_marginRight="@dimen/dp_80"
                         android:layout_weight="0.15"
                         app:animate="true"
@@ -182,13 +184,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ll_progresses2"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tvOperational"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_40"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="@string/operational"
@@ -201,7 +205,6 @@
                         android:id="@+id/progressViewOp"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
-                        android:layout_marginTop="@dimen/dp_25"
                         android:layout_marginRight="@dimen/dp_80"
                         android:layout_weight="0.15"
                         app:animate="true"
@@ -229,7 +232,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ll_progresses3"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="5dp"
                     android:background="@drawable/btn_submit"
                     android:drawableTint="@color/colorWhite"
                     android:elevation="@dimen/dp_2"

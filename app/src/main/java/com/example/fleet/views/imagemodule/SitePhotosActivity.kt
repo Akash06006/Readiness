@@ -31,7 +31,7 @@ import com.example.fleet.viewmodels.ImageCategoryModel
 import com.example.fleet.viewmodels.SitePhotoViewModel
 import com.example.fleet.views.SiteInfoActivity
 import com.example.fleet.views.authentication.LoginActivity
-import com.google.gson.JsonElement
+import com.google.gson.Gson
 import com.google.gson.JsonObject
 import org.json.JSONArray
 import org.json.JSONObject
@@ -49,8 +49,8 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
     private val mJsonObject = JsonObject()
     private lateinit var loginViewModel : SitePhotoViewModel
     private var sharedPrefClass : SharedPrefClass? = null
-
-
+    var imagesInput = ImagesInput()
+    var siteId = ""
     override fun onBackPressed() {
 
 
@@ -102,12 +102,13 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
         })
 
         imageCaegoryViewModel.serveyDetil().observe(this,
-                            Observer<ServeyDetailResponse> { response->
-                                stopProgressDialog()
-                                if (response != null) {
-                                    Toast.makeText(this, "status update", Toast.LENGTH_LONG)
-                                }
-                            })
+            Observer<ServeyDetailResponse> { response->
+                stopProgressDialog()
+                if (response != null) {
+                    showSurveySuccessDialog()
+                    //Toast.makeText(this, "status update", Toast.LENGTH_LONG)
+                }
+            })
 
 
         imageCaegoryViewModel.siteResponse().observe(this,
@@ -116,17 +117,15 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
 
                 if (response != null) {
 
-                    showToastError(response.message)
+                    // showToastError(response.message)
 
-                    if (response.statusCode==200) {
-                        showSurveySuccessDialog()
-                       // loginViewModel.updateServeyId(siteId)
+                    if (response.statusCode == 200) {
+                        //
+                        imageCaegoryViewModel.updateServeyId(siteId)
 
+                    } else {
+                        showToastError(response.message)
                     }
-                    else { showToastError(response.message)}
-
-
-
 
 
                 }
@@ -141,14 +140,18 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
                 when (it) {
 
                     "btn_submit" -> {
+                        if (MyApplication.instance.categoriesList!!.size > 0) {
+                            confirmationDialog = mDialogClass.setDefaultDialog(
+                                this,
+                                this,
+                                "confirm",
+                                getString(R.string.want_to_submit)
+                            )
+                            confirmationDialog!!.show()
+                        } else {
+                            showToastError("Please select site images")
+                        }
 
-                        confirmationDialog = mDialogClass.setDefaultDialog(
-                            this,
-                            this,
-                            "confirm",
-                            getString(R.string.want_to_submit)
-                        )
-                        confirmationDialog!!.show()
 
 //                        val intent = Intent(this, ImageListActivity::class.java)
 //                        startActivity(intent)
@@ -233,7 +236,7 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
             sharedPrefClass = SharedPrefClass()
             var userId = sharedPrefClass!!.getPrefValue(this, GlobalConstants.USERID).toString()
             var Location = sharedPrefClass!!.getPrefValue(this, GlobalConstants.FAC_ADDRESS).toString()
-            var siteId = sharedPrefClass!!.getPrefValue(this, GlobalConstants.SURVEY_ID).toString()
+            siteId = sharedPrefClass!!.getPrefValue(this, GlobalConstants.SURVEY_ID).toString()
 
 
             for (i in 0..MyApplication.instance.categoriesList!!.size - 1) {
@@ -256,21 +259,37 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
             }
             try {
 
+                val imageValues = ArrayList<ImagesDetailInputModel>()
                 for (i in 0 until finalList.size) {
-                    var student2 = JsonObject()
-                    student2.addProperty("categoryId", finalList.get(i).CategoryId.toString())
-                    student2.addProperty("description", finalList.get(i).Description)
-                    student2.addProperty("isDeleted", finalList.get(i).IsDeleted)
-                    student2.addProperty("name", finalList.get(i).Name)
-                    //student2.put("path", finalList.get(i).Path)
-                    student2.addProperty("path",finalList.get(i).Name)
-                    student2.addProperty("userId", finalList.get(i).UserId.toString())
-                    student2.addProperty("location", finalList.get(i).Location)
-                    student2.addProperty("siteDetailId", finalList.get(i).SiteDetailId.toString())
-                    jsonArray.put(student2);
+
+                    val data = ImagesDetailInputModel()
+                    data.CategoryId = finalList.get(i).CategoryId.toString()
+                    data.Description = finalList.get(i).Description
+                    data.IsDeleted = finalList.get(i).IsDeleted
+                    data.Location = finalList.get(i).Location
+                    data.Name = finalList.get(i).Name
+                    data.Path = finalList.get(i).Path
+                    data.UserId = finalList.get(i).UserId.toString()
+                    data.SiteDetailId = finalList.get(i).SiteDetailId.toString()
+                    imageValues.add(data)
+
+                    /* var student2 = JsonObject()
+                     student2.addProperty("categoryId", finalList.get(i).CategoryId.toString())
+                     student2.addProperty("description", finalList.get(i).Description)
+                     student2.addProperty("isDeleted", finalList.get(i).IsDeleted)
+                     student2.addProperty("name", finalList.get(i).Name)
+                     //student2.put("path", finalList.get(i).Path)
+                     student2.addProperty("path", finalList.get(i).Name)
+                     student2.addProperty("userId", finalList.get(i).UserId.toString())
+                     student2.addProperty("location", finalList.get(i).Location)
+                     student2.addProperty("siteDetailId", finalList.get(i).SiteDetailId.toString())
+                     jsonArray.put(student2);*/
                 }
 
-                studentsObj.put("imagesDetailInputModel",   jsonArray)
+                imagesInput.data = imageValues
+                val gson = Gson()
+                val json = gson.toJson(imagesInput)
+                studentsObj.put("ImagesDetailInputModel", jsonArray)
 
             } catch (e : Exception) {
                 // TODO Auto-generated catch block
@@ -279,8 +298,7 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
 
 
 
-            imageCaegoryViewModel.siteParms(studentsObj)
-
+            imageCaegoryViewModel.siteParms(imagesInput/*studentsObj*/)
 
 
 //

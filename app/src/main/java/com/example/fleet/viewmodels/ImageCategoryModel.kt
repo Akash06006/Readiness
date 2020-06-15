@@ -3,15 +3,10 @@ package com.example.fleet.viewmodels
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.fleet.common.UtilsFunctions
-import com.example.fleet.model.ImageCategoriesResponse
-import com.example.fleet.model.LoginResponse
-import com.example.fleet.model.ServeyDetailResponse
-import com.example.fleet.model.SitePhotoResoponse
+import com.example.fleet.model.*
 import com.example.fleet.repositories.ImageCategoriesRepository
 import com.example.fleet.repositories.SitePhotoRepository
-import org.json.JSONObject
 
 class ImageCategoryModel:BaseViewModel() {
     private var model = MutableLiveData<ImageCategoriesResponse>()
@@ -58,8 +53,8 @@ class ImageCategoryModel:BaseViewModel() {
         }
     }
 
-
-    fun siteParms(mJsonObject : JSONObject) {
+//fun siteParms(mJsonObject : JSONObject) {
+    fun siteParms(mJsonObject : ImagesInput) {
         if (UtilsFunctions.isNetworkConnected()) {
             loginResposne = loginRepository.getData(mJsonObject)
             mIsUpdating.postValue(true)

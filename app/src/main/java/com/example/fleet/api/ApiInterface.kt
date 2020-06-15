@@ -1,5 +1,6 @@
 package com.example.fleet.api
 
+import com.example.fleet.model.ImagesInput
 import com.example.fleet.model.UploadImageResponse
 import com.example.fleet.model.home.QuestionInput
 import com.google.gson.JsonObject
@@ -16,7 +17,7 @@ interface ApiInterface {
 
 
     @POST("api/Question/SaveImages")
-    fun sitePhoto(@Body jsonObject : JSONObject) : Call<JSONObject>
+    fun sitePhoto(@Body jsonObject : ImagesInput) : Call<JsonObject>
 
 
     @GET("api/Question/GetImageCategory")
@@ -52,7 +53,7 @@ interface ApiInterface {
     fun callSiteInfo(@Query("userId") userId : String) : Call<JsonObject>
 
 
-    @POST("api/Question/UpdateSurveyStatus")
+    @GET("api/Question/UpdateSurveyStatus")
     fun callServyDetail(@Query("SurveyDetailsId") userId : String) : Call<JsonObject>
 
     @GET("api/service/list")
