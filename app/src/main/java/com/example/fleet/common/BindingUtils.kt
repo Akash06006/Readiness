@@ -74,6 +74,30 @@ object BindingUtils {
 
     }
 
+    @JvmStatic
+    fun getSavedAddress() : String {
+        var name = ""
+        if (UtilsFunctions.checkObjectNull(
+                SharedPrefClass().getPrefValue(
+                    MyApplication.instance.applicationContext,
+                    GlobalConstants.POC_ADDRESS
+                )
+            )
+        ) {
+            name = SharedPrefClass().getPrefValue(
+                MyApplication.instance,
+                GlobalConstants.POC_ADDRESS
+            ).toString()
+        } else {
+            name = ""
+        }
+
+        return name
+
+    }
+
+
+
 
     @JvmStatic
     fun getSavedData(type: String) : String {

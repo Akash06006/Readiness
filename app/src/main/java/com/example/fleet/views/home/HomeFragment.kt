@@ -70,7 +70,7 @@ class HomeFragment : BaseFragment() {
             GlobalConstants.POC_ADDRESS
         ).toString()
 
-        fragmentHomeBinding.txtAddress.setText(address)
+        //fragmentHomeBinding.txtAddress.setText(address)
 
         val surveyId = sharedPrefClass!!.getPrefValue(
             MyApplication.instance,

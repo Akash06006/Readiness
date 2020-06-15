@@ -37,7 +37,7 @@ class SiteInfoActivity : BaseActivity(), DialogssInterface {
         siteInfoVM = ViewModelProviders.of(this).get(SiteInfoViewModel::class.java)
         binding.siteVMModel = siteInfoVM
         sharedPrefClass = SharedPrefClass()
-
+        binding.toolbarCommon.tvAddress.visibility=View.GONE
 
         val userId = sharedPrefClass!!.getPrefValue(
             MyApplication.instance,

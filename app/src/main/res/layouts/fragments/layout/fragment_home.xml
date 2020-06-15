@@ -29,22 +29,11 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/txtAddress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#ffffff"
-                    android:drawableLeft="@drawable/ic_location"
-                    android:drawablePadding="@dimen/dp_5"
-                    android:paddingLeft="@dimen/dp_10"
-                    android:paddingTop="@dimen/dp_10"
-                    android:paddingRight="@dimen/dp_10"
-                    android:paddingBottom="@dimen/dp_30"
-                    android:text="2345 Hickory Av Nashville, Tennesses 30767"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:font="@{`bold`}" />
+                <include
+                    android:id="@+id/intentogo"
+                    layout="@layout/commonheader"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_100"/>
 
                 <RelativeLayout
                     android:layout_width="wrap_content"

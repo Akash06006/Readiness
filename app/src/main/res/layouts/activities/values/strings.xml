@@ -11,6 +11,8 @@
     <string name="poc_email">POC Email</string>
     <string name="start">Start</string>
     <string name="want_to_logout">Are you sure you would like to Log Out?</string>
+    <string name="this_site_scored_a">This site scored a</string>
+    <string name="submit">Submit</string>
 
     <!-- <string name="api_key">AIzaSyD2-RDPo0jssFqwwTXr6NDpOFzQTcIc3dI</string>-->
 
