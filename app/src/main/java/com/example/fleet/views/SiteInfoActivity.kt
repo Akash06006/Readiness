@@ -55,6 +55,7 @@ class SiteInfoActivity : BaseActivity(), DialogssInterface {
                     when {
                         response.code == 200 -> {
 
+                            //comment
                             if (response.resultData!!.size > 0) {
                                 binding.parentLayout.visibility = View.VISIBLE
                                 binding.tvNRecord.visibility = View.GONE
