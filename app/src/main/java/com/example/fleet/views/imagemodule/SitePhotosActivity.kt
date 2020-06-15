@@ -1,5 +1,6 @@
 package com.e.dummyproject
 
+import android.app.Dialog
 import android.content.Intent
 import android.view.View
 import android.widget.Button
@@ -15,14 +16,20 @@ import com.example.fleet.databinding.ActivitySitePhotosBinding
 import com.example.fleet.databinding.ActivitySurveyBinding
 import com.example.fleet.model.CategoriesType
 import com.example.fleet.model.ImageCategoriesResponse
+import com.example.fleet.sharedpreference.SharedPrefClass
 import com.example.fleet.utils.BaseActivity
+import com.example.fleet.utils.DialogClass
+import com.example.fleet.utils.DialogssInterface
 import com.example.fleet.viewmodels.ImageCategoryModel
 import com.example.fleet.viewmodels.SiteInfoViewModel
+import com.example.fleet.views.SiteInfoActivity
+import com.example.fleet.views.authentication.LoginActivity
 
-class SitePhotosActivity : BaseActivity() {
+class SitePhotosActivity : BaseActivity(), DialogssInterface {
     private lateinit var imageCaegoryViewModel : ImageCategoryModel
     private lateinit var binding : ActivitySitePhotosBinding
-
+    private var confirmationDialog : Dialog? = null
+    private var mDialogClass = DialogClass()
     var adapter : ImageCategories? = null
     var rvPublic : RecyclerView? = null
     var categoriesList : ArrayList<ImageCategoriesResponse.ResultData>? = null
@@ -78,9 +85,25 @@ class SitePhotosActivity : BaseActivity() {
 
                 when (it) {
 
-                    "btnSubmt" -> {
-                        val intent = Intent(this, ImageListActivity::class.java)
-                        startActivity(intent)
+                    "btn_submit" -> {
+                        confirmationDialog = mDialogClass.setTahnkyouDialog(
+                            this,
+                            this,
+                            "thankyou"
+                        )
+                        confirmationDialog!!.show()
+                    }
+
+
+                    "img_logout" -> {
+
+                            confirmationDialog = mDialogClass.setDefaultDialog(
+                                this,
+                                this,
+                                "logout",
+                                getString(R.string.want_to_logout)
+                            )
+                            confirmationDialog!!.show()
                     }
                 }
 
@@ -108,6 +131,44 @@ class SitePhotosActivity : BaseActivity() {
             adapter!!.updateCategories(MyApplication.instance.categoriesList)
         }
     }
+
+    override fun onDialogConfirmAction(mView : View?, mKey : String) {
+        when (mKey) {
+            "logout" -> {
+                confirmationDialog?.dismiss()
+                SharedPrefClass().putObject(
+                    MyApplication.instance.applicationContext,
+                    "isLogin",
+                    false
+                )
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+
+            "thankyou" -> {
+                confirmationDialog!!.dismiss()
+                startActivity(Intent(this, SiteInfoActivity::class.java))
+                finish()
+            }
+
+
+        }
+    }
+
+
+
+
+
+
+    override fun onDialogCancelAction(mView : View?, mKey : String) {
+        when (mKey) {
+            "logout" -> confirmationDialog?.dismiss()
+            "thankyou" -> confirmationDialog?.dismiss()
+
+        }
+    }
+
 
 }
 

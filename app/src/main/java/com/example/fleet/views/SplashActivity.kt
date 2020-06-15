@@ -28,7 +28,7 @@ class SplashActivity : BaseActivity() {
     override fun initViews() {
         mContext = this
         mActivitySplashBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash)
-
+        checkAndRequestPermissions()
         sharedPrefClass = SharedPrefClass()
         val token : String? = "sd"
 
@@ -63,7 +63,7 @@ class SplashActivity : BaseActivity() {
 
             //Intent(this, SiteScoredActivity::class.java)
             // Intent(this, LoginActivity::class.java)
-            Intent(this, SiteInfoActivity::class.java)
+            Intent(this, SitePhotosActivity::class.java)
 
         } else {
             Intent(this, LoginActivity::class.java)

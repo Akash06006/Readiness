@@ -8,51 +8,49 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
-import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.MediaStore.Images
+import android.view.View
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fleet.R
+import com.example.fleet.databinding.ActivityImageListBinding
+import com.example.fleet.utils.BaseActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.oginotihiro.cropview.CropUtil
-import com.oginotihiro.cropview.CropView
 import com.soundcloud.android.crop.Crop
 import java.io.ByteArrayOutputStream
 
 
-class ImageListActivity : AppCompatActivity() {
-    var adapter: ImageListAdapter? = null
-    var openCamera: FloatingActionButton? = null
-    var rvPublic: RecyclerView? = null
+class ImageListActivity : BaseActivity() {
+    var adapter : ImageListAdapter? = null
+    var openCamera : FloatingActionButton? = null
+    var rvPublic : RecyclerView? = null
     val MY_CAMERA_PERMISSION_CODE = 1001
     val CAMERA_REQUEST = 1000
-    var outPath:Uri?=null
-    var categoriesName:TextView?=null
-//    var categories=""
-//    var categoriesId=""
+    var outPath : Uri? = null
+    var categoriesName : TextView? = null
+    private lateinit var binding : ActivityImageListBinding
 
-    companion object{
-        var categories=""
-        var categoriesId=""
+
+    companion object {
+        var categories = ""
+        var categoriesId = ""
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_image_list)
+    override fun initViews() {
         rvPublic = findViewById(R.id.rvPublic)
         openCamera = findViewById(R.id.openCamera)
         setAdapterData()
-        categoriesName=findViewById(R.id.categoriesName)
-
-        if(intent.getStringExtra("categoryName")!=null){
+        categoriesName = findViewById(R.id.categoriesName)
+        binding = viewDataBinding as ActivityImageListBinding
+        binding.toolbarCommon.imgLogout.visibility = View.GONE
+        if (intent.getStringExtra("categoryName") != null) {
             categoriesName!!.setText(intent.getStringExtra("categoryName"))
-            categories=intent.getStringExtra("categoryName")
-            categoriesId=intent.getStringExtra("categoriesId")
+            categories = intent.getStringExtra("categoryName")
+            categoriesId = intent.getStringExtra("categoriesId")
         }
 
         openCamera!!.setOnClickListener {
@@ -64,6 +62,11 @@ class ImageListActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun getLayoutId() : Int {
+        return R.layout.activity_image_list
+    }
+
     fun setAdapterData() {
         adapter = ImageListAdapter(this)
         val mLayoutManager = LinearLayoutManager(this)
@@ -71,7 +74,7 @@ class ImageListActivity : AppCompatActivity() {
         rvPublic!!.adapter = adapter
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(requestCode : Int, resultCode : Int, data : Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode === CAMERA_REQUEST && resultCode === Activity.RESULT_OK) {
@@ -79,8 +82,8 @@ class ImageListActivity : AppCompatActivity() {
             outPath = getImageUri(this, bitmap)!!
             var intent = Intent(this, MainActivity::class.java)
             intent.putExtra("uri", outPath.toString())
-            intent.putExtra("name",categories)
-            intent.putExtra("categoriesId",categoriesId)
+            intent.putExtra("name", categories)
+            intent.putExtra("categoriesId", categoriesId)
             startActivity(intent)
 
 //            Crop.of(outPath, outPath).asSquare().start(this)
@@ -92,7 +95,7 @@ class ImageListActivity : AppCompatActivity() {
         }
     }
 
-    fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
+    fun getImageUri(inContext : Context, inImage : Bitmap) : Uri? {
         val bytes = ByteArrayOutputStream()
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
         val path = Images.Media.insertImage(inContext.contentResolver, inImage, "Title", null)
