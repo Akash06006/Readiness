@@ -19,4 +19,7 @@
     <string name="look_n_feel"><![CDATA[Look & Feel]]></string>
     <string name="ada_compliance">ADA Compliance</string>
     <string name="operational">Operational</string>
+    <string name="site_photos">Site Photos</string>
+    <string name="review_submit">Please Review and Submit</string>
+    <string name="description">Description:</string>
 </resources>

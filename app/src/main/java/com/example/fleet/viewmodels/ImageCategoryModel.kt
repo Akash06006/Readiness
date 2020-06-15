@@ -33,5 +33,6 @@ class ImageCategoryModel:BaseViewModel() {
     }
 
     override fun clickListener(v : View) {
+        btnClick.value = v.resources.getResourceName(v.id).split("/")[1]
     }
 }
