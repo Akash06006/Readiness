@@ -1,33 +1,19 @@
 package com.example.fleet.views.home
 
 import android.app.Dialog
-import android.content.Intent
 import android.os.Build
-import android.os.Bundle
-import android.os.Handler
-import android.view.Gravity
 import android.view.View
 import androidx.annotation.RequiresApi
-import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import com.bumptech.glide.Glide
-import com.example.fleet.R
-import com.example.fleet.application.MyApplication
-import com.example.fleet.constants.GlobalConstants
-import com.example.fleet.databinding.ActivityDashboardBinding
-import com.example.fleet.model.CommonModel
-import com.example.fleet.sharedpreference.SharedPrefClass
-import com.example.fleet.utils.BaseActivity
-import com.example.fleet.utils.DialogClass
-import com.example.fleet.utils.DialogssInterface
-import com.example.fleet.views.authentication.LoginActivity
-import com.google.android.material.navigation.NavigationView
-import com.google.android.material.tabs.TabLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.example.fleet.R
+import com.example.fleet.databinding.ActivityDashboardBinding
+import com.example.fleet.utils.BaseActivity
+import com.example.fleet.utils.DialogClass
+import com.example.fleet.utils.DialogssInterface
+import com.google.android.material.navigation.NavigationView
 
 class DashboardActivity : BaseActivity(),
     DialogssInterface {
@@ -38,9 +24,11 @@ class DashboardActivity : BaseActivity(),
     private var ratingDialog : Dialog? = null
     private var mDialogClass = DialogClass()
     var fragmentManager : FragmentManager? = null
+
     // private var dashboardViewModel : DashboardViewModel? = null
     private var removedFrag : String = ""
     var fragment : Fragment? = null
+
     //    companion object {
 //        @get:Synchronized
 //        lateinit var toolBarText : TextView

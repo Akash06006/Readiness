@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.e.dummyproject.SiteScoredActivity
 import com.example.fleet.R
 import com.example.fleet.application.MyApplication
 import com.example.fleet.common.UtilsFunctions
@@ -23,6 +24,7 @@ import com.example.fleet.sharedpreference.SharedPrefClass
 import com.example.fleet.utils.BaseFragment
 import com.example.fleet.utils.DialogClass
 import com.example.fleet.viewmodels.questions.QuestionsViewModel
+import com.example.fleet.views.SiteInfoActivity
 import com.example.fleet.views.authentication.LoginActivity
 import com.google.android.gms.location.*
 import com.google.gson.JsonObject
@@ -170,7 +172,10 @@ class HomeFragment : BaseFragment() {
                                 //if (page == 2)
                                 fragmentHomeBinding.tvQuestionCount.setText("20/20")
                             } else {
-                                showToastSuccess("Call Score Activity")
+
+                                val intent1=Intent(baseActivity, SiteScoredActivity::class.java)
+                                startActivity(intent1)
+                               // showToastSuccess("Call Score Activity")
                             }
                             //}
 
