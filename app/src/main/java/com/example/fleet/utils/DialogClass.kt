@@ -20,6 +20,7 @@ import android.widget.*
 import android.widget.RatingBar.OnRatingBarChangeListener
 import com.example.fleet.R
 import com.example.fleet.callbacks.ChoiceCallBack
+import com.example.fleet.databinding.SuccessDialogBinding
 
 class DialogClass {
     private var checkClick = 0
@@ -70,7 +71,7 @@ class DialogClass {
     }
 
 
-    fun setConfirmationDialog(
+    fun setTahnkyouDialog(
         mContext : Context,
         mInterface : DialogssInterface,
         mKey : String
@@ -80,10 +81,10 @@ class DialogClass {
         val binding =
             DataBindingUtil.inflate<ViewDataBinding>(
                 LayoutInflater.from(mContext),
-                R.layout.layout_confirmation_popup,
+                R.layout.success_dialog,
                 null,
                 false
-            )
+            ) as SuccessDialogBinding
 
 
         dialogView.setContentView(binding.root)

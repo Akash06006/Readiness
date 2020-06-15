@@ -37,7 +37,7 @@ class SiteInfoActivity : BaseActivity(), DialogssInterface {
         siteInfoVM = ViewModelProviders.of(this).get(SiteInfoViewModel::class.java)
         binding.siteVMModel = siteInfoVM
         sharedPrefClass = SharedPrefClass()
-        binding.toolbarCommon.tvAddress.visibility=View.GONE
+        binding.toolbarCommon.tvAddress.visibility = View.GONE
 
         val userId = sharedPrefClass!!.getPrefValue(
             MyApplication.instance,
@@ -55,15 +55,24 @@ class SiteInfoActivity : BaseActivity(), DialogssInterface {
                     when {
                         response.code == 200 -> {
 
+                            //comment
                             if (response.resultData!!.size > 0) {
                                 binding.parentLayout.visibility = View.VISIBLE
                                 binding.tvNRecord.visibility = View.GONE
+                                binding.tvHlogin.visibility = View.VISIBLE
                                 binding.siteModel = response.resultData!!.get(0)
                                 SharedPrefClass().putObject(
                                     this,
-                                    GlobalConstants.POC_ADDRESS,
-                                    response.resultData!![0].pocAddress
+                                    GlobalConstants.FAC_ADDRESS,
+                                    response.resultData!![0].facilityAddress
                                 )
+
+                                SharedPrefClass().putObject(
+                                    this,
+                                    GlobalConstants.SITE_NAME,
+                                    response.resultData!![0].siteName
+                                )
+
                                 SharedPrefClass().putObject(
                                     this,
                                     GlobalConstants.SURVEY_ID,
@@ -73,6 +82,7 @@ class SiteInfoActivity : BaseActivity(), DialogssInterface {
                             } else {
                                 binding.parentLayout.visibility = View.GONE
                                 binding.tvNRecord.visibility = View.VISIBLE
+                                binding.tvHlogin.visibility = View.GONE
                             }
                         }
 
@@ -124,8 +134,9 @@ class SiteInfoActivity : BaseActivity(), DialogssInterface {
                         confirmationDialog!!.show()
                     }
                     "btn_submit" -> {
-                        val intent=Intent(this, DashboardActivity::class.java)
+                        val intent = Intent(this, DashboardActivity::class.java)
                         startActivity(intent)
+                        finish()
 
                     }
                 }

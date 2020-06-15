@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
 
         <variable
@@ -8,6 +9,7 @@
             type="com.example.fleet.viewmodels.ImageCategoryModel" />
 
     </data>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -15,11 +17,9 @@
         <include
             android:id="@+id/intentogo"
             layout="@layout/commonheader"
-            app:onClick="@{(v) -> imageCaegoryViewModel.clickListener(v)}"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_100"/>
-
-
+            android:layout_height="@dimen/dp_100"
+            app:onClick="@{(v) -> imageCaegoryViewModel.clickListener(v)}" />
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -31,24 +31,24 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/site_photos"
-                app:font="@{`bold`}"
                 android:layout_marginStart="@dimen/dp_10"
-                android:textColor="@color/colorBlack"
                 android:layout_marginTop="@dimen/dp_10"
+                android:text="@string/site_photos"
+                android:textColor="@color/colorBlack"
                 android:textSize="@dimen/sp_18"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:font="@{`bold`}" />
 
             <TextView
                 android:id="@+id/review"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:textColor="@color/colorGrey"
-                app:font="@{`regular`}"
                 android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginTop="50dp"
                 android:text="@string/review_submit"
-                android:textSize="@dimen/sp_15" />
+                android:textColor="@color/colorGrey"
+                android:textSize="@dimen/sp_15"
+                app:font="@{`regular`}" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPublic"
@@ -59,24 +59,21 @@
                 android:layout_marginTop="@dimen/dp_10"
                 android:paddingBottom="10dp" />
 
-
-
             <Button
                 android:id="@+id/btn_submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:background="@drawable/round_shape"
                 android:backgroundTint="@color/colorPrimary"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
                 android:onClick="@{(v) -> imageCaegoryViewModel.clickListener(v)}"
                 android:paddingLeft="@dimen/dp_30"
                 android:paddingRight="@dimen/dp_30"
                 android:text="@string/submit"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/sp_20" />
-
 
             <RelativeLayout
                 android:id="@+id/relativeParent"

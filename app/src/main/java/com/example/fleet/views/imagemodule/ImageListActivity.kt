@@ -9,32 +9,36 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
-import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.MediaStore.Images
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.util.FileUtil
 import com.example.fleet.R
+<<<<<<< HEAD
 import com.example.fleet.application.MyApplication
 import com.example.fleet.model.CategoriesType
 import com.example.fleet.model.ImageListModel
 import com.example.fleet.utils.FileUtils
+=======
+import com.example.fleet.databinding.ActivityImageListBinding
+import com.example.fleet.utils.BaseActivity
+>>>>>>> 6c23cd1cbb0a65b701ce0f125a965144680d30dd
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.soundcloud.android.crop.Crop
 import java.io.ByteArrayOutputStream
 
 
-class ImageListActivity : AppCompatActivity() {
-    var adapter: ImageListAdapter? = null
-    var openCamera: FloatingActionButton? = null
-    var rvPublic: RecyclerView? = null
+class ImageListActivity : BaseActivity() {
+    var adapter : ImageListAdapter? = null
+    var openCamera : FloatingActionButton? = null
+    var rvPublic : RecyclerView? = null
     val MY_CAMERA_PERMISSION_CODE = 1001
     val CAMERA_REQUEST = 1000
+<<<<<<< HEAD
     var outPath:Uri?=null
     var categoriesName:TextView?=null
     var imageList:ArrayList<ImageListModel>?=null
@@ -42,27 +46,39 @@ class ImageListActivity : AppCompatActivity() {
     var noRecord:TextView?=null
 //    var categories=""
 //    var categoriesId=""
+=======
+    var outPath : Uri? = null
+    var categoriesName : TextView? = null
+    private lateinit var binding : ActivityImageListBinding
+>>>>>>> 6c23cd1cbb0a65b701ce0f125a965144680d30dd
 
-    companion object{
-        var categories=""
-        var categoriesId=""
+
+    companion object {
+        var categories = ""
+        var categoriesId = ""
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_image_list)
+    override fun initViews() {
         rvPublic = findViewById(R.id.rvPublic)
         openCamera = findViewById(R.id.openCamera)
+<<<<<<< HEAD
         noRecord = findViewById(R.id.noRecordFound)
         images= ArrayList()
         setAdapterData(images)
         categoriesName=findViewById(R.id.categoriesName)
         imageList= ArrayList()
         if(intent.getStringExtra("categoryName")!=null){
+=======
+        setAdapterData()
+        categoriesName = findViewById(R.id.categoriesName)
+        binding = viewDataBinding as ActivityImageListBinding
+        binding.toolbarCommon.imgLogout.visibility = View.GONE
+        if (intent.getStringExtra("categoryName") != null) {
+>>>>>>> 6c23cd1cbb0a65b701ce0f125a965144680d30dd
             categoriesName!!.setText(intent.getStringExtra("categoryName"))
-            categories=intent.getStringExtra("categoryName")
-            categoriesId=intent.getStringExtra("categoriesId")
+            categories = intent.getStringExtra("categoryName")
+            categoriesId = intent.getStringExtra("categoriesId")
         }
 
         openCamera!!.setOnClickListener {
@@ -74,6 +90,7 @@ class ImageListActivity : AppCompatActivity() {
             }
         }
     }
+<<<<<<< HEAD
     @SuppressLint("SetTextI18n")
     fun setAdapterData(images : ArrayList<CategoriesType.Images>?) {
         if(images!!.size>0){
@@ -108,6 +125,21 @@ class ImageListActivity : AppCompatActivity() {
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+=======
+
+    override fun getLayoutId() : Int {
+        return R.layout.activity_image_list
+    }
+
+    fun setAdapterData() {
+        adapter = ImageListAdapter(this)
+        val mLayoutManager = LinearLayoutManager(this)
+        rvPublic!!.layoutManager = mLayoutManager
+        rvPublic!!.adapter = adapter
+    }
+
+    override fun onActivityResult(requestCode : Int, resultCode : Int, data : Intent?) {
+>>>>>>> 6c23cd1cbb0a65b701ce0f125a965144680d30dd
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode === CAMERA_REQUEST && resultCode === Activity.RESULT_OK) {
@@ -117,9 +149,15 @@ class ImageListActivity : AppCompatActivity() {
        var filePath=   FileUtils.getPath(this,outPath)
 
             var intent = Intent(this, MainActivity::class.java)
+<<<<<<< HEAD
             intent.putExtra("uri", filePath.toString())
             intent.putExtra("name",categories)
             intent.putExtra("categoriesId",categoriesId)
+=======
+            intent.putExtra("uri", outPath.toString())
+            intent.putExtra("name", categories)
+            intent.putExtra("categoriesId", categoriesId)
+>>>>>>> 6c23cd1cbb0a65b701ce0f125a965144680d30dd
             startActivity(intent)
 
 //            Crop.of(outPath, outPath).asSquare().start(this)
@@ -131,7 +169,7 @@ class ImageListActivity : AppCompatActivity() {
         }
     }
 
-    fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
+    fun getImageUri(inContext : Context, inImage : Bitmap) : Uri? {
         val bytes = ByteArrayOutputStream()
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
         val path = Images.Media.insertImage(inContext.contentResolver, inImage, "Title", null)

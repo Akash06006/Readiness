@@ -40,7 +40,7 @@ class ImageCategories(var imageListActivity : SitePhotosActivity, var categories
 
 
             holder.parentLayout!!.setOnClickListener {
-                var intent= Intent(imageListActivity, ImageListActivity::class.java)
+                val intent= Intent(imageListActivity, ImageListActivity::class.java)
                 intent.putExtra("categoryName",categoriesList!!.get(position).categoryName.toString())
                 intent.putExtra("categoriesId",categoriesList!!.get(position).id.toString())
 

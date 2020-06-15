@@ -58,7 +58,7 @@ class HomeFragment : BaseFragment() {
         fragmentHomeBinding = viewDataBinding as FragmentHomeBinding
         homeViewModel = ViewModelProviders.of(this).get(QuestionsViewModel::class.java)
         fragmentHomeBinding.homeViewModel = homeViewModel
-        fragmentHomeBinding.intentogo.imgLogout.visibility=View.GONE
+        fragmentHomeBinding.intentogo.imgLogout.visibility = View.GONE
         totalQuestionList.clear()
         sharedPrefClass = SharedPrefClass()
         val userId = sharedPrefClass!!.getPrefValue(
@@ -67,7 +67,7 @@ class HomeFragment : BaseFragment() {
         ).toString()
         val address = sharedPrefClass!!.getPrefValue(
             MyApplication.instance,
-            GlobalConstants.POC_ADDRESS
+            GlobalConstants.FAC_ADDRESS
         ).toString()
 
         //fragmentHomeBinding.txtAddress.setText(address)
@@ -167,15 +167,17 @@ class HomeFragment : BaseFragment() {
                                 questionInputModel.data = data
                                 questionsListAdapter?.notifyDataSetChanged()
                                 //
-                                fragmentHomeBinding.scrolView.pageScroll(View.FOCUS_UP)
+                                //  fragmentHomeBinding.scrolView.pageScroll(View.FOCUS_UP)
                                 fragmentHomeBinding.rvQuesions.smoothScrollToPosition(0)
                                 //if (page == 2)
                                 fragmentHomeBinding.tvQuestionCount.setText("20/20")
                             } else {
+                                if (page == 2) {
+                                    val intent1 = Intent(baseActivity, SiteScoredActivity::class.java)
+                                    startActivity(intent1)
+                                    activity?.finish()
+                                }
 
-                                val intent1 = Intent(baseActivity, SiteScoredActivity::class.java)
-                                startActivity(intent1)
-                                activity?.finish()
                                 // showToastSuccess("Call Score Activity")
                             }
                             //}

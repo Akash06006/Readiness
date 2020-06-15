@@ -1,83 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-   >
+<layout>
 
-    <RelativeLayout
-        android:paddingBottom="10dp"
-        android:id="@+id/parentIntentGo"
-        android:background="#ffffff"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_margin="10dp"
-            android:id="@+id/intentogo"
-            android:textSize="35dp"
-            android:textStyle="bold"
-            android:textColor="#1A378E"
-            android:text="IndentoGo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_margin="10dp"
-            android:layout_below="@+id/intentogo"
-            android:textSize="18dp"
-            android:text="Location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        android:layout_height="match_parent">
 
+        <include
+            android:id="@+id/toolbarCommon"
+            layout="@layout/commonheader"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_100" />
 
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/parentIdPhoto"
-        android:layout_margin="10dp"
-        android:layout_below="@+id/parentIntentGo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:textSize="18dp"
-            android:textColor="#000000"
-            android:text="Site Photos"
-            android:textStyle="bold"
-
-            android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/parentIdPhoto"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:id="@+id/categoriesName"
-            android:textSize="18dp" />
+            android:layout_below="@+id/toolbarCommon"
+            android:layout_margin="10dp">
 
-    </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Site Photos"
+                android:textColor="#000000"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:font="@{`bold`}" />
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@+id/parentIdPhoto"
-        android:id="@+id/rvPublic"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="10dp"
-        android:visibility="visible" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        app:fabSize="normal"
-        android:id="@+id/openCamera"
-        android:layout_margin="20dp"
-        android:tint="#ffffff"
-        android:src="@drawable/ic_camera"
-        app:backgroundTint="#1A378E"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
+<<<<<<< HEAD
     <TextView
         android:id="@+id/noRecordFound"
         android:visibility="gone"
@@ -87,7 +39,38 @@
         android:textSize="@dimen/dp_15"
         android:layout_width="wrap_content"
         android:layout_height ="wrap_content"/>
+=======
+            <TextView
+                android:id="@+id/categoriesName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:textSize="@dimen/sp_18"
+                app:font="@{`semibold`}" />
 
+        </RelativeLayout>
+>>>>>>> 6c23cd1cbb0a65b701ce0f125a965144680d30dd
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPublic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/parentIdPhoto"
+            android:paddingBottom="10dp"
+            android:visibility="visible" />
 
-</RelativeLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/openCamera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_camera"
+            android:tint="#ffffff"
+            app:backgroundTint="#1A378E"
+            app:fabSize="normal" />
+
+    </RelativeLayout>
+</layout>
