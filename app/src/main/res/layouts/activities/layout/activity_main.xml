@@ -11,16 +11,18 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-<!--        <ImageView-->
-<!--            android:id="@+id/ivImage"-->
-<!--            android:scaleType="fitXY"-->
-<!--           android:layout_margin="20dp"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="250dp"/>-->
+
+        <include
+            android:id="@+id/intentogo"
+            layout="@layout/common_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"
+            />
 
         <RelativeLayout
             android:id="@+id/parent"
             android:elevation="5dp"
+            android:layout_below="@+id/intentogo"
             android:layout_margin="10dp"
             android:background="@drawable/rounde_corner_edittext"
             android:layout_width="wrap_content"
@@ -42,7 +44,6 @@
                 android:textSize="@dimen/sp_22"
                 app:font="@{`bold`}"
                 android:text="@string/description"
-
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_width="wrap_content"
@@ -52,17 +53,17 @@
                 android:elevation="5dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
-
                 android:layout_below="@+id/tvDesc"
                 android:layout_width="match_parent"
                 android:layout_height="100dp">
 
                 <EditText
                     android:background="@android:color/transparent"
-                    android:padding="5dp"
-                    android:layout_margin="5dp"
+                    android:padding="2dp"
+                    android:layout_marginTop="5dp"
                     android:gravity="start"
-                    android:textSize="@dimen/sp_20"
+                    android:hint="@string/enter_description"
+                    android:textSize="@dimen/sp_15"
                     app:font="@{`regular`}"
                     android:maxLength="255"
                     android:layout_width="match_parent"
@@ -86,7 +87,7 @@
             android:layout_centerHorizontal="true"
             android:paddingLeft="@dimen/dp_30"
             android:paddingRight="@dimen/dp_30"
-            android:text="@string/submit"
+            android:text="@string/upload"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/sp_20" />
 

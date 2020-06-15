@@ -28,7 +28,7 @@ class SplashActivity : BaseActivity() {
     override fun initViews() {
         mContext = this
         mActivitySplashBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash)
-
+        checkAndRequestPermissions()
         sharedPrefClass = SharedPrefClass()
         val token : String? = "sd"
 

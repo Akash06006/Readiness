@@ -29,7 +29,6 @@ class LoginActivity : BaseActivity() {
         activityLoginbinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
         activityLoginbinding.loginViewModel = loginViewModel
-        checkAndRequestPermissions()
         loginViewModel.loginResponse().observe(this,
             Observer<LoginResponse> { response->
                 stopProgressDialog()
