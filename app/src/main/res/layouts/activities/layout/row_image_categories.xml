@@ -40,7 +40,7 @@
             android:textSize="@dimen/sp_22"
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_centerVertical="true"
-            app:font="@{`bold`}"
+             app:font="@{`bold`}"
             android:layout_toRightOf="@+id/ivIcon"
             android:text="External" />
         ​
