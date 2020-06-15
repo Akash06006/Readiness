@@ -8,28 +8,41 @@
             <variable
                 name="onClick"
                 type="android.view.View.OnClickListener"/>
+            <import type="com.example.fleet.common.BindingUtils" />
+
         </data>
 
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_130"
+    android:layout_height="@dimen/dp_100"
     android:background="@color/appBackgroundColor"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:weightSum="10"
     android:padding="@dimen/dp_10">
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/appBackgroundColor"
+        android:orientation="horizontal"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:weightSum="10"
+       >
+
     <ImageView
         android:id="@+id/tv_heading"
-        android:layout_width="@dimen/dp_80"
+        android:layout_width="0dp"
         android:layout_weight="4"
         android:layout_height="@dimen/dp_30"
-        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_10"
         android:src="@drawable/logo" />
 
     <View
         android:layout_width="0dp"
         android:layout_weight="4.5"
         android:layout_height="0dp"/>
+
     <ImageView
         android:id="@+id/img_logout"
         android:layout_width="@dimen/dp_20"
@@ -37,10 +50,27 @@
         android:layout_weight="2"
         android:gravity="end"
         android:onClick="@{onClick}"
-        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_10"
         android:layout_marginStart="@dimen/dp_10"
         android:layout_marginLeft="@dimen/dp_5"
         android:src="@drawable/ic_logout" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_address"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:text="@{BindingUtils.getSavedAddress()}"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/dp_10"
+        android:drawablePadding="@dimen/dp_10"
+        android:drawableLeft="@drawable/ic_location"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/sp_14"
+        app:font="@{`bold`}" />
+
 
 
 </LinearLayout>

@@ -310,8 +310,10 @@ class DashboardActivity : BaseActivity(),
         fragmentTransaction.commit()
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finish()
+
+
+
+    override fun  onBackPressed() {
+
     }
 }

@@ -1,121 +1,251 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+
+        <variable
+            name="scoreVMModel"
+            type="com.example.fleet.viewmodels.questions.ScoreViewModel" />
+
+    </data>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <RelativeLayout
+        android:id="@+id/parentIntentGo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp">
+
+        <include
+            android:id="@+id/intentogo"
+            layout="@layout/commonheader"
+            app:onClick="@{(v) -> scoreVMModel.clickListener(v)}"
+              android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_100"/>
+
+
+
+    </RelativeLayout>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffffff">
+        android:layout_below="@+id/parentIntentGo"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/layout_bg"
+        android:elevation="2dp"
+        android:paddingBottom="20dp">
 
-        <!--    <ScrollView-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="match_parent">-->
 
-        <!--        <RelativeLayout-->
-
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent">-->
-
-        <RelativeLayout
-            android:id="@+id/parentIntentGo"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tvReview"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#ffffff"
-            android:paddingBottom="10dp">
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_20"
+            android:textStyle="bold"
+            app:font="@{`bold`}"
+            android:text="@string/this_site_scored_a"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/sp_17" />
+
+        <com.vaibhavlakhera.circularprogressview.CircularProgressView
+            android:id="@+id/progressView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:animate="true"
+            app:animateDuration="600"
+            app:fillColor="@color/colorPrimary"
+            app:progress="75"
+            android:layout_centerHorizontal="true"
+            app:progressColor="@color/colorWhite"
+            app:progressRoundCap="true"
+            android:layout_marginTop="@dimen/dp_30"
+            app:progressTextColor="#FFF"
+            app:progressTextEnabled="true"
+            app:progressTextSize="30sp"
+            app:progressTextType="percent"
+            app:progressWidth="10dp"
+            app:startAngle="0"
+            app:total="100"
+            app:totalColor="@color/colorPrimary"
+            app:totalWidth="10dp"
+            android:layout_below="@+id/tvReview"
+
+            tools:ignore="MissingClass" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/ll_progresses"
+            android:layout_below="@+id/progressView"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/intentogo"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvlookNfeel"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="#ffffff"
-                android:padding="10dp"
-                android:text="IndentoGo"
-                android:textColor="#1A378E"
-                android:textSize="35dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtAddress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/intentogo"
-                android:background="#ffffff"
-                android:drawableLeft="@drawable/ic_location"
-                android:drawablePadding="@dimen/dp_5"
-                android:paddingLeft="@dimen/dp_10"
-                android:paddingRight="@dimen/dp_10"
-                android:paddingBottom="@dimen/dp_30"
-                android:text="2345 Hickory Av Nashville, Tennesses 30767"
-                android:textColor="@color/colorBlack"
-                android:textSize="16sp"
+                android:layout_marginTop="@dimen/dp_40"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/look_n_feel"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/sp_15"
                 android:textStyle="bold"
                 app:font="@{`bold`}" />
 
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/parentIntentGo"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/layout_bg"
-            android:elevation="2dp"
-            android:paddingBottom="20dp">
-
-            <TextView
-                android:id="@+id/tvReview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="50dp"
-                android:text="This site scored a"
-                android:textColor="#FFFFFF"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
             <com.vaibhavlakhera.circularprogressview.CircularProgressView
-                android:id="@+id/progressView"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
-                android:layout_centerInParent="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
+                android:id="@+id/progressView1"
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:layout_height="30dp"
                 app:animate="true"
                 app:animateDuration="600"
-                app:fillColor="#1A378E"
-                app:progress="75"
-                app:progressColor="#1A378E"
+                app:fillColor="@color/colorPrimary"
+                app:progress="70"
+                android:layout_marginRight="@dimen/dp_20"
+                app:progressColor="@color/colorPink"
                 app:progressRoundCap="true"
+                android:layout_marginTop="@dimen/dp_20"
                 app:progressTextColor="#FFF"
                 app:progressTextEnabled="true"
-                app:progressTextSize="32sp"
-                app:progressTextType="progress"
-                app:progressWidth="12dp"
+                app:progressTextSize="15sp"
+                app:progressTextType="percent"
+                app:progressWidth="5dp"
                 app:startAngle="0"
                 app:total="100"
-                app:totalColor="#FFFFFF"
-                app:totalWidth="20dp" />
+                app:totalColor="@color/colorWhite"
+                app:totalWidth="3dp"
+                tools:ignore="MissingClass" />
 
-            <Button
-                android:id="@+id/btnSubmt"
-                android:layout_width="140dp"
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/ll_progresses2"
+            android:layout_below="@+id/ll_progresses"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvADA"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/progressView"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/btn_submit"
-                android:drawableTint="#ffffff"
-                android:elevation="2dp"
-                android:text="Submit" />
+                android:layout_marginTop="@dimen/dp_40"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/ada_compliance"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/sp_15"
+                android:textStyle="bold"
+                app:font="@{`bold`}" />
 
-        </RelativeLayout>
+            <com.vaibhavlakhera.circularprogressview.CircularProgressView
+                android:id="@+id/progressViewAda"
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:layout_height="50dp"
+                app:animate="true"
+                app:animateDuration="600"
+                app:fillColor="@color/colorPrimary"
+                app:progress="80"
+                android:layout_marginRight="@dimen/dp_20"
+                app:progressColor="@color/colorSuccess"
+                app:progressRoundCap="true"
+                android:layout_marginTop="@dimen/dp_20"
+                app:progressTextColor="#FFF"
+                app:progressTextEnabled="true"
+                app:progressTextSize="15sp"
+                app:progressTextType="percent"
+                app:progressWidth="3dp"
+                app:startAngle="0"
+                app:total="100"
+                app:totalColor="@color/colorWhite"
+                app:totalWidth="3dp"
+                tools:ignore="MissingClass" />
 
-        <!--        </RelativeLayout>-->
 
-        <!--    </ScrollView>-->
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/ll_progresses3"
+            android:layout_below="@+id/ll_progresses2"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvOperational"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_40"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/operational"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/sp_15"
+                android:textStyle="bold"
+                app:font="@{`bold`}" />
+
+            <com.vaibhavlakhera.circularprogressview.CircularProgressView
+                android:id="@+id/progressViewOp"
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:layout_height="50dp"
+                app:animate="true"
+                app:animateDuration="600"
+                app:fillColor="@color/colorPrimary"
+                app:progress="75"
+                android:layout_marginRight="@dimen/dp_20"
+                app:progressColor="@color/colorBlue"
+                app:progressRoundCap="true"
+                android:layout_marginTop="@dimen/dp_20"
+                app:progressTextColor="#FFF"
+                app:progressTextEnabled="true"
+                app:progressTextSize="15sp"
+                app:progressTextType="percent"
+                app:progressWidth="3dp"
+                app:startAngle="0"
+                app:total="100"
+                app:totalColor="@color/colorWhite"
+                app:totalWidth="3dp"
+                tools:ignore="MissingClass" />
+
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btnSubmt"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_progresses3"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/btn_submit"
+            android:elevation="@dimen/dp_2"
+            android:text="@string/submit"
+            android:onClick="@{(v) -> scoreVMModel.clickListener(v)}"
+            app:font="@{`bold`}"
+            android:drawableTint="@color/colorWhite"
+            />
 
     </RelativeLayout>
+
+
+</RelativeLayout>
 </layout>

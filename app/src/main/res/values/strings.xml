@@ -1,4 +1,4 @@
-<!DOCTYPE resources [<!ENTITY app_name "FleetManagement">]>
+<!DOCTYPE resources [<!ENTITY app_name "IdentoGo">]>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">&app_name;</string>
     <string name="internal_server_error">Internal server error, so please try after some time!</string>
@@ -35,4 +35,6 @@
     <string name="success">Success</string>
     <string name="survey_submit_success">Thank You for submitting IdentoGo survey for</string>
     <string name="done">Done</string>
+
+
 </resources>

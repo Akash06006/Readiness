@@ -2,15 +2,20 @@ package com.example.fleet.application
 
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
+import com.example.fleet.model.CategoriesType
 import com.example.fleet.utils.FontStyle
 
 
 class MyApplication : MultiDexApplication() {
     private var customFontFamily: FontStyle? = null
+    var categoriesList:ArrayList<CategoriesType>?=null
+
     override fun onCreate() {
         MultiDex.install(this)
         super.onCreate()
+
         instance = this
+        categoriesList=ArrayList()
         MultiDex.install(this)
         customFontFamily = FontStyle.instance
         customFontFamily!!.addFont("regular", "Montserrat-Regular_0.ttf")

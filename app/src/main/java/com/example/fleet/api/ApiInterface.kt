@@ -1,7 +1,9 @@
 package com.example.fleet.api
 
+import com.example.fleet.model.UploadImageResponse
 import com.example.fleet.model.home.QuestionInput
 import com.google.gson.JsonObject
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -21,10 +23,13 @@ interface ApiInterface {
     fun saveAnswer(@Body mJsonObject : QuestionInput) : Call<JsonObject>
 
 
+    @Multipart
+    @POST("api/Question/FileUpload")
+    fun uploadImage(@PartMap params : Map<String?, RequestBody?>?) : Call<UploadImageResponse?>?
+
+
     /*@POST("login/")
     fun callLogin(@Body jsonObject : JsonObject) : Call<JsonObject>*/
-
-
 
     @GET("api/logout")
     fun callLogout(/*@Body mJsonObject : JsonObject*/) : Call<JsonObject>
@@ -34,6 +39,5 @@ interface ApiInterface {
 
     @GET("api/service/list")
     fun getServicesList(@Query("page") page : Int, @Query("limit") limit : Int, @Query("status") status : String) : Call<JsonObject>//(@Query("status") status : String) : Call<JsonObject>
-
 
 }

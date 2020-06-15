@@ -13,7 +13,7 @@
         android:layout_marginRight="@dimen/dp_10"
         android:layout_marginBottom="@dimen/dp_5"
         android:background="@drawable/shape_round_corner"
-        android:elevation="1dp"
+        android:elevation="5dp"
         android:padding="@dimen/dp_5">
         <!---->
         <androidx.cardview.widget.CardView
@@ -47,9 +47,10 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="@dimen/dp_2"
                         android:paddingLeft="3dp"
+                        android:textColor="@color/colorBlack2"
                         android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
                         android:textAllCaps="false"
-                        app:font="@{`regular`}" />
+                        app:font="@{`semibold`}" />
 
                 </LinearLayout>
 
