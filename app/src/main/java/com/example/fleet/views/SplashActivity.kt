@@ -65,12 +65,10 @@ class SplashActivity : BaseActivity() {
             // Intent(this, LoginActivity::class.java)
             Intent(this, SitePhotosActivity::class.java)
 
-
         } else {
             Intent(this, LoginActivity::class.java)
             //Intent(this, DashboardActivity::class.java)
         }
-
         startActivity(intent)
         finish()
     }

@@ -46,13 +46,14 @@
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
         <TextView
-            android:textSize="18dp"
-            android:layout_alignParentRight="true"
-            android:text="Exterior"
-            android:layout_marginRight="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:id="@+id/categoriesName"
+            android:textSize="18dp" />
 
     </RelativeLayout>
 
