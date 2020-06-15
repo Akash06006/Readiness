@@ -49,9 +49,7 @@ class ImageListActivity : AppCompatActivity() {
         }
     }
 
-
     fun setAdapterData() {
-
         adapter = ImageListAdapter(this)
         val mLayoutManager = LinearLayoutManager(this)
         rvPublic!!.layoutManager = mLayoutManager
