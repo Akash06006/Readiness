@@ -75,6 +75,9 @@ object GlobalConstants {
     var OTP_VERIFICATION_ID = "OTP_VERIFICATION_ID"
     @JvmStatic
     var POC_ADDRESS = "POC_ADDRESS"
+
+    @JvmStatic
+    var FAC_ADDRESS = "FAC_ADDRESS"
     @JvmStatic
     var SURVEY_ID = "SURVEY_ID"
 

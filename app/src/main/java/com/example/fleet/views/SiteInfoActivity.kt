@@ -62,8 +62,8 @@ class SiteInfoActivity : BaseActivity(), DialogssInterface {
                                 binding.siteModel = response.resultData!!.get(0)
                                 SharedPrefClass().putObject(
                                     this,
-                                    GlobalConstants.POC_ADDRESS,
-                                    response.resultData!![0].pocAddress
+                                    GlobalConstants.FAC_ADDRESS,
+                                    response.resultData!![0].facilityAddress
                                 )
                                 SharedPrefClass().putObject(
                                     this,

@@ -80,13 +80,13 @@ object BindingUtils {
         if (UtilsFunctions.checkObjectNull(
                 SharedPrefClass().getPrefValue(
                     MyApplication.instance.applicationContext,
-                    GlobalConstants.POC_ADDRESS
+                    GlobalConstants.FAC_ADDRESS
                 )
             )
         ) {
             name = SharedPrefClass().getPrefValue(
                 MyApplication.instance,
-                GlobalConstants.POC_ADDRESS
+                GlobalConstants.FAC_ADDRESS
             ).toString()
         } else {
             name = ""
