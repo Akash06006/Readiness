@@ -35,6 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_20"
+
             android:layout_marginTop="@dimen/dp_10"
             android:text="@string/proposed_info"
             android:textColor="@color/colorBlack"
@@ -42,11 +43,11 @@
             app:font="@{`bold`}" />
 
         <ScrollView
-            android:layout_width="match_parent"
-            android:visibility="gone"
             android:id="@+id/parentLayout"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/dp_10">
+            android:padding="@dimen/dp_10"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -265,16 +266,17 @@
             </LinearLayout>
         </ScrollView>
 
-
         <TextView
             android:id="@+id/tv_nRecord"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="10dp"
             android:gravity="center"
             android:padding="@dimen/dp_10"
             android:text="@string/no_site"
-            android:textColor="@color/colorGrey"
-            android:textSize="@dimen/sp_15"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/sp_17"
+            android:visibility="gone"
             app:font="@{`semibold`}" />
 
     </LinearLayout>
