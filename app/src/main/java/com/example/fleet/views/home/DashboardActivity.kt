@@ -86,7 +86,7 @@ class DashboardActivity : BaseActivity(),
         //fragment = HomeFragment()
         // callFragments(fragment, supportFragmentManager, false, "send_data", "")
         //showSurveySuccessDialog()
-        replaceFragmetn(HomeFragment())
+         replaceFragmetn(HomeFragment())
 
         /* when (fragmentType) {
              is HomeFragment -> {
@@ -311,9 +311,7 @@ class DashboardActivity : BaseActivity(),
     }
 
 
-
-
-    override fun  onBackPressed() {
+    override fun onBackPressed() {
 
     }
 }
