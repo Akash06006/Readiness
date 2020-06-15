@@ -45,7 +45,7 @@ class QuestionsViewModel : BaseViewModel() {
 
     }
 
-    fun saveAnswer(inputModel : ArrayList<QuestionInput.AnswerInputModel>) {
+    fun saveAnswer(inputModel : QuestionInput) {
         if (UtilsFunctions.isNetworkConnected()) {
             //emialExistenceResponse = loginRepository.checkPhoneExistence(mJsonObject)
             saveAnswerResponse = loginRepository.saveAnswer(inputModel)

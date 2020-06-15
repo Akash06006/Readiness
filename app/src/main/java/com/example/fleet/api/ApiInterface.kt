@@ -2,11 +2,8 @@ package com.example.fleet.api
 
 import com.example.fleet.model.home.QuestionInput
 import com.google.gson.JsonObject
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
-import java.util.HashMap
 
 interface ApiInterface {
     @Headers("Content-Type: application/json")
@@ -21,7 +18,7 @@ interface ApiInterface {
     fun getQuestions(/*@Body mJsonObject : JsonObject*/) : Call<JsonObject>
 
     @POST("api/Question/SaveAnswer")
-    fun saveAnswer(@Body mJsonObject : ArrayList<QuestionInput.AnswerInputModel>?) : Call<JsonObject>
+    fun saveAnswer(@Body mJsonObject : QuestionInput) : Call<JsonObject>
 
 
     /*@POST("login/")
