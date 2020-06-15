@@ -21,4 +21,5 @@
     <string name="operational">Operational</string>
     <string name="site_photos">Site Photos</string>
     <string name="review_submit">Please Review and Submit</string>
+    <string name="description">Description:</string>
 </resources>
