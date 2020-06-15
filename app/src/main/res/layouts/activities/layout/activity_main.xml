@@ -1,95 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+
 
     <RelativeLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
-
+        <include
+            android:id="@+id/intentogo"
+            layout="@layout/common_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="@dimen/dp_60"
+            />
 
-            <include
-                android:id="@+id/intentogo"
-                layout="@layout/common_toolbar"
+        <RelativeLayout
+            android:id="@+id/parent"
+            android:elevation="5dp"
+            android:layout_below="@+id/intentogo"
+            android:layout_margin="10dp"
+            android:background="@drawable/rounde_corner_edittext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:scaleType="centerCrop"
+                app:riv_corner_radius_top_left="10dp"
+                app:riv_corner_radius_top_right="10dp"
+                android:id="@+id/ivImage"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_60" />
+                android:layout_height="250dp"/>
 
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/ivImage"
+                android:textColor="#000000"
+                android:id="@+id/tvDesc"
+                android:textSize="@dimen/sp_22"
+                app:font="@{`bold`}"
+                android:text="@string/description"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <RelativeLayout
-                android:id="@+id/parent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/intentogo"
-                android:layout_margin="10dp"
-                android:background="@drawable/rounde_corner_edittext"
-                android:elevation="5dp">
+                android:id="@+id/parentEdit"
+                android:elevation="5dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_below="@+id/tvDesc"
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
 
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/ivImage"
+                <EditText
+                    android:background="@android:color/transparent"
+                    android:id="@+id/imgDescription"
+                    android:layout_margin="5dp"
+                    android:padding="2dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="start"
+                    android:hint="@string/enter_description"
+                    android:textSize="@dimen/sp_15"
+                    app:font="@{`regular`}"
+                    android:maxLength="255"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:scaleType="centerCrop"
-                    app:riv_corner_radius_top_left="10dp"
-                    app:riv_corner_radius_top_right="10dp" />
-
-                <TextView
-                    android:id="@+id/tvDesc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/ivImage"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
-                    android:text="@string/description"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/sp_22"
-                    app:font="@{`bold`}" />
-
-                <RelativeLayout
-                    android:id="@+id/parentEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_below="@+id/tvDesc"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:elevation="5dp">
-
-                    <EditText
-                        android:id="@+id/imgDescription"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@android:color/transparent"
-                        android:gravity="start"
-                        android:hint="@string/enter_description"
-                        android:maxLength="255"
-                        android:padding="5dp"
-                        android:textSize="@dimen/sp_15"
-                        app:font="@{`regular`}" />
-                </RelativeLayout>
-
+                    android:layout_height="match_parent"/>
             </RelativeLayout>
-
-            <Button
-                android:id="@+id/btnUpload"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/parent"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
-                android:background="@drawable/round_shape"
-                android:backgroundTint="@color/colorPrimary"
-                android:paddingLeft="@dimen/dp_30"
-                android:paddingRight="@dimen/dp_30"
-                android:text="@string/upload"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/sp_20" />
 
         </RelativeLayout>
 
+
+
+
+        <Button
+            android:id="@+id/btnUpload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_below="@+id/parent"
+            android:layout_margin="20dp"
+            android:background="@drawable/round_shape"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_centerHorizontal="true"
+            android:paddingLeft="@dimen/dp_30"
+            android:paddingRight="@dimen/dp_30"
+            android:text="@string/upload"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/sp_20" />
+
+
+
+
     </RelativeLayout>
+
+
+</RelativeLayout>
 </layout>

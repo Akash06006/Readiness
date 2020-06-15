@@ -28,12 +28,10 @@ import com.example.fleet.utils.BaseActivity
 import com.example.fleet.utils.DialogClass
 import com.example.fleet.utils.DialogssInterface
 import com.example.fleet.viewmodels.ImageCategoryModel
-
 import com.example.fleet.viewmodels.SitePhotoViewModel
-
-import com.example.fleet.viewmodels.SiteInfoViewModel
 import com.example.fleet.views.SiteInfoActivity
 import com.example.fleet.views.authentication.LoginActivity
+import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import org.json.JSONArray
 import org.json.JSONObject
@@ -51,6 +49,7 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
     private val mJsonObject = JsonObject()
     private lateinit var loginViewModel : SitePhotoViewModel
     private var sharedPrefClass : SharedPrefClass? = null
+
 
     override fun onBackPressed() {
 
@@ -81,7 +80,9 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
                             categoriesModel!!.categoryId = categoriesList!!.get(i).id
 
                             val imagies = CategoriesType.Images()
-                            val list = ArrayList<CategoriesType.Images>()                      //imagies.imageName=""
+                            val list = ArrayList<CategoriesType.Images>()
+
+                            //imagies.imageName=""
                             //imagies.imagePath=""
                             //list.add(imagies)
                             categoriesModel!!.images = list
@@ -100,6 +101,39 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
             }
         })
 
+        imageCaegoryViewModel.serveyDetil().observe(this,
+                            Observer<ServeyDetailResponse> { response->
+                                stopProgressDialog()
+                                if (response != null) {
+                                    Toast.makeText(this, "status update", Toast.LENGTH_LONG)
+                                }
+                            })
+
+
+        imageCaegoryViewModel.siteResponse().observe(this,
+            Observer<SitePhotoResoponse> { response->
+                stopProgressDialog()
+
+                if (response != null) {
+
+                    showToastError(response.message)
+
+                    if (response.statusCode==200) {
+                        showSurveySuccessDialog()
+                       // loginViewModel.updateServeyId(siteId)
+
+                    }
+                    else { showToastError(response.message)}
+
+
+
+
+
+                }
+            })
+
+
+
         imageCaegoryViewModel.isClick().observe(
             this, Observer<String>(function =
             fun(it : String?) {
@@ -107,16 +141,26 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
                 when (it) {
 
                     "btn_submit" -> {
+
+                        confirmationDialog = mDialogClass.setDefaultDialog(
+                            this,
+                            this,
+                            "confirm",
+                            getString(R.string.want_to_submit)
+                        )
+                        confirmationDialog!!.show()
+
 //                        val intent = Intent(this, ImageListActivity::class.java)
 //                        startActivity(intent)
 
-                        hitApi()
-                        confirmationDialog = mDialogClass.setTahnkyouDialog(
-                            this,
-                            this,
-                            "thankyou"
-                        )
-                        confirmationDialog!!.show()
+
+//                        confirmationDialog = mDialogClass.setTahnkyouDialog(
+//                            this,
+//                            this,
+//                            "thankyou"
+//                        )
+//                        confirmationDialog!!.show()
+
                     }
 
 
@@ -142,156 +186,6 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
 
     }
 
-
-    fun hitApi() {
-
-        try {
-            val jsonArray = JSONArray()
-            val studentsObj = JSONObject()
-            var finalList = ArrayList<SitePhotoInput.ImagesDetailInputModelList>()
-            sharedPrefClass = SharedPrefClass()
-            var userId = sharedPrefClass!!.getPrefValue(this, GlobalConstants.USERID).toString()
-            var Location = sharedPrefClass!!.getPrefValue(this, GlobalConstants.POC_ADDRESS).toString()
-            var siteId = sharedPrefClass!!.getPrefValue(this, GlobalConstants.SURVEY_ID).toString()
-
-
-            for (i in 0..MyApplication.instance.categoriesList!!.size - 1) {
-                val images = MyApplication.instance.categoriesList!![i].images
-
-                if (images!!.size > 0) {
-                    for (j in 0..images!!.size - 1) {
-                        var submisionModel = SitePhotoInput.ImagesDetailInputModelList()
-                        submisionModel.CategoryId = MyApplication.instance.categoriesList!!.get(i).categoryId
-                        submisionModel.Description = images.get(j).description
-                        submisionModel.IsDeleted = "false"
-                        submisionModel.Name = images.get(j).imageName
-                        submisionModel.Path = images.get(j).imagePath
-                        submisionModel.UserId = userId
-                        submisionModel.Location = Location
-                        submisionModel.SiteDetailId = siteId
-                        finalList.add(submisionModel)
-                    }
-                }
-            }
-            try {
-
-                for (i in 0 until finalList.size) {
-                    var student2 = JSONObject()
-                    student2.put("CategoryId", finalList.get(i).CategoryId)
-                    student2.put("Description", finalList.get(i).Description)
-                    student2.put("IsDeleted", finalList.get(i).IsDeleted)
-                    student2.put("Name", finalList.get(i).Name)
-                    student2.put("Path", finalList.get(i).Path)
-                    student2.put("UserId", finalList.get(i).UserId)
-                    student2.put("Location", finalList.get(i).Location)
-                    student2.put("SiteDetailId", finalList.get(i).SiteDetailId)
-                    jsonArray.put(student2);
-                }
-
-                studentsObj.put("ImagesDetailInputModel", jsonArray)
-
-            } catch (e : Exception) {
-                // TODO Auto-generated catch block
-                e.printStackTrace()
-            }
-
-
-//            mJsonObject.addProperty("ImagesDetailInputModel", finalList)
-//        mJsonObject.addProperty("password", password)
-            // mJsonObject.addProperty("app-version", versionName)
-
-
-            loginViewModel = ViewModelProviders.of(this).get(SitePhotoViewModel::class.java)
-            loginViewModel.siteParms(studentsObj)
-
-            loginViewModel.siteResponse().observe(this,
-                Observer<SitePhotoResoponse> { response->
-                    stopProgressDialog()
-                    if (response != null) {
-
-                        loginViewModel.updateServeyId(siteId)
-
-                        loginViewModel.serveyDetil().observe(this,
-                            Observer<ServeyDetailResponse> { response->
-                                stopProgressDialog()
-                                if (response != null) {
-                                   // Toast.makeText(this, "status update", Toast.LENGTH_LONG)
-                                    showSurveySuccessDialog()
-                                }
-                            })
-
-
-//                    val message = response.message
-//                    when {
-//                        response.code == 200 -> {
-//
-//
-//                        }
-//
-//                        else -> showToastError(message)
-//                    }
-
-                    }
-                })
-
-//
-
-        } catch (e : Exception) {
-
-        }
-    }
-
-
-    override fun getLayoutId() : Int {
-        return R.layout.activity_site_photos
-    }
-
-
-    fun setadapter() {
-        adapter = ImageCategories(this, categoriesList, MyApplication.instance.categoriesList)
-        rvPublic!!.setLayoutManager(GridLayoutManager(this, 2));
-        rvPublic!!.adapter = adapter
-    }
-
-    override fun onActivityResult(requestCode : Int, resultCode : Int, data : Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 120) {
-            adapter!!.updateCategories(MyApplication.instance.categoriesList)
-        }
-    }
-
-    override fun onDialogConfirmAction(mView : View?, mKey : String) {
-        when (mKey) {
-            "logout" -> {
-                confirmationDialog?.dismiss()
-                SharedPrefClass().putObject(
-                    MyApplication.instance.applicationContext,
-                    "isLogin",
-                    false
-                )
-                showToastSuccess("you are logged out successfully")
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-            "thankyou" -> {
-                confirmationDialog!!.dismiss()
-                startActivity(Intent(this, SiteInfoActivity::class.java))
-                finish()
-            }
-
-
-        }
-    }
-
-
-    override fun onDialogCancelAction(mView : View?, mKey : String) {
-        when (mKey) {
-            "logout" -> confirmationDialog?.dismiss()
-            "thankyou" -> confirmationDialog?.dismiss()
-
-        }
-    }
 
     private fun showSurveySuccessDialog() {
         val siteName = SharedPrefClass()!!.getPrefValue(
@@ -330,6 +224,133 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
         }
         confirmationDialog?.show()
     }
+
+    fun hitApi() {
+        try {
+            val jsonArray = JSONArray()
+            val studentsObj = JSONObject()
+            var finalList = ArrayList<SitePhotoInput.ImagesDetailInputModelList>()
+            sharedPrefClass = SharedPrefClass()
+            var userId = sharedPrefClass!!.getPrefValue(this, GlobalConstants.USERID).toString()
+            var Location = sharedPrefClass!!.getPrefValue(this, GlobalConstants.FAC_ADDRESS).toString()
+            var siteId = sharedPrefClass!!.getPrefValue(this, GlobalConstants.SURVEY_ID).toString()
+
+
+            for (i in 0..MyApplication.instance.categoriesList!!.size - 1) {
+                val images = MyApplication.instance.categoriesList!![i].images
+
+                if (images!!.size > 0) {
+                    for (j in 0..images!!.size - 1) {
+                        var submisionModel = SitePhotoInput.ImagesDetailInputModelList()
+                        submisionModel.CategoryId = MyApplication.instance.categoriesList!!.get(i).categoryId
+                        submisionModel.Description = images.get(j).description
+                        submisionModel.IsDeleted = "false"
+                        submisionModel.Name = images.get(j).imageName
+                        submisionModel.Path = images.get(j).imagePath
+                        submisionModel.UserId = userId
+                        submisionModel.Location = Location
+                        submisionModel.SiteDetailId = siteId
+                        finalList.add(submisionModel)
+                    }
+                }
+            }
+            try {
+
+                for (i in 0 until finalList.size) {
+                    var student2 = JsonObject()
+                    student2.addProperty("categoryId", finalList.get(i).CategoryId.toString())
+                    student2.addProperty("description", finalList.get(i).Description)
+                    student2.addProperty("isDeleted", finalList.get(i).IsDeleted)
+                    student2.addProperty("name", finalList.get(i).Name)
+                    //student2.put("path", finalList.get(i).Path)
+                    student2.addProperty("path",finalList.get(i).Name)
+                    student2.addProperty("userId", finalList.get(i).UserId.toString())
+                    student2.addProperty("location", finalList.get(i).Location)
+                    student2.addProperty("siteDetailId", finalList.get(i).SiteDetailId.toString())
+                    jsonArray.put(student2);
+                }
+
+                studentsObj.put("imagesDetailInputModel",   jsonArray)
+
+            } catch (e : Exception) {
+                // TODO Auto-generated catch block
+                e.printStackTrace()
+            }
+
+
+
+            imageCaegoryViewModel.siteParms(studentsObj)
+
+
+
+//
+
+        } catch (e : Exception) {
+
+        }
+
+    }
+
+
+    override fun getLayoutId() : Int {
+        return R.layout.activity_site_photos
+    }
+
+
+    fun setadapter() {
+        adapter = ImageCategories(this, categoriesList, MyApplication.instance.categoriesList)
+        rvPublic!!.setLayoutManager(GridLayoutManager(this, 2));
+        rvPublic!!.adapter = adapter
+    }
+
+    override fun onActivityResult(requestCode : Int, resultCode : Int, data : Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 120) {
+            adapter!!.updateCategories(MyApplication.instance.categoriesList)
+        }
+    }
+
+    override fun onDialogConfirmAction(mView : View?, mKey : String) {
+        when (mKey) {
+            "logout" -> {
+                confirmationDialog?.dismiss()
+                SharedPrefClass().putObject(
+                    MyApplication.instance.applicationContext,
+                    "isLogin",
+                    false
+                )
+                showToastSuccess("you are logged out successfully")
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            "confirm" -> {
+                confirmationDialog!!.dismiss()
+
+                hitApi()
+
+            }
+
+            "thankyou" -> {
+                confirmationDialog!!.dismiss()
+                startActivity(Intent(this, SiteInfoActivity::class.java))
+                finish()
+            }
+
+
+        }
+    }
+
+
+    override fun onDialogCancelAction(mView : View?, mKey : String) {
+        when (mKey) {
+            "logout" -> confirmationDialog?.dismiss()
+            "thankyou" -> confirmationDialog?.dismiss()
+            "confirm" -> confirmationDialog?.dismiss()
+
+        }
+    }
+
 
 }
 

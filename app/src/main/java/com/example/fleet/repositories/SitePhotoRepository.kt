@@ -1,5 +1,6 @@
 package com.example.fleet.repositories
 
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.fleet.R
 import com.example.fleet.api.ApiClient
@@ -7,14 +8,14 @@ import com.example.fleet.api.ApiResponse
 import com.example.fleet.api.ApiService
 import com.example.fleet.application.MyApplication
 import com.example.fleet.common.UtilsFunctions
-import com.example.fleet.model.LoginResponse
 import com.example.fleet.model.ServeyDetailResponse
-import com.example.fleet.model.SiteInfo
 import com.example.fleet.model.SitePhotoResoponse
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import org.json.JSONObject
 import retrofit2.Response
+
 
 class SitePhotoRepository {
 
@@ -38,6 +39,9 @@ class SitePhotoRepository {
                         val loginResponse = if (mResponse.body() != null)
                             gson.fromJson<SitePhotoResoponse>("" + mResponse.body(), SitePhotoResoponse::class.java)
                         else {
+
+                            val message : APIError = Gson().fromJson(mResponse.errorBody()!!.charStream(), APIError::class.java)
+
                             gson.fromJson<SitePhotoResoponse>(
                                 mResponse.errorBody()!!.charStream(),
                                 SitePhotoResoponse::class.java
@@ -69,6 +73,9 @@ class SitePhotoRepository {
                         val loginResponse = if (mResponse.body() != null)
                             gson.fromJson<ServeyDetailResponse>("" + mResponse.body(), ServeyDetailResponse::class.java)
                         else {
+
+                           // Toast.makeText(this@MainActivity, "" + message.message, Toast.LENGTH_SHORT).show()
+
                             gson.fromJson<ServeyDetailResponse>(
                                 mResponse.errorBody()!!.charStream(),
                                 ServeyDetailResponse::class.java
@@ -85,5 +92,9 @@ class SitePhotoRepository {
         }
         return serveyDetail!!
 
+    }
+
+    class APIError {
+        val message : String? = null
     }
 }

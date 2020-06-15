@@ -15,7 +15,7 @@ interface ApiInterface {
     fun callLogin(@Body jsonObject : JsonObject) : Call<JsonObject>
 
 
-    @POST("api/Account/Login")
+    @POST("api/Question/SaveImages")
     fun sitePhoto(@Body jsonObject : JSONObject) : Call<JSONObject>
 
 

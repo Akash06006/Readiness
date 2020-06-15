@@ -16,14 +16,13 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.util.FileUtil
 import com.example.fleet.R
 import com.example.fleet.application.MyApplication
+import com.example.fleet.databinding.ActivityImageListBinding
 import com.example.fleet.model.CategoriesType
 import com.example.fleet.model.ImageListModel
-import com.example.fleet.utils.FileUtils
-import com.example.fleet.databinding.ActivityImageListBinding
 import com.example.fleet.utils.BaseActivity
+import com.example.fleet.utils.FileUtils
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.soundcloud.android.crop.Crop
 import java.io.ByteArrayOutputStream
@@ -35,15 +34,14 @@ class ImageListActivity : BaseActivity() {
     var rvPublic : RecyclerView? = null
     val MY_CAMERA_PERMISSION_CODE = 1001
     val CAMERA_REQUEST = 1000
-    var outPath:Uri?=null
-    var categoriesName:TextView?=null
-    var imageList:ArrayList<ImageListModel>?=null
-   var images : ArrayList<CategoriesType.Images>?=null
-    var noRecord:TextView?=null
+    var imageList : ArrayList<ImageListModel>? = null
+    var images : ArrayList<CategoriesType.Images>? = null
+    var noRecord : TextView? = null
 //    var categories=""
 //    var categoriesId=""
-//    var outPath : Uri? = null
-    //var categoriesName : TextView? = null
+
+    var outPath : Uri? = null
+    var categoriesName : TextView? = null
     private lateinit var binding : ActivityImageListBinding
 
 
@@ -56,56 +54,57 @@ class ImageListActivity : BaseActivity() {
     override fun initViews() {
         rvPublic = findViewById(R.id.rvPublic)
         openCamera = findViewById(R.id.openCamera)
-        noRecord = findViewById(R.id.noRecordFound)
-        images= ArrayList()
-        setAdapterData(images)
-        categoriesName=findViewById(R.id.categoriesName)
-        imageList= ArrayList()
-        if(intent.getStringExtra("categoryName")!=null){
-        setAdapterData()
-        categoriesName = findViewById(R.id.categoriesName)
-        binding = viewDataBinding as ActivityImageListBinding
-        binding.toolbarCommon.imgLogout.visibility = View.GONE
-        if (intent.getStringExtra("categoryName") != null) {
-            categoriesName!!.setText(intent.getStringExtra("categoryName"))
-            categories = intent.getStringExtra("categoryName")
-            categoriesId = intent.getStringExtra("categoriesId")
-        }
 
-        openCamera!!.setOnClickListener {
-            if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(arrayOf(Manifest.permission.CAMERA), MY_CAMERA_PERMISSION_CODE)
-            } else {
-                val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                startActivityForResult(cameraIntent, CAMERA_REQUEST)
+        noRecord = findViewById(R.id.noRecordFound)
+        images = ArrayList()
+        setAdapterData(images)
+        categoriesName = findViewById(R.id.categoriesName)
+        imageList = ArrayList()
+        if (intent.getStringExtra("categoryName") != null) {
+
+            categoriesName = findViewById(R.id.categoriesName)
+            binding = viewDataBinding as ActivityImageListBinding
+            binding.toolbarCommon.imgLogout.visibility = View.GONE
+            if (intent.getStringExtra("categoryName") != null) {
+
+                categoriesName!!.setText(intent.getStringExtra("categoryName"))
+                categories = intent.getStringExtra("categoryName")
+                categoriesId = intent.getStringExtra("categoriesId")
+            }
+
+            openCamera!!.setOnClickListener {
+                if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(arrayOf(Manifest.permission.CAMERA), MY_CAMERA_PERMISSION_CODE)
+                } else {
+                    val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    startActivityForResult(cameraIntent, CAMERA_REQUEST)
+                }
             }
         }
     }
+
     @SuppressLint("SetTextI18n")
     fun setAdapterData(images : ArrayList<CategoriesType.Images>?) {
-        if(images!!.size>0){
-            noRecord!!.visibility= View.GONE
-            adapter = ImageListAdapter(this,images)
+        if (images!!.size > 0) {
+            noRecord!!.visibility = View.GONE
+            rvPublic!!.visibility = View.VISIBLE
+            adapter = ImageListAdapter(this, images)
             val mLayoutManager = LinearLayoutManager(this)
             rvPublic!!.layoutManager = mLayoutManager
             rvPublic!!.adapter = adapter
-        } else{
+        } else {
             noRecord!!.setText("Please upload survey photos for $categories")
+            noRecord!!.visibility = View.VISIBLE
+            rvPublic!!.visibility = View.GONE
 
-            noRecord!!.visibility= View.VISIBLE
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        getDataFromList()
-    }
 
+    fun getDataFromList() {
 
-    fun getDataFromList(){
-
-        for (i in 0..MyApplication.instance.categoriesList!!.size-1){
-            if(MyApplication.instance.categoriesList!!.get(i).categoryId.equals(categoriesId)){
+        for (i in 0..MyApplication.instance.categoriesList!!.size - 1) {
+            if (MyApplication.instance.categoriesList!!.get(i).categoryId.equals(categoriesId)) {
                 val images = MyApplication.instance.categoriesList!![i].images
                 setAdapterData(images)
             }
@@ -113,17 +112,22 @@ class ImageListActivity : BaseActivity() {
     }
 
 
+    fun getImageUri(inContext : Context, inImage : Bitmap) : Uri? {
+        val bytes = ByteArrayOutputStream()
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path = Images.Media.insertImage(inContext.contentResolver, inImage, "Title", null)
+        return Uri.parse(path)
+    }
 
 
     override fun getLayoutId() : Int {
         return R.layout.activity_image_list
     }
 
-    fun setAdapterData() {
-        adapter = ImageListAdapter(this)
-        val mLayoutManager = LinearLayoutManager(this)
-        rvPublic!!.layoutManager = mLayoutManager
-        rvPublic!!.adapter = adapter
+
+    override fun onResume() {
+        super.onResume()
+        getDataFromList()
     }
 
     override fun onActivityResult(requestCode : Int, resultCode : Int, data : Intent?) {
@@ -133,13 +137,11 @@ class ImageListActivity : BaseActivity() {
             var bitmap = data!!.getExtras()!!.get("data") as Bitmap
             outPath = getImageUri(this, bitmap)!!
 
-       var filePath=   FileUtils.getPath(this,outPath)
+            var filePath = FileUtils.getPath(this, outPath)
 
             var intent = Intent(this, MainActivity::class.java)
+
             intent.putExtra("uri", filePath.toString())
-            intent.putExtra("name",categories)
-            intent.putExtra("categoriesId",categoriesId)
-            intent.putExtra("uri", outPath.toString())
             intent.putExtra("name", categories)
             intent.putExtra("categoriesId", categoriesId)
             startActivity(intent)
@@ -152,11 +154,8 @@ class ImageListActivity : BaseActivity() {
             startActivity(intent)
         }
     }
-
-    fun getImageUri(inContext : Context, inImage : Bitmap) : Uri? {
-        val bytes = ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-        val path = Images.Media.insertImage(inContext.contentResolver, inImage, "Title", null)
-        return Uri.parse(path)
-    }
 }
+
+
+
+
