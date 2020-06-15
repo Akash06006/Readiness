@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.Window
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -16,7 +17,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.fleet.R
+import com.example.fleet.application.MyApplication
+import com.example.fleet.constants.GlobalConstants
 import com.example.fleet.databinding.ActivityDashboardBinding
+import com.example.fleet.sharedpreference.SharedPrefClass
 import com.example.fleet.utils.BaseActivity
 import com.example.fleet.views.SiteInfoActivity
 
@@ -32,8 +36,8 @@ class DashboardActivity : BaseActivity() {
     override fun initViews() {
         activityDashboardBinding = viewDataBinding as ActivityDashboardBinding
         fragmentManager = supportFragmentManager
-        replaceFragmetn(HomeFragment())
-
+        // replaceFragmetn(HomeFragment())
+        showSurveySuccessDialog()
     }
 
     override fun getLayoutId() : Int {
@@ -41,6 +45,11 @@ class DashboardActivity : BaseActivity() {
     }
 
     private fun showSurveySuccessDialog() {
+        /*val siteName = SharedPrefClass()!!.getPrefValue(
+            MyApplication.instance,
+            GlobalConstants.POC_ADDRESS
+        ).toString()*/
+        val siteName = "Akash"
         confirmationDialog = Dialog(this, R.style.transparent_dialog)
         confirmationDialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
         val binding =
@@ -58,8 +67,11 @@ class DashboardActivity : BaseActivity() {
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.MATCH_PARENT
         )
+
         confirmationDialog?.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val cancel = confirmationDialog?.findViewById<Button>(R.id.btnDone)
+        val tvMessage = confirmationDialog?.findViewById<TextView>(R.id.tvMessage)
+        tvMessage?.setText(tvMessage?.text.toString() + " " + siteName)
         cancel?.setOnClickListener {
 
             val intent = Intent(this, SiteInfoActivity::class.java)
