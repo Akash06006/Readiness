@@ -44,43 +44,7 @@ class DashboardActivity : BaseActivity() {
         return R.layout.activity_dashboard
     }
 
-    private fun showSurveySuccessDialog() {
-        val siteName = SharedPrefClass()!!.getPrefValue(
-            MyApplication.instance,
-            GlobalConstants.SITE_NAME
-        ).toString()
-        // val siteName = "Akash"
-        confirmationDialog = Dialog(this, R.style.transparent_dialog)
-        confirmationDialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        val binding =
-            DataBindingUtil.inflate<ViewDataBinding>(
-                LayoutInflater.from(this),
-                R.layout.survey_submitted_success_dialog,
-                null,
-                false
-            )
 
-        confirmationDialog?.setContentView(binding.root)
-        confirmationDialog?.setCancelable(false)
-
-        confirmationDialog?.window!!.setLayout(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.MATCH_PARENT
-        )
-
-        confirmationDialog?.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        val cancel = confirmationDialog?.findViewById<Button>(R.id.btnDone)
-        val tvMessage = confirmationDialog?.findViewById<TextView>(R.id.tvMessage)
-        tvMessage?.setText(tvMessage?.text.toString() + " " + siteName)
-        cancel?.setOnClickListener {
-
-            val intent = Intent(this, SiteInfoActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-            finish()
-        }
-        confirmationDialog?.show()
-    }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun setHeadings() {

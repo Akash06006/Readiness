@@ -18,15 +18,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.util.FileUtil
 import com.example.fleet.R
-<<<<<<< HEAD
 import com.example.fleet.application.MyApplication
 import com.example.fleet.model.CategoriesType
 import com.example.fleet.model.ImageListModel
 import com.example.fleet.utils.FileUtils
-=======
 import com.example.fleet.databinding.ActivityImageListBinding
 import com.example.fleet.utils.BaseActivity
->>>>>>> 6c23cd1cbb0a65b701ce0f125a965144680d30dd
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.soundcloud.android.crop.Crop
 import java.io.ByteArrayOutputStream
@@ -38,7 +35,6 @@ class ImageListActivity : BaseActivity() {
     var rvPublic : RecyclerView? = null
     val MY_CAMERA_PERMISSION_CODE = 1001
     val CAMERA_REQUEST = 1000
-<<<<<<< HEAD
     var outPath:Uri?=null
     var categoriesName:TextView?=null
     var imageList:ArrayList<ImageListModel>?=null
@@ -46,11 +42,9 @@ class ImageListActivity : BaseActivity() {
     var noRecord:TextView?=null
 //    var categories=""
 //    var categoriesId=""
-=======
-    var outPath : Uri? = null
-    var categoriesName : TextView? = null
+//    var outPath : Uri? = null
+    //var categoriesName : TextView? = null
     private lateinit var binding : ActivityImageListBinding
->>>>>>> 6c23cd1cbb0a65b701ce0f125a965144680d30dd
 
 
     companion object {
@@ -62,20 +56,17 @@ class ImageListActivity : BaseActivity() {
     override fun initViews() {
         rvPublic = findViewById(R.id.rvPublic)
         openCamera = findViewById(R.id.openCamera)
-<<<<<<< HEAD
         noRecord = findViewById(R.id.noRecordFound)
         images= ArrayList()
         setAdapterData(images)
         categoriesName=findViewById(R.id.categoriesName)
         imageList= ArrayList()
         if(intent.getStringExtra("categoryName")!=null){
-=======
         setAdapterData()
         categoriesName = findViewById(R.id.categoriesName)
         binding = viewDataBinding as ActivityImageListBinding
         binding.toolbarCommon.imgLogout.visibility = View.GONE
         if (intent.getStringExtra("categoryName") != null) {
->>>>>>> 6c23cd1cbb0a65b701ce0f125a965144680d30dd
             categoriesName!!.setText(intent.getStringExtra("categoryName"))
             categories = intent.getStringExtra("categoryName")
             categoriesId = intent.getStringExtra("categoriesId")
@@ -90,7 +81,6 @@ class ImageListActivity : BaseActivity() {
             }
         }
     }
-<<<<<<< HEAD
     @SuppressLint("SetTextI18n")
     fun setAdapterData(images : ArrayList<CategoriesType.Images>?) {
         if(images!!.size>0){
@@ -124,8 +114,6 @@ class ImageListActivity : BaseActivity() {
 
 
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-=======
 
     override fun getLayoutId() : Int {
         return R.layout.activity_image_list
@@ -139,7 +127,6 @@ class ImageListActivity : BaseActivity() {
     }
 
     override fun onActivityResult(requestCode : Int, resultCode : Int, data : Intent?) {
->>>>>>> 6c23cd1cbb0a65b701ce0f125a965144680d30dd
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode === CAMERA_REQUEST && resultCode === Activity.RESULT_OK) {
@@ -149,15 +136,12 @@ class ImageListActivity : BaseActivity() {
        var filePath=   FileUtils.getPath(this,outPath)
 
             var intent = Intent(this, MainActivity::class.java)
-<<<<<<< HEAD
             intent.putExtra("uri", filePath.toString())
             intent.putExtra("name",categories)
             intent.putExtra("categoriesId",categoriesId)
-=======
             intent.putExtra("uri", outPath.toString())
             intent.putExtra("name", categories)
             intent.putExtra("categoriesId", categoriesId)
->>>>>>> 6c23cd1cbb0a65b701ce0f125a965144680d30dd
             startActivity(intent)
 
 //            Crop.of(outPath, outPath).asSquare().start(this)

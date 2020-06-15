@@ -2,8 +2,17 @@ package com.e.dummyproject
 
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.view.LayoutInflater
 import android.view.View
+import android.view.Window
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
@@ -19,12 +28,11 @@ import com.example.fleet.utils.BaseActivity
 import com.example.fleet.utils.DialogClass
 import com.example.fleet.utils.DialogssInterface
 import com.example.fleet.viewmodels.ImageCategoryModel
-<<<<<<< HEAD
+
 import com.example.fleet.viewmodels.SitePhotoViewModel
-=======
+
 import com.example.fleet.viewmodels.SiteInfoViewModel
 import com.example.fleet.views.SiteInfoActivity
->>>>>>> 6c23cd1cbb0a65b701ce0f125a965144680d30dd
 import com.example.fleet.views.authentication.LoginActivity
 import com.google.gson.JsonObject
 import org.json.JSONArray
@@ -40,19 +48,14 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
     var rvPublic : RecyclerView? = null
     var categoriesList : ArrayList<ImageCategoriesResponse.ResultData>? = null
     var categoriesModel : CategoriesType? = null
-<<<<<<< HEAD
     private val mJsonObject = JsonObject()
     private lateinit var loginViewModel : SitePhotoViewModel
     private var sharedPrefClass : SharedPrefClass? = null
-
-=======
-
 
     override fun onBackPressed() {
 
 
     }
->>>>>>> 6c23cd1cbb0a65b701ce0f125a965144680d30dd
 
     override fun initViews() {
 
@@ -78,13 +81,9 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
                             categoriesModel!!.categoryId = categoriesList!!.get(i).id
 
                             val imagies = CategoriesType.Images()
-                            val list = ArrayList<CategoriesType.Images>()
-<<<<<<< HEAD
-=======
-                            //imagies.imageName=""
+                            val list = ArrayList<CategoriesType.Images>()                      //imagies.imageName=""
                             //imagies.imagePath=""
                             //list.add(imagies)
->>>>>>> 6c23cd1cbb0a65b701ce0f125a965144680d30dd
                             categoriesModel!!.images = list
                             MyApplication.instance.categoriesList!!.add(categoriesModel!!)
                         }
@@ -108,19 +107,16 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
                 when (it) {
 
                     "btn_submit" -> {
-<<<<<<< HEAD
 //                        val intent = Intent(this, ImageListActivity::class.java)
 //                        startActivity(intent)
 
                         hitApi()
-=======
                         confirmationDialog = mDialogClass.setTahnkyouDialog(
                             this,
                             this,
                             "thankyou"
                         )
                         confirmationDialog!!.show()
->>>>>>> 6c23cd1cbb0a65b701ce0f125a965144680d30dd
                     }
 
 
@@ -154,9 +150,9 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
             val studentsObj = JSONObject()
             var finalList = ArrayList<SitePhotoInput.ImagesDetailInputModelList>()
             sharedPrefClass = SharedPrefClass()
-          var  userId = sharedPrefClass!!.getPrefValue(this,  GlobalConstants.USERID).toString()
-          var  Location = sharedPrefClass!!.getPrefValue(this,  GlobalConstants.POC_ADDRESS).toString()
-          var  siteId = sharedPrefClass!!.getPrefValue(this,  GlobalConstants.SURVEY_ID).toString()
+            var userId = sharedPrefClass!!.getPrefValue(this, GlobalConstants.USERID).toString()
+            var Location = sharedPrefClass!!.getPrefValue(this, GlobalConstants.POC_ADDRESS).toString()
+            var siteId = sharedPrefClass!!.getPrefValue(this, GlobalConstants.SURVEY_ID).toString()
 
 
             for (i in 0..MyApplication.instance.categoriesList!!.size - 1) {
@@ -204,7 +200,6 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
 //        mJsonObject.addProperty("password", password)
             // mJsonObject.addProperty("app-version", versionName)
 
-<<<<<<< HEAD
 
             loginViewModel = ViewModelProviders.of(this).get(SitePhotoViewModel::class.java)
             loginViewModel.siteParms(studentsObj)
@@ -220,8 +215,10 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
                             Observer<ServeyDetailResponse> { response->
                                 stopProgressDialog()
                                 if (response != null) {
-                                    Toast.makeText(this,"status update",Toast.LENGTH_LONG)
-                                }})
+                                   // Toast.makeText(this, "status update", Toast.LENGTH_LONG)
+                                    showSurveySuccessDialog()
+                                }
+                            })
 
 
 //                    val message = response.message
@@ -242,8 +239,6 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
         } catch (e : Exception) {
 
         }
-=======
->>>>>>> 6c23cd1cbb0a65b701ce0f125a965144680d30dd
     }
 
 
@@ -279,9 +274,6 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
                 startActivity(intent)
                 finish()
             }
-<<<<<<< HEAD
-=======
-
             "thankyou" -> {
                 confirmationDialog!!.dismiss()
                 startActivity(Intent(this, SiteInfoActivity::class.java))
@@ -289,7 +281,6 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
             }
 
 
->>>>>>> 6c23cd1cbb0a65b701ce0f125a965144680d30dd
         }
     }
 
@@ -302,6 +293,43 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
         }
     }
 
+    private fun showSurveySuccessDialog() {
+        val siteName = SharedPrefClass()!!.getPrefValue(
+            MyApplication.instance,
+            GlobalConstants.SITE_NAME
+        ).toString()
+        // val siteName = "Akash"
+        confirmationDialog = Dialog(this, R.style.transparent_dialog)
+        confirmationDialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        val binding =
+            DataBindingUtil.inflate<ViewDataBinding>(
+                LayoutInflater.from(this),
+                R.layout.survey_submitted_success_dialog,
+                null,
+                false
+            )
+
+        confirmationDialog?.setContentView(binding.root)
+        confirmationDialog?.setCancelable(false)
+
+        confirmationDialog?.window!!.setLayout(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.MATCH_PARENT
+        )
+
+        confirmationDialog?.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val cancel = confirmationDialog?.findViewById<Button>(R.id.btnDone)
+        val tvMessage = confirmationDialog?.findViewById<TextView>(R.id.tvMessage)
+        tvMessage?.setText(tvMessage?.text.toString() + " " + siteName)
+        cancel?.setOnClickListener {
+
+            val intent = Intent(this, SiteInfoActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
+        confirmationDialog?.show()
+    }
 
 }
 
