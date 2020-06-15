@@ -48,8 +48,6 @@ class LoginActivity : BaseActivity() {
                                 response.resultData!!
                             )
 
-
-
                             SharedPrefClass().putObject(
                                 this,
                                 GlobalConstants.ACCESS_TOKEN,
@@ -105,7 +103,6 @@ class LoginActivity : BaseActivity() {
                                 mJsonObject.addProperty("password", password)
                                 // mJsonObject.addProperty("app-version", versionName)
                                 loginViewModel.login(mJsonObject)
-
 
                             }
                         }

@@ -40,7 +40,11 @@ class ImageCategories(var imageListActivity : SitePhotosActivity, var categories
         }
 
     }
+    fun setList( categoriesList : ArrayList<ImageCategoriesResponse.ResultData>?){
+        this.categoriesList=categoriesList
+        notifyDataSetChanged()
 
+    }
 
     override fun getItemViewType(position: Int): Int {
         return position

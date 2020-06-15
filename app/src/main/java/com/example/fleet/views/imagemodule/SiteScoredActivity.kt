@@ -22,7 +22,7 @@ class SiteScoredActivity : BaseActivity() {
             GlobalConstants.POC_ADDRESS
         ).toString()
 
-        fragmentHomeBinding.txtAddress.setText(address)
+        //fragmentHomeBinding.txtAddress.setText(address)
     }
 
     override fun getLayoutId() : Int {
