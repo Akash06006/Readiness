@@ -33,6 +33,12 @@ class SiteInfo {
         @Expose
         var facilityName : String? = null
 
+
+        @SerializedName("siteName")
+        @Expose
+        var siteName : String? = null
+
+
         @SerializedName("facilityAddress")
         @Expose
         var facilityAddress : String? = null

@@ -80,5 +80,8 @@ object GlobalConstants {
     var FAC_ADDRESS = "FAC_ADDRESS"
     @JvmStatic
     var SURVEY_ID = "SURVEY_ID"
+    @JvmStatic
+    var SITE_NAME = "SITE_NAME"
+
 
 }

@@ -66,6 +66,13 @@ class SiteInfoActivity : BaseActivity(), DialogssInterface {
                                     GlobalConstants.FAC_ADDRESS,
                                     response.resultData!![0].facilityAddress
                                 )
+
+                                SharedPrefClass().putObject(
+                                    this,
+                                    GlobalConstants.SITE_NAME,
+                                    response.resultData!![0].siteName
+                                )
+
                                 SharedPrefClass().putObject(
                                     this,
                                     GlobalConstants.SURVEY_ID,
