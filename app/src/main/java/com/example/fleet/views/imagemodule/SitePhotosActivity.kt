@@ -345,7 +345,10 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
                     "isLogin",
                     false
                 )
-                showToastSuccess("you are logged out successfully")
+
+
+                MyApplication.instance.categoriesList!!.clear()
+                showToastSuccess(getString(R.string.logout_success))
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()

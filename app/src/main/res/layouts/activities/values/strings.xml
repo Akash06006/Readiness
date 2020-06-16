@@ -1,7 +1,7 @@
 <!DOCTYPE resources [<!ENTITY app_name "IdentoGo">]>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="usename">Username</string>
-    <string name="login_proceed">Login to Proceed</string>
+    <string name="login_proceed">Login to proceed</string>
     <string name="proposed_info">Proposed Facility Information</string>
     <string name="facility_name">Facility Name</string>
     <string name="facility_address">Facility Address (reference buildings/shopping center , if applicable )</string>
@@ -22,10 +22,12 @@
     <string name="ada_compliance">ADA Compliance</string>
     <string name="operational">Operational</string>
     <string name="site_photos">Site Photos</string>
-    <string name="review_submit">Please Review and Submit</string>
+    <string name="review_submit">Please review and submit</string>
     <string name="description">Description</string>
     <string name="upload">Upload</string>
     <string name="enter_description">Enter description here</string>
     <string name="thankyou_message">Thank you for submitting Review survey for IdentoGo</string>
     <string name="upload_photo">Click here to upload new photo</string>
+    <string name="logout_success">You are logged out successfully</string>
+    <string name="login_success">You are logged in successfully</string>
 </resources>

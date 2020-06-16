@@ -90,6 +90,7 @@
             android:paddingLeft="@dimen/dp_30"
             android:paddingRight="@dimen/dp_30"
             android:text="@string/upload"
+            app:font="@{`bold`}"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/sp_20" />
 

@@ -37,7 +37,7 @@ class LoginActivity : BaseActivity() {
                     val message = response.message
                     when {
                         response.code == 200 -> {
-                            showToastSuccess("you are logged in successfully")
+                            showToastSuccess(getString(R.string.login_success))
                             SharedPrefClass().putObject(
                                 this,
                                 GlobalConstants.USERID,

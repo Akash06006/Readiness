@@ -107,6 +107,7 @@
             android:background="@drawable/ic_edit_back"
             android:orientation="horizontal"
             android:paddingTop="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
             android:paddingBottom="@dimen/dp_10"
             >
 

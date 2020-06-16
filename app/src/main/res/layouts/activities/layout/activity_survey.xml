@@ -57,8 +57,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1.5"
+                    android:layout_height="@dimen/dp_95"
                     android:background="@color/appBackgroundColor"
                     android:orientation="vertical"
                     android:padding="@dimen/dp_15">
@@ -81,16 +80,15 @@
                         android:text="@{siteModel.facilityName}"
                         android:textAllCaps="false"
                         android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/sp_18"
+                        android:textSize="@dimen/sp_17"
                         app:font="@{`regular`}" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
                     android:layout_marginTop="@dimen/dp_10"
-                    android:layout_weight="2"
+                    android:layout_height="@dimen/dp_95"
                     android:background="@color/appBackgroundColor"
                     android:orientation="vertical"
                     android:padding="@dimen/dp_15">
@@ -112,16 +110,15 @@
                         android:paddingTop="@dimen/dp_5"
                         android:text="@{siteModel.facilityAddress}"
                         android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/sp_18"
+                        android:textSize="@dimen/sp_17"
                         app:font="@{`regular`}" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
                     android:layout_marginTop="@dimen/dp_10"
-                    android:layout_weight="1.5"
+                    android:layout_height="@dimen/dp_95"
                     android:background="@color/appBackgroundColor"
                     android:orientation="vertical"
                     android:padding="@dimen/dp_15">
@@ -144,16 +141,15 @@
                         android:text="@{siteModel.pocName}"
                         android:textAllCaps="false"
                         android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/sp_18"
+                        android:textSize="@dimen/sp_17"
                         app:font="@{`regular`}" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="@dimen/dp_95"
                     android:layout_marginTop="@dimen/dp_10"
-                    android:layout_weight="1.5"
                     android:background="@color/appBackgroundColor"
                     android:orientation="vertical"
                     android:padding="@dimen/dp_15">
@@ -176,16 +172,15 @@
                         android:text="@{siteModel.pocAddress}"
                         android:textAllCaps="false"
                         android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/sp_18"
+                        android:textSize="@dimen/sp_17"
                         app:font="@{`regular`}" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
                     android:layout_marginTop="@dimen/dp_10"
-                    android:layout_weight="1.5"
+                    android:layout_height="@dimen/dp_95"
                     android:background="@color/appBackgroundColor"
                     android:orientation="vertical"
                     android:padding="@dimen/dp_15">
@@ -208,16 +203,15 @@
                         android:text="@{siteModel.pocPhoneNumber}"
                         android:textAllCaps="false"
                         android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/sp_18"
+                        android:textSize="@dimen/sp_17"
                         app:font="@{`regular`}" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="@dimen/dp_95"
                     android:layout_marginTop="@dimen/dp_10"
-                    android:layout_weight="1.5"
                     android:background="@color/appBackgroundColor"
                     android:orientation="vertical"
                     android:padding="@dimen/dp_15">
@@ -240,7 +234,7 @@
                         android:text="@{siteModel.pocEmail}"
                         android:textAllCaps="false"
                         android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/sp_18"
+                        android:textSize="@dimen/sp_17"
                         app:font="@{`regular`}" />
 
                 </LinearLayout>
@@ -250,7 +244,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/dp_35"
+                    android:layout_marginTop="@dimen/dp_25"
                     android:background="@drawable/round_shape"
                     android:backgroundTint="@color/colorPrimary"
                     android:contentDescription="@string/todo"
@@ -260,8 +254,9 @@
                     android:paddingLeft="@dimen/dp_30"
                     android:paddingRight="@dimen/dp_30"
                     android:text="@string/start"
+                    app:font="@{`bold`}"
                     android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/sp_20" />
+                    android:textSize="@dimen/sp_15" />
 
             </LinearLayout>
         </ScrollView>

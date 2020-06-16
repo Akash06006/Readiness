@@ -80,7 +80,7 @@ class SiteScoredActivity : BaseActivity(), DialogssInterface {
                     "isLogin",
                     false
                 )
-                showToastSuccess("you are logged out successfully")
+                showToastSuccess(getString(R.string.logout_success))
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()

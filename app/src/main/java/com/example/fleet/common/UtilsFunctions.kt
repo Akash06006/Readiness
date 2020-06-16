@@ -46,7 +46,9 @@ object UtilsFunctions {
             ) as CustomToastBinding
         val toast = Toast(MyApplication.instance)
         binding.tvText.text = message
-        binding.image.setImageResource(R.drawable.ic_cross)
+        //binding.image.setImageResource(R.drawable.ic_cross)
+        binding.image.visibility=View.GONE
+
         binding.toastLayoutRoot.setBackgroundColor(MyApplication.instance.resources.getColor(R.color.colorRed))
         toast.setGravity(Gravity.FILL_HORIZONTAL or Gravity.BOTTOM, 0, 0)
         toast.view = binding.root

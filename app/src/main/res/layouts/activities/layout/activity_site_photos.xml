@@ -73,6 +73,7 @@
                 android:paddingRight="@dimen/dp_30"
                 android:text="@string/submit"
                 android:visibility="gone"
+                app:font="@{`bold`}"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/sp_20" />
 
