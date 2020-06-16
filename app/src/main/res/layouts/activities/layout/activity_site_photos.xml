@@ -75,7 +75,7 @@
                 android:visibility="gone"
                 app:font="@{`bold`}"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/sp_20" />
+                android:textSize="@dimen/sp_15" />
 
             <RelativeLayout
                 android:id="@+id/relativeParent"

@@ -54,6 +54,7 @@ class SiteInfoActivity : BaseActivity(), DialogssInterface {
                     val message = response.message
                     when {
                         response.code == 200 -> {
+                            binding.btnSubmit.visibility = View.VISIBLE
 
                             //comment
                             if (response.resultData!!.size > 0) {
@@ -82,6 +83,8 @@ class SiteInfoActivity : BaseActivity(), DialogssInterface {
                             } else {
                                 binding.parentLayout.visibility = View.GONE
                                 binding.tvNRecord.visibility = View.VISIBLE
+                                binding.btnSubmit.visibility = View.GONE
+
                                 binding.tvHlogin.visibility = View.GONE
                             }
                         }

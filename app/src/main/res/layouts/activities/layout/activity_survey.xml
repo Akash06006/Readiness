@@ -45,8 +45,9 @@
         <ScrollView
             android:id="@+id/parentLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:padding="@dimen/dp_10"
+            android:layout_weight="10"
             android:visibility="gone">
 
             <LinearLayout
@@ -239,28 +240,32 @@
 
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/btn_submit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/dp_25"
-                    android:background="@drawable/round_shape"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:contentDescription="@string/todo"
-                    android:drawableRight="@drawable/ic_arrow_forward"
-                    android:drawablePadding="@dimen/dp_5"
-                    android:onClick="@{(v) -> siteVMModel.clickListener(v)}"
-                    android:paddingLeft="@dimen/dp_30"
-                    android:paddingRight="@dimen/dp_30"
-                    android:text="@string/start"
-                    app:font="@{`bold`}"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/sp_15" />
+
 
             </LinearLayout>
         </ScrollView>
 
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@drawable/round_shape"
+            android:backgroundTint="@color/colorPrimary"
+            android:contentDescription="@string/todo"
+            android:drawableRight="@drawable/ic_arrow_forward"
+            android:drawablePadding="@dimen/dp_5"
+            android:onClick="@{(v) -> siteVMModel.clickListener(v)}"
+            android:paddingLeft="@dimen/dp_30"
+            android:paddingRight="@dimen/dp_30"
+            android:text="@string/start"
+            app:font="@{`bold`}"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:visibility="gone"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/sp_15" />
         <TextView
             android:id="@+id/tv_nRecord"
             android:layout_width="match_parent"
