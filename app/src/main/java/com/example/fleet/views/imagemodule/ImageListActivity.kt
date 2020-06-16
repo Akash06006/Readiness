@@ -73,24 +73,26 @@ class ImageListActivity : BaseActivity() {
             }
 
             openCamera!!.setOnClickListener {
-                if (this.checkAndRequestPermissions()) {
+                if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(arrayOf(Manifest.permission.CAMERA), MY_CAMERA_PERMISSION_CODE)
+                } else {
                     val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                     startActivityForResult(cameraIntent, CAMERA_REQUEST)
                 }
             }
 
             binding.imgCamera.setOnClickListener {
-//                if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-//                    requestPermissions(arrayOf(Manifest.permission.CAMERA), MY_CAMERA_PERMISSION_CODE)
-//                } else {
-//                    val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-//                    startActivityForResult(cameraIntent, CAMERA_REQUEST)
-//                }
-
-                if (this.checkAndRequestPermissions()) {
+                if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(arrayOf(Manifest.permission.CAMERA), MY_CAMERA_PERMISSION_CODE)
+                } else {
                     val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                     startActivityForResult(cameraIntent, CAMERA_REQUEST)
                 }
+
+//                if (this.checkAndRequestPermissions()) {
+//                    val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//                    startActivityForResult(cameraIntent, CAMERA_REQUEST)
+//                }
             }
         }
     }
