@@ -89,7 +89,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/dp_10"
-                    android:layout_height="@dimen/dp_95"
+                    android:layout_height="wrap_content"
                     android:background="@color/appBackgroundColor"
                     android:orientation="vertical"
                     android:padding="@dimen/dp_15">
@@ -149,7 +149,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_95"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_10"
                     android:background="@color/appBackgroundColor"
                     android:orientation="vertical"
@@ -172,6 +172,7 @@
                         android:paddingTop="@dimen/dp_5"
                         android:text="@{siteModel.pocAddress}"
                         android:textAllCaps="false"
+                        android:paddingBottom="@dimen/dp_10"
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/sp_17"
                         app:font="@{`regular`}" />
