@@ -10,7 +10,7 @@
             android:id="@+id/toolbarCommon"
             layout="@layout/commonheader"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_100" />
+            android:layout_height="@dimen/dp_130" />
 
         <LinearLayout
             android:id="@+id/ll_noRecordFound"

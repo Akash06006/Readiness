@@ -28,7 +28,7 @@
                 android:id="@+id/intentogo"
                 layout="@layout/commonheader"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_120"
+                android:layout_height="@dimen/dp_130"
                 app:onClick="@{(v) -> scoreVMModel.clickListener(v)}" />
 
         </RelativeLayout>

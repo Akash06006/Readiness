@@ -34,7 +34,7 @@
                 android:id="@+id/intentogo"
                 layout="@layout/commonheader"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_100" />
+                android:layout_height="@dimen/dp_130" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"

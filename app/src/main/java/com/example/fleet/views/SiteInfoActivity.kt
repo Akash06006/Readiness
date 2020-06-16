@@ -71,7 +71,7 @@ class SiteInfoActivity : BaseActivity(), DialogssInterface {
                                 SharedPrefClass().putObject(
                                     this,
                                     GlobalConstants.SITE_NAME,
-                                    response.resultData!![0].siteName
+                                    response.resultData!![0].siteName.toString()
                                 )
 
                                 SharedPrefClass().putObject(
