@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="com.example.fleet.common.BindingUtils" />
 
         <variable
@@ -42,9 +44,6 @@
             android:textSize="@dimen/sp_20"
             app:font="@{`regular`}" />
 
-
-
-
         <TextView
             android:id="@+id/tv_user"
             android:layout_width="wrap_content"
@@ -57,17 +56,18 @@
             android:textSize="@dimen/sp_13"
             app:font="@{`regular`}" />
 
+        -
 
         <LinearLayout
             android:id="@+id/ll_login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
             android:background="@drawable/ic_edit_back"
             android:orientation="horizontal"
             android:paddingTop="@dimen/dp_15"
             android:paddingRight="@dimen/dp_10"
-            android:layout_marginLeft="@dimen/dp_10"
-            android:layout_marginRight="@dimen/dp_10"
             android:paddingBottom="@dimen/dp_15">
 
             <EditText
@@ -76,15 +76,15 @@
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:drawableEnd="@drawable/ic_user"
+                android:drawableRight="@drawable/ic_user"
                 android:inputType="textEmailAddress"
                 android:maxLength="64"
                 android:textAllCaps="false"
-                android:textSize="@dimen/sp_18"
                 android:textColor="@color/colorGrey"
-                app:font="@{`regular`}"
-                android:drawableRight="@drawable/ic_user" />
-        </LinearLayout>
+                android:textSize="@dimen/sp_18"
+                app:font="@{`regular`}" />
 
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_pass"
@@ -98,6 +98,8 @@
             android:textSize="@dimen/sp_13"
             app:font="@{`regular`}" />
 
+        -
+
         <LinearLayout
             android:id="@+id/ll_login_password"
             android:layout_width="match_parent"
@@ -108,11 +110,7 @@
             android:orientation="horizontal"
             android:paddingTop="@dimen/dp_10"
             android:paddingRight="@dimen/dp_10"
-            android:paddingBottom="@dimen/dp_10"
-            >
-
-
-
+            android:paddingBottom="@dimen/dp_10">
 
             <EditText
                 android:id="@+id/et_password"
@@ -124,37 +122,27 @@
                 android:inputType="textPassword"
                 android:maxLength="20"
                 android:textAllCaps="true"
+                android:textColor="@color/colorGrey"
                 android:textSize="@dimen/sp_18"
-                android:textColor="@color/colorGrey"                app:font="@{`regular`}"
-                tools:ignore="Autofill" tools:targetApi="m"/>
+                app:font="@{`regular`}"
+                tools:ignore="Autofill"
+                tools:targetApi="m" />
+
         </LinearLayout>
-
-
 
         <ImageView
             android:id="@+id/btn_login"
             android:layout_width="@dimen/dp_80"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_35"
-            android:contentDescription="@string/todo"
             android:background="@drawable/round_shape"
             android:backgroundTint="@color/colorPrimary"
+            android:contentDescription="@string/todo"
             android:onClick="@{(v) -> loginViewModel.clickListener(v)}"
             android:padding="@dimen/dp_10"
             android:src="@drawable/ic_arrow_forward"
-            android:textColor="@color/colorWhite" tools:targetApi="lollipop"/>
-
-<!--        <TextView-->
-<!--            android:id="@+id/tv_forgot_password"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:layout_marginTop="@dimen/dp_25"-->
-<!--            android:onClick="@{(v) -> loginViewModel.clickListener(v)}"-->
-<!--            android:text="@string/forgot_your_password"-->
-<!--            android:textColor="@color/colorGrey"-->
-<!--            android:textSize="@dimen/sp_13"-->
-<!--            app:font="@{`bold`}" />-->
+            android:textColor="@color/colorWhite"
+            tools:targetApi="lollipop" />
 
 
     </LinearLayout>

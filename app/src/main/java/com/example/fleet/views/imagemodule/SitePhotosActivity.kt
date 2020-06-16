@@ -187,11 +187,11 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
         var imagesExist=false
         adapter!!.notifyDataSetChanged()
         for (i in 0..MyApplication.instance.categoriesList!!.size - 1) {
-                val images = MyApplication.instance.categoriesList!![i].images
-                if(images!!.size>0) imagesExist=true
+            val images = MyApplication.instance.categoriesList!![i].images
+            if(images!!.size>0) imagesExist=true
 
         }
-          if(imagesExist) binding.btnSubmit.visibility = View.VISIBLE
+        if(imagesExist) binding.btnSubmit.visibility = View.VISIBLE
         else
             binding.btnSubmit.visibility = View.GONE
 
@@ -382,5 +382,3 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
 
 
 }
-
-

@@ -130,7 +130,7 @@ object UtilsFunctions {
         return if (activeNetwork != null && activeNetwork.isConnectedOrConnecting) {
             activeNetwork != null && activeNetwork.isConnectedOrConnecting
         } else {
-           // showToastWarning(MyApplication.instance.getString(R.string.internet_connection))
+            // showToastWarning(MyApplication.instance.getString(R.string.internet_connection))
             // Toast.makeText(MyApplication.getInstance().getApplicationContext(), R.string.internet_connection, Toast.LENGTH_SHORT).show();
             false
         }
