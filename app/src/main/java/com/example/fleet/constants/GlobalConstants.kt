@@ -42,12 +42,8 @@ object GlobalConstants {
      val BASE_URL = "http://10.8.23.202:9062/"*/
     @JvmStatic
     val BASE_URL = "http://sitesurvay.appsndevs.com/"
-   // val BASE_URL = "http://stgsd.appsndevs.com/SiteSurvey/"
-    @JvmStatic
-    val BASE_SERVER = "http://sitesurvay.appsndevs.com/"
-    //val BASE_SERVER = "http://stgsd.appsndevs.com/SiteSurvey/"
-    /* @JvmStatic
-     val SOCKET_URL = "http://10.8.23.202:9062"*/
+  // val BASE_URL = "http://stgsd.appsndevs.com/SiteSurvey/"
+
     @JvmStatic
     val SOCKET_URL = "http://camonher.infinitywebtechnologies.com:9064/"
     const val PLATFORM = "android"

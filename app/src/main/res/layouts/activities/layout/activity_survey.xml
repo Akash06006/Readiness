@@ -27,7 +27,7 @@
             android:id="@+id/toolbarCommon"
             layout="@layout/commonheader"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_80"
+            android:layout_height="@dimen/dp_90"
             app:onClick="@{(v) -> siteVMModel.clickListener(v)}" />
 
         <TextView
@@ -35,7 +35,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_20"
-
             android:layout_marginTop="@dimen/dp_10"
             android:text="@string/proposed_info"
             android:textColor="@color/colorBlack"

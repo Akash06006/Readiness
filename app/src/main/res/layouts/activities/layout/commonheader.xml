@@ -18,7 +18,7 @@
     android:background="@color/appBackgroundColor"
     android:orientation="vertical"
     android:weightSum="10"
-    android:padding="@dimen/dp_10">
+    android:padding="@dimen/dp_15">
 
 
     <LinearLayout
@@ -67,6 +67,7 @@
         android:drawablePadding="@dimen/dp_10"
         android:drawableLeft="@drawable/ic_location"
         android:textColor="@color/colorBlack"
+        tools:text="wef.nwefenfknnfsl lsfks dsknsd vdsknv mdsvidsv mndsvjsd kvsjkdvkjsdb vjkdkvds  sd vkln v "
         android:textSize="@dimen/sp_14"
         app:font="@{`bold`}" />
 

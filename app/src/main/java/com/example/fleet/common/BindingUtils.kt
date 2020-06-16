@@ -266,7 +266,7 @@ object BindingUtils {
 
         }
 
-        image = GlobalConstants.BASE_SERVER + image
+        image = GlobalConstants.BASE_URL + image
 
 
         return image
@@ -276,7 +276,7 @@ object BindingUtils {
     @JvmStatic
     fun getImageURL(image : String?) : String {
         var imagetoSend = image
-        imagetoSend = GlobalConstants.BASE_SERVER + imagetoSend
+        imagetoSend = GlobalConstants.BASE_URL + imagetoSend
         return imagetoSend
 
     }

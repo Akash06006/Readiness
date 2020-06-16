@@ -1,9 +1,7 @@
 package com.example.fleet.views
 
 import android.app.Dialog
-import android.content.Context
 import android.content.Intent
-import android.text.TextUtils
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -38,7 +36,7 @@ class SiteInfoActivity : BaseActivity(), DialogssInterface {
         binding.siteVMModel = siteInfoVM
         sharedPrefClass = SharedPrefClass()
         binding.toolbarCommon.tvAddress.visibility = View.GONE
-
+        checkAndRequestPermissions()
         val userId = sharedPrefClass!!.getPrefValue(
             MyApplication.instance,
             GlobalConstants.USERID

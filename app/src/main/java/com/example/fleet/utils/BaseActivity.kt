@@ -357,8 +357,8 @@ abstract class BaseActivity : AppCompatActivity() {
     public fun checkAndRequestPermissions() : Boolean {
         val camerapermission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
         val writepermission = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        val permissionLocation = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-        val permissionRecordAudio = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+//        val permissionLocation = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+//        val permissionRecordAudio = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
 
 
         val listPermissionsNeeded = ArrayList<String>()
