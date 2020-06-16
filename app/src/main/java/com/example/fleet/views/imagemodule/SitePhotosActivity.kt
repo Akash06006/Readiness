@@ -119,7 +119,7 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
                     // showToastError(response.message)
 
                     if (response.statusCode == 200) {
-                        //
+                        MyApplication.instance.categoriesList!!.clear()
                         imageCaegoryViewModel.updateServeyId(siteId)
 
                     } else {
