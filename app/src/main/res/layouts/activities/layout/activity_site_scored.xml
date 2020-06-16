@@ -28,7 +28,7 @@
                 android:id="@+id/intentogo"
                 layout="@layout/commonheader"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_100"
+                android:layout_height="@dimen/dp_120"
                 app:onClick="@{(v) -> scoreVMModel.clickListener(v)}" />
 
         </RelativeLayout>
@@ -36,16 +36,16 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:layout_below="@+id/parentIntentGo">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="50dp"
+                android:layout_gravity="bottom"
                 android:background="@drawable/layout_bg"
                 android:elevation="2dp"
-                android:paddingBottom="50dp">
+                android:paddingTop="70dp"
+                android:paddingBottom="@dimen/dp_50">
 
                 <TextView
                     android:id="@+id/tvReview"
@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="@dimen/dp_40"
-                    android:layout_marginTop="@dimen/dp_30"
+                    android:layout_marginTop="@dimen/dp_10"
                     android:text="@string/this_site_scored_a"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/sp_18"
@@ -62,11 +62,11 @@
 
                 <com.vaibhavlakhera.circularprogressview.CircularProgressView
                     android:id="@+id/progressView"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
                     android:layout_below="@+id/tvReview"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="30dp"
                     app:animate="true"
                     app:animateDuration="600"
                     app:fillColor="@color/colorPrimary"
@@ -89,18 +89,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/progressView"
-
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="@dimen/dp_40"
                     android:gravity="center"
                     android:orientation="horizontal">
 
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.4"
+                         />
                     <TextView
                         android:id="@+id/tvlookNfeel"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:text="@string/look_n_feel"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/sp_15"
@@ -112,7 +117,7 @@
                         android:layout_width="0dp"
                         android:layout_height="30dp"
                         android:layout_marginRight="@dimen/dp_80"
-                        android:layout_weight="0.15"
+                        android:layout_weight="0.2"
                         app:animate="true"
                         app:animateDuration="600"
                         app:fillColor="@color/colorPrimary"
@@ -142,12 +147,17 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.4"
+                        />
                     <TextView
                         android:id="@+id/tvADA"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:text="@string/ada_compliance"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/sp_15"
@@ -159,7 +169,7 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_marginRight="@dimen/dp_80"
-                        android:layout_weight="0.15"
+                        android:layout_weight="0.2"
                         app:animate="true"
                         app:animateDuration="600"
                         app:fillColor="@color/colorPrimary"
@@ -189,12 +199,17 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.4"
+                        />
                     <TextView
                         android:id="@+id/tvOperational"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:text="@string/operational"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/sp_15"
@@ -206,7 +221,7 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_marginRight="@dimen/dp_80"
-                        android:layout_weight="0.15"
+                        android:layout_weight="0.2"
                         app:animate="true"
                         app:animateDuration="600"
                         app:fillColor="@color/colorPrimary"
@@ -232,7 +247,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ll_progresses3"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="@dimen/dp_40"
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/btn_submit"
                     android:drawableTint="@color/colorWhite"

@@ -18,7 +18,7 @@
             android:id="@+id/intentogo"
             layout="@layout/commonheader"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_100"
+            android:layout_height="@dimen/dp_120"
             app:onClick="@{(v) -> imageCaegoryViewModel.clickListener(v)}" />
 
         <RelativeLayout
@@ -72,6 +72,7 @@
                 android:paddingLeft="@dimen/dp_30"
                 android:paddingRight="@dimen/dp_30"
                 android:text="@string/submit"
+                android:visibility="gone"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/sp_20" />
 

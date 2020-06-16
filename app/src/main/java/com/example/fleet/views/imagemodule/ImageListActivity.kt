@@ -52,9 +52,10 @@ class ImageListActivity : BaseActivity() {
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun initViews() {
+        binding = viewDataBinding as ActivityImageListBinding
+
         rvPublic = findViewById(R.id.rvPublic)
         openCamera = findViewById(R.id.openCamera)
-
         noRecord = findViewById(R.id.noRecordFound)
         images = ArrayList()
         setAdapterData(images)
@@ -63,7 +64,6 @@ class ImageListActivity : BaseActivity() {
         if (intent.getStringExtra("categoryName") != null) {
 
             categoriesName = findViewById(R.id.categoriesName)
-            binding = viewDataBinding as ActivityImageListBinding
             binding.toolbarCommon.imgLogout.visibility = View.GONE
             if (intent.getStringExtra("categoryName") != null) {
 
@@ -80,13 +80,22 @@ class ImageListActivity : BaseActivity() {
                     startActivityForResult(cameraIntent, CAMERA_REQUEST)
                 }
             }
+
+            binding.imgCamera.setOnClickListener {
+                if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(arrayOf(Manifest.permission.CAMERA), MY_CAMERA_PERMISSION_CODE)
+                } else {
+                    val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    startActivityForResult(cameraIntent, CAMERA_REQUEST)
+                }
+            }
         }
     }
 
     @SuppressLint("SetTextI18n")
     fun setAdapterData(images : ArrayList<CategoriesType.Images>?) {
         if (images!!.size > 0) {
-            noRecord!!.visibility = View.GONE
+            binding.llNoRecordFound.visibility = View.GONE
             rvPublic!!.visibility = View.VISIBLE
             adapter = ImageListAdapter(this, images)
             val mLayoutManager = LinearLayoutManager(this)
@@ -94,12 +103,23 @@ class ImageListActivity : BaseActivity() {
             rvPublic!!.adapter = adapter
         } else {
             noRecord!!.setText("Please upload survey photos for $categories")
-            noRecord!!.visibility = View.VISIBLE
+            binding.llNoRecordFound.visibility = View.VISIBLE
             rvPublic!!.visibility = View.GONE
 
         }
     }
 
+    fun deletePhoto(position : Int) {
+
+        for (i in 0..MyApplication.instance.categoriesList!!.size - 1) {
+            if (MyApplication.instance.categoriesList!!.get(i).categoryId.equals(categoriesId)) {
+                val images = MyApplication.instance.categoriesList!![i].images
+                images!!.removeAt(position)
+                MyApplication.instance.categoriesList!![i].images = images
+                setAdapterData(images)
+            }
+        }
+    }
 
     fun getDataFromList() {
 

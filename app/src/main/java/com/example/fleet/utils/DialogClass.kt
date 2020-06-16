@@ -48,10 +48,10 @@ class DialogClass {
         val yes = dialogView.findViewById<Button>(R.id.yes)
         val no = dialogView.findViewById<Button>(R.id.no)
         val tvLogout = dialogView.findViewById<TextView>(R.id.tv_dialog_logout)
-        if (mKey.equals("logout"))
-            tvLogout.visibility = View.VISIBLE
-        else
-            tvLogout.visibility = View.GONE
+//        if (mKey.equals("logout"))
+           tvLogout.visibility = View.VISIBLE
+//        else
+//            tvLogout.visibility = View.GONE
 
         if (!ValidationsClass().checkStringNull(mTitle))
             (dialogView.findViewById<View>(R.id.txt_dia) as TextView).text = mTitle

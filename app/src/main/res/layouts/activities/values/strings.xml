@@ -12,7 +12,7 @@
     <string name="start">Start</string>
     <string name="want_to_logout">Are you sure you would like to Log Out?</string>
     <string name="want_to_submit">Are you sure you would like to Submit?</string>
-
+    <string name="want_to_delete">Are you sure you would like to Delete this photo?</string>
     <string name="this_site_scored_a">This site scored a</string>
     <string name="submit">Submit</string>
     <string name="next">Next</string>
@@ -27,4 +27,5 @@
     <string name="upload">Upload</string>
     <string name="enter_description">Enter description here</string>
     <string name="thankyou_message">Thank you for submitting Review survey for IdentoGo</string>
+    <string name="upload_photo">Click here to upload new photo</string>
 </resources>

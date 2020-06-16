@@ -10,7 +10,6 @@ import android.view.Window
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
@@ -185,7 +184,16 @@ class SitePhotosActivity : BaseActivity(), DialogssInterface {
 
     override fun onResume() {
         super.onResume()
+        var imagesExist=false
         adapter!!.notifyDataSetChanged()
+        for (i in 0..MyApplication.instance.categoriesList!!.size - 1) {
+                val images = MyApplication.instance.categoriesList!![i].images
+                if(images!!.size>0) imagesExist=true
+
+        }
+          if(imagesExist) binding.btnSubmit.visibility = View.VISIBLE
+        else
+            binding.btnSubmit.visibility = View.GONE
 
     }
 

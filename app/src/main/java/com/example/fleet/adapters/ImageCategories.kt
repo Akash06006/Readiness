@@ -8,20 +8,31 @@ import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.e.dummyproject.ImageListActivity
 import com.e.dummyproject.SitePhotosActivity
 import com.example.fleet.R
 import com.example.fleet.application.MyApplication
+import com.example.fleet.databinding.RowImageCategoriesBinding
 import com.example.fleet.model.CategoriesType
 import com.example.fleet.model.ImageCategoriesResponse
 
 class ImageCategories(var imageListActivity : SitePhotosActivity, var categoriesList : ArrayList<ImageCategoriesResponse.ResultData>?, var categoriesType : ArrayList<CategoriesType>?) : RecyclerView.Adapter<ImageCategories.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.row_image_categories, parent, false)
-        return MyViewHolder(view)
+//        val view = LayoutInflater.from(parent.context)
+//            .inflate(R.layout.row_image_categories, parent, false)
+
+        val binding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context),
+            R.layout.row_image_categories,
+            parent,
+            false
+        ) as RowImageCategoriesBinding
+
+
+        return MyViewHolder(binding.root)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {

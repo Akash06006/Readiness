@@ -1,41 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
-        android:layout_marginRight="10dp"
-        android:elevation="2dp"
-        android:id="@+id/parentLayout"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
-        android:background="@drawable/rounde_corner_edittext"
         android:layout_height="wrap_content">
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:scaleType="centerCrop"
-            app:riv_corner_radius_top_left="10dp"
-            app:riv_corner_radius_top_right="10dp"
-            android:src="@drawable/dummy_img"
-            android:id="@+id/image"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"/>
-        <TextView
-            android:id="@+id/tvDescription"
-            android:layout_margin="10dp"
-            android:layout_marginTop="10dp"
-            app:font="@{`regular`}"
-            android:textSize="@dimen/sp_14"
-            android:layout_below="@+id/image"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
 
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:padding="5dp">
 
+            <RelativeLayout
+                android:id="@+id/parentLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounde_corner_edittext"
+                android:elevation="2dp">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/dummy_img"
+                    app:riv_corner_radius_top_left="10dp"
+                    app:riv_corner_radius_top_right="10dp" />
+
+                <TextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/image"
+                    android:layout_margin="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="@dimen/sp_14"
+                    app:font="@{`regular`}" />
+
+            </RelativeLayout>
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/img_delete"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_5"
+            android:background="@drawable/ic_close"
+            android:padding="@dimen/dp_15"
+            android:tint="@color/colorGrey" />
 
     </RelativeLayout>
-
-</RelativeLayout>
 </layout>

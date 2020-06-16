@@ -3,18 +3,13 @@ package com.example.fleet.views
 import android.content.Context
 import android.content.Intent
 import androidx.databinding.DataBindingUtil
-import com.e.dummyproject.SitePhotosActivity
-import com.e.dummyproject.SiteScoredActivity
 import com.example.fleet.R
 import com.example.fleet.application.MyApplication
 import com.example.fleet.constants.GlobalConstants
 import com.example.fleet.databinding.ActivitySplashBinding
-import com.example.fleet.model.SiteInfo
 import com.example.fleet.sharedpreference.SharedPrefClass
 import com.example.fleet.utils.BaseActivity
 import com.example.fleet.views.authentication.LoginActivity
-import com.example.fleet.views.home.DashboardActivity
-import com.google.gson.JsonObject
 import java.util.*
 
 class SplashActivity : BaseActivity() {
